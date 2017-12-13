@@ -7,8 +7,6 @@
     <div flex class="body">
       <!-- 左侧元件菜单 -->
       <toolbar :zoom="zoom"></toolbar>
-      <!-- 层列表 -->
-      <layer-list />
       <!-- 中部编辑区 -->
       <div class="viewport">
         <!-- 画布 -->
@@ -36,7 +34,6 @@
 <script>
 import navbar from "./components/navbar.vue"
 import toolbar from "./components/toolbar.vue"
-import layerList from "./components/layerList.vue"
 import panel from "./components/panel"
 import viewport from "./components/viewport"
 
@@ -45,8 +42,7 @@ export default {
     navbar, // 顶部导航栏
     toolbar, // 左侧菜单栏
     panel, // 右侧参数面板
-    viewport, // 页面画布
-    layerList // 层列表
+    viewport // 页面画布
   },
 
   mounted () {

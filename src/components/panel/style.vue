@@ -29,7 +29,7 @@
     </div>
 
     <div class="panel-row" flex>
-      <icon name="arrow-left" />
+      <icon name="arrow-right" />
       <div class="panel-label">横坐标</div>
       <div class="panel-value">{{ activeElement.left }}</div>
       <div class="panel-slider-wrap">
@@ -38,7 +38,7 @@
     </div>
 
     <div class="panel-row" flex>
-      <icon name="arrow-up" />
+      <icon name="arrow-down" />
       <div class="panel-label">纵坐标</div>
       <div class="panel-value">{{ activeElement.top }}</div>
       <div class="panel-slider-wrap">
