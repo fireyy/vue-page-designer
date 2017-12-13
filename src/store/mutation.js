@@ -118,7 +118,6 @@ export default {
 
   // 更新元件初始 top 值
   updateSrollTop (state, top) {
-    console.log('dddd', this)
     state.top = top
   },
 
