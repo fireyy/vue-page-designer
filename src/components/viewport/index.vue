@@ -11,6 +11,7 @@
       <!-- 组件 -->
       <component
         :is="val.type"
+        class="layer"
         v-for="(val, i) in widgetStore"
         :key="i"
         :i="i"
@@ -66,18 +67,18 @@ export default {
         // 左
         if (e.keyCode === 37 && target.left) {
           target.left -= 1
-          return;
+          return
         }
         // 上
         if (e.keyCode === 38 && target.top) {
           e.preventDefault()
           target.top -= 1
-          return;
+          return
         }
         // 右
         if (e.keyCode === 39 && target.left) {
           target.left += 1
-          return;
+          return
         }
 
         // 下
@@ -106,7 +107,7 @@ export default {
 
         // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
         var target = this.$store.state.activeElement
-        if (target.belong === "page" && type !== "bgImage") {
+        if (target.belong === "page" && type !== "braid-bg") {
           this.initmovement(e) // 参见 mixins
         }
       } else {

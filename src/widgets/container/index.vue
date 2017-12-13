@@ -39,47 +39,49 @@
 </template>
 
 <script>
-  export default {
-    name: 'braid-container',
-    icon: 'layout',
-    title: '容器',
-    setting: {
-      type: 'braid-container',
-      hasGuide: true,
-      name: '',
-      width: 650,
-      height: 300,
-      left: 50,
-      top: 0,
-      z: 0,
-      display: 'flex',
-      bgColor: '',
-      backPic: '',
-      backPicUrl: '',
-      radius: 0,
-      borderColor: '',
-      borderWidth: 0,
-      dir: 'row',
-      justify: 'flex-start',
-      align: 'flex-start',
-      belong: 'page',
-      animationName: ''
-    },
-    props: ['h', 'val', 'i', 'id', 'playState'],
+export default {
+  name: "braid-container",
+  icon: "layout",
+  title: "容器",
+  setting: {
+    type: "braid-container",
+    hasGuide: true,
+    name: "",
+    width: 650,
+    height: 300,
+    left: 50,
+    top: 0,
+    z: 0,
+    display: "flex",
+    bgColor: "",
+    backPic: "",
+    backPicUrl: "",
+    radius: 0,
+    borderColor: "",
+    borderWidth: 0,
+    dir: "row",
+    justify: "flex-start",
+    align: "flex-start",
+    belong: "page",
+    animationName: ""
+  },
+  props: ["h", "val", "i", "id", "playState"],
 
-    computed: {
-      // 子组件
-      childs () {
-        return this.$store.state.widgets.filter(item => item.belong === this.val.name)
-      }
+  computed: {
+    // 子组件
+    childs () {
+      return this.$store.state.widgets.filter(
+        item => item.belong === this.val.name
+      )
     }
   }
+}
 </script>
 
 <style scoped>
-  .lz-container {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-  }
+.lz-container {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
 </style>

@@ -4,7 +4,6 @@ import * as inner from '@/widgets'
 var widgets, widgetStyle
 
 const install = (Vue, config = {}) => {
-  console.log('config', config)
   if (install.installed) return
 
   widgets = Object.assign({}, inner.widgets, config.widgets)

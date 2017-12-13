@@ -151,12 +151,15 @@ export default {
 
   // 添加组件
   addWidget (state, { data: data = null, item }) {
+    let def = { top: state.top, uuid: new Date().getTime() }
+    let setting = JSON.parse(JSON.stringify(item.setting))
+
     if (data) {
       data.forEach(function (val) {
-        state.widgets.push(Object.assign(item.setting, val, { top: state.top }))
+        state.widgets.push(Object.assign(setting, val, def))
       })
     } else {
-      state.widgets.push(Object.assign(item.setting, { top: state.top }))
+      state.widgets.push(Object.assign(setting, def))
     }
   },
 

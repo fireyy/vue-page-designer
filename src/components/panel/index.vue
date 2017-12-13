@@ -45,7 +45,6 @@ export default {
 <style scoped>
 .control-panel {
   width: 400px;
-  height: 100%;
   border-left: 1px solid #f5f5f5;
   user-select: none;
 }

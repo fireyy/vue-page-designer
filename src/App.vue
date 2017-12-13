@@ -70,12 +70,13 @@ export default {
   width: 100%;
   height: calc(100% - 50px);
   overflow: hidden;
+  flex-direction: row;
 }
 .viewport {
-  height: 100%;
   flex-grow: 1;
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 .zoom-wrap {
   width: 200px;
