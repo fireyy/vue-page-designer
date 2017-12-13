@@ -7,7 +7,8 @@
     <div flex class="body">
       <!-- 左侧元件菜单 -->
       <toolbar :zoom="zoom"></toolbar>
-
+      <!-- 层列表 -->
+      <layer-list />
       <!-- 中部编辑区 -->
       <div class="viewport">
         <!-- 画布 -->
@@ -33,17 +34,19 @@
 </template>
 
 <script>
-import navbar from "./components/navbar"
-import toolbar from "./components/toolbar"
+import navbar from "./components/navbar.vue"
+import toolbar from "./components/toolbar.vue"
+import layerList from "./components/layerList.vue"
 import panel from "./components/panel"
 import viewport from "./components/viewport"
 
 export default {
   components: {
-    navbar: navbar, // 顶部导航栏
-    toolbar: toolbar, // 左侧菜单栏
-    panel: panel, // 右侧参数面板
-    viewport: viewport // 页面画布
+    navbar, // 顶部导航栏
+    toolbar, // 左侧菜单栏
+    panel, // 右侧参数面板
+    viewport, // 页面画布
+    layerList // 层列表
   },
 
   mounted () {
@@ -104,6 +107,7 @@ export default {
   --main-light: rgba(34, 34, 34, 0.3);
   --sub: #2196f3;
   --sub-light: rgba(30, 150, 243, 0.3);
+  --light: #fff;
 }
 
 [flex] {
