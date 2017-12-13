@@ -70,7 +70,7 @@ export default {
     }
   },
 
-  // FIXME: 复制元件
+  // 复制元件
   copy (state, payload) {
     if (
       state.type === "braid-pic" ||
@@ -88,17 +88,10 @@ export default {
           copy.name = copyName
 
           // 复制容器内的图片和文本
-          for (var i = 0, len = state.image.length; i < len; i++) {
-            if (state.image[i].belong === name) {
-              state.image.push(
-                Object.assign({}, state.image[i], { belong: copyName })
-              )
-            }
-          }
-          for (var i = 0, len = state.text.length; i < len; i++) {
-            if (state.text[i].belong === name) {
-              state.text.push(
-                Object.assign({}, state.text[i], { belong: copyName })
+          for (var i = 0, len = state.widgets.length; i < len; i++) {
+            if (state.widgets[i].belong === name) {
+              state.widgets.push(
+                Object.assign({}, state.widgets[i], { belong: copyName })
               )
             }
           }
@@ -112,7 +105,7 @@ export default {
         }
       }
 
-      state[state.type].push(copy)
+      state.widgets.push(copy)
     }
   },
 

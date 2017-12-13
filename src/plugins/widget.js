@@ -7,8 +7,8 @@ const install = (Vue, config = {}) => {
   console.log('config', config)
   if (install.installed) return
 
-  widgets = { ...inner.widgets, ...config.widgets }
-  widgetStyle = { ...inner.widgetStyle, ...config.widgetStyle }
+  widgets = Object.assign({}, inner.widgets, config.widgets)
+  widgetStyle = Object.assign({}, inner.widgetStyle, config.widgetStyle)
 
   Object.keys(widgets).forEach(key => {
     Vue.component(key, widgets[key])
