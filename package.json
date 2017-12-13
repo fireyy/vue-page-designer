@@ -1,0 +1,41 @@
+{
+  "name": "vue-page-designer",
+  "version": "0.0.0",
+  "description": "A vue component for drag-and-drop to design and build mobile website.",
+  "repository": {
+    "url": "fireyy/vue-page-designer",
+    "type": "git"
+  },
+  "main": "dist/vue-page-designer.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "npm run lint && echo 'no tests!'",
+    "lint": "xo",
+    "prepublishOnly": "npm run build",
+    "dev": "poi",
+    "build:example": "poi build",
+    "gh": "gh-pages -d example/dist",
+    "deploy": "npm run build:example && npm run gh"
+  },
+  "author": "fireyy <fireyy@gmail.com>",
+  "poi": {
+    "entry": "example/index.js",
+    "dist": "example/dist",
+    "homepage": "/"
+  },
+  "dependencies": {
+    "feather-icons": "^4.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-fireyy": "^1.0.0",
+    "gh-pages": "^1.0.0",
+    "poi": "^9.1.4",
+    "xo": "^0.18.2"
+  },
+  "xo": {
+    "esnext": true,
+    "extends": "fireyy/prettier"
+  }
+}
