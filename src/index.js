@@ -18,9 +18,6 @@ Vue.component('popbox', popbox)
 Vue.component('switcher', switcher)
 Vue.component('icon', icon)
 
-// 注册 widgets
-Vue.use(widget)
-
 /**
  * 设置一个全局的通讯代理
  * ! 约定只有全局组件才能使用该全局通信代理，减少命名冲突的可能
@@ -30,7 +27,18 @@ window.$communicator = new Vue()
 const vuePageDesigner = {
   name: 'vue-page-designer',
   store,
+  props: {
+    widgets: Object,
+    widgetStyle: Object
+  },
   components: { App },
+  created () {
+    // 注册 widgets
+    Vue.use(widget, {
+      widgets: this.widgets,
+      widgetStyle: this.widgetStyle
+    })
+  },
   render (h) {
     return h('App')
   }

@@ -54,32 +54,32 @@
 </template>
 
 <script>
-  export default {
-    props: ['activeElement', 'tab'],
-    methods: {
-      /**
-       * 添加/替换图片
-       *
-       * @param type { String } 添加图片类型
-       */
-      addPic (type) {
-        $communicator.$emit('upload', (payload) => {
-          this.$store.commit(type, payload)
-        })
-      }
+export default {
+  props: ["activeElement", "tab"],
+  methods: {
+    /**
+     * 添加/替换图片
+     *
+     * @param type { String } 添加图片类型
+     */
+    addPic (type) {
+      $communicator.$emit("upload", payload => {
+        this.$store.commit(type, payload)
+      })
     }
   }
+}
 </script>
 
 <style scoped>
-  .cell {
-    flex-grow: 1;
-    padding-left: 20px;
-  }
-  select {
-    height: 100%;
-  }
-  input {
-    width: 100%;
-  }
+.cell {
+  flex-grow: 1;
+  padding-left: 20px;
+}
+select {
+  height: 100%;
+}
+input {
+  width: 100%;
+}
 </style>

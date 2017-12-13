@@ -10,34 +10,34 @@
 <script>
 export default {
   computed: {
-    classes: function() {
+    classes: function () {
       return {
         checked: this.toggled,
         unchecked: !this.toggled,
         disabled: this.disabled
-      };
+      }
     },
 
-    label: function() {
+    label: function () {
       return this.toggled && this.showLabels
         ? this.labelChecked
-        : this.labelUnchecked;
+        : this.labelUnchecked
     }
   },
 
-  data() {
+  data () {
     return {
       toggled: this.value
-    };
+    }
   },
 
   methods: {
-    toggle: function(e) {
+    toggle: function (e) {
       if (this.disabled || e.keyCode === 9) { // if disabled or tab is pressed
-        return false;
+        return false
       }
-      this.toggled = !this.toggled;
-      this.$emit("input", this.toggled);
+      this.toggled = !this.toggled
+      this.$emit("input", this.toggled)
     }
   },
 

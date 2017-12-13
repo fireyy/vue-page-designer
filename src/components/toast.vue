@@ -5,31 +5,31 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        info: '',
-        type: true,
-        show: false
-      }
-    },
-    mounted () {
-      $communicator.$on('notify', (option) => {
-        this.notify(option.info, option.type)
-      })
-    },
-    methods: {
-      notify (info, type) {
-        if (this.show) return;
-        this.info = info || 'Success!';
-        this.type = type || true;
-        this.show = true;
-        setTimeout(() => {
-          this.show = false;
-        }, 2000)
-      }
+export default {
+  data () {
+    return {
+      info: '',
+      type: true,
+      show: false
+    }
+  },
+  mounted () {
+    $communicator.$on('notify', (option) => {
+      this.notify(option.info, option.type)
+    })
+  },
+  methods: {
+    notify (info, type) {
+      if (this.show) return
+      this.info = info || 'Success!'
+      this.type = type || true
+      this.show = true
+      setTimeout(() => {
+        this.show = false
+      }, 2000)
     }
   }
+}
 </script>
 
 <style scoped>

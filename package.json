@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "test": "npm run lint && echo 'no tests!'",
-    "lint": "xo",
+    "lint": "eslint src",
     "prepublishOnly": "npm run build",
     "dev": "poi",
     "build:example": "poi build",
@@ -29,13 +29,14 @@
     "feather-icons": "^4.0.1"
   },
   "devDependencies": {
+    "babel-eslint": "^8.0.3",
+    "eslint": "^4.13.1",
     "eslint-config-fireyy": "^1.0.0",
+    "eslint-plugin-vue": "^4.0.0-beta.2",
     "gh-pages": "^1.0.0",
-    "poi": "^9.1.4",
-    "xo": "^0.18.2"
+    "poi": "^9.1.4"
   },
-  "xo": {
-    "esnext": true,
-    "extends": "fireyy/prettier"
+  "eslintConfig": {
+    "extends": ["fireyy", "plugin:vue/essential"]
   }
 }

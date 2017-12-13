@@ -1,13 +1,13 @@
 // 注册 widgets
-import {widgets, widgetStyle} from '@/widgets'
+import { widgets, widgetStyle } from 'vue-page-designer-widgets'
 
 const install = (Vue, config = {}) => {
   if (install.installed) return
 
-  Object.keys(widgets).forEach(key => {
+  Object.keys(config.widgets).forEach(key => {
     Vue.component(key, widgets[key])
   })
-  Object.keys(widgetStyle).forEach(key => {
+  Object.keys(config.widgetStyle).forEach(key => {
     Vue.component(key, widgetStyle[key])
   })
 }

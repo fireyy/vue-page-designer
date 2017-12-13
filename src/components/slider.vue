@@ -147,13 +147,13 @@ export default {
     },
 
     increase () {
-      if (this.inputValue >= this.max) return;
-      this.inputValue += this.step;
+      if (this.inputValue >= this.max) return
+      this.inputValue += this.step
     },
 
     decrease () {
-      if (this.inputValue <= this.min) return;
-      this.inputValue -= this.step;
+      if (this.inputValue <= this.min) return
+      this.inputValue -= this.step
     }
   },
 

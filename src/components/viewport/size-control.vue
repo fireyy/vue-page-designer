@@ -47,83 +47,83 @@
 </template>
 
 <script>
-  export default {
-    computed: {
-      elm () {
-        var target = this.$store.state.activeElement;
-        var type = this.$store.state.type;
-        var exclusions = ['braid-bg', 'braid-pic', 'page'];
+export default {
+  computed: {
+    elm () {
+      var target = this.$store.state.activeElement
+      var type = this.$store.state.type
+      var exclusions = ["braid-bg", "braid-pic", "page"]
 
-        if (exclusions.indexOf(type) > -1) return '';
-        if (target.belong !== 'page') return '';
+      if (exclusions.indexOf(type) > -1) return ""
+      if (target.belong !== "page") return ""
 
-	      return target
-      }
+      return target
+    }
+  },
+
+  data () {
+    return {
+      type: "" // 调整方向 left | right | up | down
+    }
+  },
+
+  methods: {
+    handlemousedown (e, type, originX, originY) {
+      e.stopPropagation()
+      this.type = type
+      this.$store.commit("initmove", {
+        startX: e.pageX,
+        startY: e.pageY,
+        originX: this.elm[originX],
+        originY: this.elm[originY]
+      })
+
+      document.addEventListener("mousemove", this.handlemousemove, true)
+      document.addEventListener("mouseup", this.handlemouseup, true)
     },
 
-    data () {
-    	return {
-    		type: ''    // 调整方向 left | right | up | down
-    	}
+    handlemousemove (e) {
+      e.stopPropagation()
+      e.preventDefault()
+
+      this.$store.commit("resize", {
+        x: e.pageX,
+        y: e.pageY,
+        type: this.type
+      })
     },
 
-    methods: {
-    	handlemousedown (e, type, originX, originY) {
-    		e.stopPropagation();
-    		this.type = type;
-    		this.$store.commit('initmove', {
-	        startX: e.pageX,
-	        startY: e.pageY,
-	        originX: this.elm[originX],
-	        originY: this.elm[originY]
-	      })
-
-	      document.addEventListener('mousemove', this.handlemousemove, true)
-	      document.addEventListener('mouseup', this.handlemouseup, true);
-    	},
-
-	    handlemousemove (e) {
-	      e.stopPropagation();
-	      e.preventDefault();
-
-	      this.$store.commit('resize', {
-	        x: e.pageX,
-	        y: e.pageY,
-	        type: this.type
-	      })
-	    },
-
-	    handlemouseup () {
-	      document.removeEventListener('mousemove', this.handlemousemove, true);
-	      document.removeEventListener('mouseup', this.handlemouseup, true);
-	      this.$store.commit('stopmove');
-	    }
+    handlemouseup () {
+      document.removeEventListener("mousemove", this.handlemousemove, true)
+      document.removeEventListener("mouseup", this.handlemouseup, true)
+      this.$store.commit("stopmove")
     }
   }
+}
 </script>
 
 <style scoped>
-  .verti,
-  .horiz {
-    position: absolute;
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .verti {
-  	width: 0;
-  	cursor: ew-resize;
-  }
-  .horiz {
-  	height: 0;
-  	cursor: ns-resize;
-  }
-  .square {
-		width: 10px;
-		height: 10px;
-		border: 1px solid var(--sub);
-		background-color: #fff;
-  	flex-shrink: 0;
-  }
+.verti,
+.horiz {
+  position: absolute;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.verti {
+  width: 0;
+  cursor: ew-resize;
+}
+.horiz {
+  height: 0;
+  cursor: ns-resize;
+}
+.square {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--sub);
+  background-color: #fff;
+  flex-shrink: 0;
+}
 </style>

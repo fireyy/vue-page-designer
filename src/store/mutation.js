@@ -42,19 +42,19 @@ export default {
     var dy = payload.y - state.startY
     var value
 
-    if (payload.type === 'right') {
+    if (payload.type === "right") {
       value = state.originX + Math.floor(dx * 100 / state.zoom)
       state.activeElement.width = value > 10 ? value : 10
       return
     }
 
-    if (payload.type === 'down') {
+    if (payload.type === "down") {
       value = state.originX + Math.floor(dy * 100 / state.zoom)
       state.activeElement.height = value > 10 ? value : 10
       return
     }
 
-    if (payload.type === 'left') {
+    if (payload.type === "left") {
       var left = state.originX + Math.floor(dx * 100 / state.zoom)
       var width = state.originY - Math.floor(dx * 100 / state.zoom)
       state.activeElement.left = left > 0 ? left : 0
@@ -62,7 +62,7 @@ export default {
       return
     }
 
-    if (payload.type === 'up') {
+    if (payload.type === "up") {
       var top = state.originX + Math.floor(dy * 100 / state.zoom)
       var height = state.originY - Math.floor(dy * 100 / state.zoom)
       state.activeElement.top = top > 0 ? top : 0
@@ -72,33 +72,41 @@ export default {
 
   // FIXME: 复制元件
   copy (state, payload) {
-    if (state.type === 'braid-pic' || state.type === 'braid-txt' || state.type === 'braid-container') {
+    if (
+      state.type === "braid-pic" ||
+      state.type === "braid-txt" ||
+      state.type === "braid-container"
+    ) {
       var copy = Object.assign({}, state.activeElement)
 
       // 由于容器的名称必须是唯一的，故复制容器需作处理
-      if (state.type === 'braid-container') {
+      if (state.type === "braid-container") {
         var name = state.activeElement.name
         if (name) {
           // 设置容器副本的名称
-          var copyName = name.split('-')[0] + '-' + state.counter
+          var copyName = name.split("-")[0] + "-" + state.counter
           copy.name = copyName
 
           // 复制容器内的图片和文本
           for (var i = 0, len = state.image.length; i < len; i++) {
             if (state.image[i].belong === name) {
-              state.image.push(Object.assign({}, state.image[i], {belong: copyName}))
+              state.image.push(
+                Object.assign({}, state.image[i], { belong: copyName })
+              )
             }
           }
           for (var i = 0, len = state.text.length; i < len; i++) {
             if (state.text[i].belong === name) {
-              state.text.push(Object.assign({}, state.text[i], {belong: copyName}))
+              state.text.push(
+                Object.assign({}, state.text[i], { belong: copyName })
+              )
             }
           }
 
           state.counter += 1
         } else {
-          window.$communicator.$emit('notify', {
-            info: '只有命名容器才能复制，请先命名',
+          window.$communicator.$emit("notify", {
+            info: "只有命名容器才能复制，请先命名",
             type: false
           })
         }
@@ -110,6 +118,7 @@ export default {
 
   // 更新元件初始 top 值
   updateSrollTop (state, top) {
+    console.log('dddd', this)
     state.top = top
   },
 
@@ -126,10 +135,10 @@ export default {
   // 删除选中元件
   delete (state) {
     var type = state.type
-    if (type === 'page') return
+    if (type === "page") return
 
     // 如果删除的是容器，须将内部元件一并删除
-    if (type === 'braid-container') {
+    if (type === "braid-container") {
       var name = state.activeElement.name
 
       for (var i = 0; i < state.widgets.length; i++) {
@@ -144,18 +153,18 @@ export default {
 
     // 重置 activeElement
     state.activeElement = state.page
-    state.type = 'page'
+    state.type = "page"
     state.index = -1
   },
 
   // 添加组件
-  addWidget (state, {data: data = null, item}) {
+  addWidget (state, { data: data = null, item }) {
     if (data) {
       data.forEach(function (val) {
-        state.widgets.push(Object.assign(item.setting, val, {top: state.top}))
+        state.widgets.push(Object.assign(item.setting, val, { top: state.top }))
       })
     } else {
-      state.widgets.push(Object.assign(item.setting, {top: state.top}))
+      state.widgets.push(Object.assign(item.setting, { top: state.top }))
     }
   },
 
@@ -188,17 +197,17 @@ export default {
   // 添加动画
   addAnimation (state) {
     state.animation.push({
-      name: '',
+      name: "",
       duration: 3,
       delay: 0,
       iteration: 1,
-      timing: 'linear',
-      direction: 'normal',
-      fill: 'none',
+      timing: "linear",
+      direction: "normal",
+      fill: "none",
       keyframes: [
         {
           stop: 0,
-          css: ''
+          css: ""
         }
       ]
     })
@@ -210,7 +219,7 @@ export default {
       if (val.name === name) {
         val.keyframes.push({
           stop: 0,
-          css: ''
+          css: ""
         })
       }
     })

@@ -27,96 +27,104 @@
 </template>
 
 <script>
-  export default {
-    mounted () {
-      // Ctrl + C 复制元件
-      document.addEventListener('keyup', (e) => {
-        e.stopPropagation();
+export default {
+  mounted () {
+    // Ctrl + C 复制元件
+    document.addEventListener(
+      "keyup",
+      e => {
+        e.stopPropagation()
         if (e.ctrlKey && e.keyCode === 67) {
-          this.$store.commit('copy')
+          this.$store.commit("copy")
         }
-      }, true);
+      },
+      true
+    )
 
-      // Delete 删除选中元件
-      document.addEventListener('keyup', (e) => {
-        e.stopPropagation();
+    // Delete 删除选中元件
+    document.addEventListener(
+      "keyup",
+      e => {
+        e.stopPropagation()
         if (e.keyCode === 46) {
-          this.$store.commit('delete')
+          this.$store.commit("delete")
         }
-      }, true);
+      },
+      true
+    )
+  },
+
+  methods: {
+    // TODO: 预览
+    preview () {
+      //
     },
 
-    methods: {
-      // TODO: 预览
-      preview () {
-        //
-      },
-
-      // 复制元件
-      copyWidget () {
-        this.$store.commit('copy')
-      },
-
-      // 删除元件
-      dele () {
-        this.$store.commit('delete')
-      }
+    // 复制元件
+    copyWidget () {
+      this.$store.commit("copy")
     },
 
-    computed: {
-      show () {
-        return this.$store.state.type !== 'page'
-      }
+    // 删除元件
+    dele () {
+      this.$store.commit("delete")
+    }
+  },
+
+  computed: {
+    show () {
+      return this.$store.state.type !== "page"
     }
   }
+}
 </script>
 
 <style scoped>
-  .logo {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 35px;
-    color: #fff;
-    text-align: center;
-  }
-  .nav {
-    width: 100%;
-    height: 50px;
-    flex-shrink: 0;
-    background-color: var(--main);
-  }
-  .middle {
-    flex-grow: 1;
-    justify-content: center;
-  }
-  .side {
-    width: 400px;
-    height: 50px;
-  }
-  li {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    line-height: 50px;
-  }
-  .middle .svg-icon,
-  .side .svg-icon {
-    font-size: 18px;
-  }
-  i {
-    color: #eee;
-    line-height: inherit;
-    vertical-align: middle;
-  }
-  .pt12 {
-    padding-top: 12px;
-  }
-  .pt14 {
-    padding-top: 14px;
-  }
-  .f16 {
-    font-size: 16px;
-  }
+.logo {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+}
+.nav {
+  width: 100%;
+  height: 50px;
+  flex-shrink: 0;
+  background-color: var(--main);
+}
+.middle {
+  flex-grow: 1;
+  justify-content: center;
+}
+.side {
+  width: 400px;
+  height: 50px;
+}
+li {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  line-height: 50px;
+}
+.middle .svg-icon,
+.side .svg-icon {
+  font-size: 18px;
+}
+i {
+  color: #eee;
+  line-height: inherit;
+  vertical-align: middle;
+}
+.pt12 {
+  padding-top: 12px;
+}
+.pt14 {
+  padding-top: 14px;
+}
+.f16 {
+  font-size: 16px;
+}
 </style>

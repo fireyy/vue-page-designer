@@ -35,7 +35,7 @@
 </template>
 
 <script>
-	export default {
-		props: ['activeElement', 'tab']
-	}
+export default {
+  props: ["activeElement", "tab"]
+}
 </script>

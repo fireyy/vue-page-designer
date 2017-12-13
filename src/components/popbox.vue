@@ -16,22 +16,22 @@
   </div>
 </template>
 <script>
-  export default {
-    props: ['title', 'id', 'content'],
-    data () {
-      return {
-        show: false
-      }
+export default {
+  props: ['title', 'id', 'content'],
+  data () {
+    return {
+      show: false
+    }
+  },
+  methods: {
+    close () {
+      this.show = false
     },
-    methods: {
-      close () {
-        this.show = false;
-      },
-      confirm () {
-        this.$emit('confirm', this.id);
-      }
+    confirm () {
+      this.$emit('confirm', this.id)
     }
   }
+}
 </script>
 <style scoped>
   .mask {

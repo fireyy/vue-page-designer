@@ -116,168 +116,178 @@
 </template>
 
 <script>
-  import { getAnimateCss } from '@/utils/css-generate.js'
-  export default {
-    name: 'panel-animation',
-    props: ['activeElement', 'tab'],
+import { getAnimateCss } from "@/utils/css-generate.js"
+export default {
+  name: "panel-animation",
+  props: ["activeElement", "tab"],
 
-    data () {
-      return {
-        currentName: '',
-        currentAnimation: null
+  data () {
+    return {
+      currentName: "",
+      currentAnimation: null
+    }
+  },
+
+  computed: {
+    animationNames () {
+      var arr = []
+      this.$store.state.animation.map(val => arr.push(val.name))
+
+      return arr
+    }
+  },
+
+  methods: {
+    addAnimation () {
+      // 检查是否存在未命名动画，避免重复添加
+      if (this.$store.state.animation.some(val => val.name === "")) {
+        $communicator.$emit("notify", {
+          info: "还有未命名动画，请先命名",
+          type: false
+        })
+        return
+      }
+      this.$store.commit("addAnimation")
+      this.currentName = ""
+      this.getCurrentAnimation("")
+    },
+
+    getCurrentAnimation (name) {
+      var result = this.$store.state.animation.filter(val => val.name === name)
+      this.currentAnimation = result[0]
+    },
+
+    addkeyframe () {
+      var name = this.currentAnimation.name
+      if (name === "") {
+        $communicator.$emit("notify", {
+          info: "请先为动画命名"
+        })
+        return
+      }
+      this.$store.commit("addkeyframe", name)
+    },
+
+    validateName (e) {
+      var value = e.target.value
+      if (value === "") return
+      if (!/^[a-zA-Z]/.test(value)) {
+        this.$nextTick(() => {
+          this.currentAnimation.name = ""
+        })
+        $communicator.$emit("notify", {
+          info: "动画名称必须以英文开头",
+          type: false
+        })
+      }
+
+      if (/\W/g.test(value)) {
+        this.$nextTick(() => {
+          this.currentAnimation.name = value.replace(/\W/g, "")
+        })
+        $communicator.$emit("notify", {
+          info: "请勿使用英文和数字以外的字符",
+          type: false
+        })
       }
     },
 
-    computed: {
-      animationNames () {
-        var arr = [];
-        this.$store.state.animation.map(val => arr.push(val.name));
+    play () {
+      // stop animation if any
+      this.$store.commit("setAnimation", false)
 
-        return arr
+      setTimeout(() => {
+        var animations = this.$store.state.animation
+        if (animations.length === 0) return
+
+        animations.map(val => {
+          // build style code and insert into document
+          var id = "anm-" + val.name
+          var styleNode = document.getElementById(id)
+
+          if (styleNode) {
+            styleNode.innerHTML = getAnimateCss(
+              val.name,
+              val,
+              val.keyframes,
+              false
+            )
+          } else {
+            var style = document.createElement("style")
+            style.id = id
+            style.innerHTML = getAnimateCss(
+              val.name,
+              val,
+              val.keyframes,
+              false
+            )
+            document.head.append(style)
+          }
+        })
+
+        this.$store.commit("setAnimation", true)
+      }, 200)
+    }
+  },
+
+  watch: {
+    currentName: function (val) {
+      // 设置选中元件的动画名称
+      if (this.activeElement.animationName !== undefined) {
+        this.activeElement.animationName = val
       }
+      this.getCurrentAnimation(val)
     },
 
-    methods: {
-      addAnimation () {
-        // 检查是否存在未命名动画，避免重复添加
-        if (this.$store.state.animation.some(val => val.name === '')) {
-          $communicator.$emit('notify', {
-            info: '还有未命名动画，请先命名',
-            type: false
-          })
-          return;
-        }
-        this.$store.commit('addAnimation');
-        this.currentName = '';
-        this.getCurrentAnimation('');
-      },
-
-      getCurrentAnimation (name) {
-        var result = this.$store.state.animation.filter(val => val.name === name);
-        this.currentAnimation = result[0];
-      },
-
-      addkeyframe () {
-        var name = this.currentAnimation.name;
-        if (name === '') {
-          $communicator.$emit('notify', {
-            info: '请先为动画命名'
-          })
-          return;
-        }
-        this.$store.commit('addkeyframe', name)
-      },
-
-      validateName (e) {
-        var value = e.target.value;
-        if (value === '') return;
-        if (!/^[a-zA-Z]/.test(value)) {
-          this.$nextTick(() => {
-            this.currentAnimation.name = '';
-          })
-          $communicator.$emit('notify', {
-            info: '动画名称必须以英文开头',
-            type: false
-          });
-        }
-
-        if (/\W/g.test(value)) {
-          this.$nextTick(() => {
-            this.currentAnimation.name = value.replace(/\W/g, '');
-          })
-          $communicator.$emit('notify', {
-            info: '请勿使用英文和数字以外的字符',
-            type: false
-          });
-        }
-      },
-
-      play () {
-        // stop animation if any
-        this.$store.commit('setAnimation', false);
-
-        setTimeout(() => {
-          var animations = this.$store.state.animation;
-          if (animations.length === 0) return;
-
-          animations.map(val => {
-            // build style code and insert into document
-            var id = 'anm-' + val.name;
-            var styleNode = document.getElementById(id);
-
-            if (styleNode) {
-              styleNode.innerHTML = getAnimateCss(val.name, val, val.keyframes, false);
-            } else {
-              var style = document.createElement('style');
-              style.id = id;
-              style.innerHTML = getAnimateCss(val.name, val, val.keyframes, false);
-              document.head.append(style)
-            }
-          })
-
-          this.$store.commit('setAnimation', true);
-        }, 200)
-      }
-    },
-
-    watch: {
-      currentName: function (val) {
-        // 设置选中元件的动画名称
-        if (this.activeElement.animationName !== undefined) {
-          this.activeElement.animationName = val;
-        }
-        this.getCurrentAnimation(val)
-      },
-
-      activeElement: function (val) {
-        if (val.animationName !== undefined) {
-          this.currentName = val.animationName;
-        } else {
-          this.currentName = '';
-        }
+    activeElement: function (val) {
+      if (val.animationName !== undefined) {
+        this.currentName = val.animationName
+      } else {
+        this.currentName = ""
       }
     }
   }
+}
 </script>
 
 <style scoped>
-  .func {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    transition: all, .3s;
-    text-align: center;
-    position: absolute;
-    top: 16px;
-    color: var(--main);
-    cursor: pointer;
-    padding-top: 3px;
-    line-height: 32px;
-  }
-  .func:hover {
-    background-color: #f5f5f5;
-  }
-  .func .svg-icon {
-    font-size: 20px;
-  }
-  textarea {
-    width: 290px;
-    height: 100px;
-    resize: none;
-    border-radius: 4px;
-    padding: 4px 6px;
-    margin-left: 20px;
-    border-color: #ccc;
-  }
-  .addframe {
-    cursor: pointer;
-    font-size: 18px;
-    transition: all .3s;
-    margin-left: 10px;
-    vertical-align: bottom;
-    color: var(--main-light);
-  }
-  .addframe:hover {
-    color: var(--main);
-  }
+.func {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: all, 0.3s;
+  text-align: center;
+  position: absolute;
+  top: 16px;
+  color: var(--main);
+  cursor: pointer;
+  padding-top: 3px;
+  line-height: 32px;
+}
+.func:hover {
+  background-color: #f5f5f5;
+}
+.func .svg-icon {
+  font-size: 20px;
+}
+textarea {
+  width: 290px;
+  height: 100px;
+  resize: none;
+  border-radius: 4px;
+  padding: 4px 6px;
+  margin-left: 20px;
+  border-color: #ccc;
+}
+.addframe {
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s;
+  margin-left: 10px;
+  vertical-align: bottom;
+  color: var(--main-light);
+}
+.addframe:hover {
+  color: var(--main);
+}
 </style>

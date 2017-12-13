@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'ref-lines',
+  name: "ref-lines",
   methods: {
     attachHoriz (value) {
       return this.horizontal.some(val => Math.abs(val - value) <= 1)
@@ -30,15 +30,15 @@ export default {
     },
     guides () {
       var state = this.$store.state
-      var guides = [];
-      var type = state.type;
-      var index = state.index;
+      var guides = []
+      var type = state.type
+      var index = state.index
 
       state.widgets.forEach((item, i) => {
         // 排除选中元素
-        if (item.hasGuide && i == index) return;
+        if (item.hasGuide && i == index) return
         // 排除容器中的元件
-        if (item.hasGuide && item.belong !== 'page') return;
+        if (item.hasGuide && item.belong !== "page") return
 
         guides.push({
           width: item.width,
@@ -59,12 +59,12 @@ export default {
      * 排除重复坐标
      */
     horiz () {
-      var guides = this.guides;
-      var cor = [];
+      var guides = this.guides
+      var cor = []
 
       guides.forEach(val => {
-        var top = val.top;
-        var bottom = top + val.height;
+        var top = val.top
+        var bottom = top + val.height
 
         if (cor.indexOf(top) < 0 && top != 0) {
           cor.push(top)
@@ -74,16 +74,16 @@ export default {
         }
       })
 
-      return cor;
+      return cor
     },
 
     verti () {
-      var guides = this.guides;
-      var cor = [375];
+      var guides = this.guides
+      var cor = [375]
 
       guides.forEach(val => {
-        var left = val.left;
-        var right = left + val.width;
+        var left = val.left
+        var right = left + val.width
 
         if (cor.indexOf(left) < 0 && left != 0) {
           cor.push(left)
@@ -93,14 +93,14 @@ export default {
         }
       })
 
-      return cor;
+      return cor
     },
 
     // 移动元素上下边坐标
     horizontal () {
-      var a = this.$store.state.activeElement;
+      var a = this.$store.state.activeElement
       if (a) {
-        var h = Math.round(a.height);
+        var h = Math.round(a.height)
         return [a.top, a.top + h]
       } else {
         return []
@@ -109,9 +109,9 @@ export default {
 
     // 移动元素左中右坐标
     vertical () {
-      var a = this.$store.state.activeElement;
+      var a = this.$store.state.activeElement
       if (a) {
-        var w = Math.round(a.width / 2);
+        var w = Math.round(a.width / 2)
         return [a.left, a.left + w, a.left + w * 2]
       } else {
         return []
@@ -122,26 +122,26 @@ export default {
 </script>
 
 <style scoped>
-  .guides {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 999;
-    top: 0;
-    left: 0;
-  }
-  .verti {
-    position: absolute;
-    width: 1px;
-    height: 1000%;
-    top: -50px;
-    background: #18ffff;
-  }
-  .horiz {
-    position: absolute;
-    height: .5px;
-    width: 1000%;
-    left: -500%;
-    background: #18ffff;
-  }
+.guides {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+}
+.verti {
+  position: absolute;
+  width: 1px;
+  height: 1000%;
+  top: -50px;
+  background: #18ffff;
+}
+.horiz {
+  position: absolute;
+  height: 0.5px;
+  width: 1000%;
+  left: -500%;
+  background: #18ffff;
+}
 </style>

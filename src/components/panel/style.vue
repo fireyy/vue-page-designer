@@ -67,34 +67,35 @@
 </template>
 
 <script>
-  import widget from '@/plugins/widget'
+import widget from "@/plugins/widget"
 
-	export default {
-    name: 'panel-style',
+export default {
+  name: "panel-style",
 
-    props: ['activeElement', 'tab'],
+  props: ["activeElement", "tab"],
 
-    data () {
-      return {
-      }
+  data () {
+    return {}
+  },
+
+  computed: {
+    widgetStyle () {
+      return widget.getWidgetStyle()
+    },
+    // 页面高度
+    height () {
+      return this.$store.state.page.height
     },
 
-		computed: {
-      widgetStyle () {
-        return widget.getWidgetStyle()
-      },
-      // 页面高度
-      height () {
-        return this.$store.state.page.height
-      },
+    // 容器名称
+    containerName () {
+      var arr = []
+      this.$store.state.widgets.map(
+        val => val.type === "braid-container" && val.name && arr.push(val.name)
+      )
 
-      // 容器名称
-      containerName () {
-        var arr = [];
-        this.$store.state.widgets.map(val => val.type === 'braid-container' && val.name && arr.push(val.name));
-
-        return arr
-      }
+      return arr
     }
-	}
+  }
+}
 </script>
