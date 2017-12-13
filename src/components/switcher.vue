@@ -1,9 +1,9 @@
 <template>
-  <div class="switcher-toggle" role="switcher" @keydown="toggle" @click.stop="toggle" tabindex="0" :aria-checked="toggled">
-    <div class="switcher-slide" :class="classes">
-      <div class="switcher-switch" :class="classes"></div>
-    </div>
-    <div v-show="showLabels" class="switcher-label" v-html="label"></div>
+  <div class="toggle" role="switcher" @keydown="toggle" @click.stop="toggle" tabindex="0" :aria-checked="toggled">
+    <input class="toggle-input" type="checkbox" />
+    <button :class="classes">
+    </button>
+    <div v-show="showLabels" class="toggle-label" v-html="label"></div>
   </div>
 </template>
 
@@ -12,9 +12,10 @@ export default {
   computed: {
     classes: function () {
       return {
-        checked: this.toggled,
-        unchecked: !this.toggled,
-        disabled: this.disabled
+        "toggle-btn": true,
+        "toggle-btn-on": this.toggled,
+        "toggle-btn-off": !this.toggled,
+        "toggle-btn-disabled": this.disabled
       }
     },
 
@@ -71,61 +72,57 @@ export default {
 </script>
 
 <style>
-.switcher-toggle {
-  /* var */
-  --slide-width: 24px;
-  --border-radius: 24px;
-  --switch-color: var(--main);
-  --switch-off-color: var(--main-light);
-  --transition-time: 350ms;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 0;
-  outline: none;
-}
-
-.switcher-slide {
-  width: calc(var(--slide-width) * 1.5);
+.toggle-btn {
+  display: inline-block;
+  outline: 0;
+  width: 4em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  background: #fbfbfb;
+  border-radius: 2em;
   padding: 2px;
-  margin: 0;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--switch-off-color);
-  cursor: pointer;
+  transition: all 0.4s ease;
+  border: 1px solid #e8eae9;
 }
-
-.switcher-slide.checked {
-  border: 1px solid var(--switch-color);
+.toggle-btn:focus::after,
+.toggle-btn:active::after {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 4px 0 rgba(0, 0, 0, 0.08),
+    inset 0px 0px 0px 1.5px #9c9c9c;
 }
-
-.switcher-switch {
-  padding: 0;
-  margin: 0;
-  width: calc(var(--slide-width) / 2);
-  height: calc(var(--slide-width) / 2);
-  border-radius: var(--border-radius);
-  background: var(--switch-off-color);
-  cursor: pointer;
-  transition: all var(--transition-time);
+.toggle-btn::after {
+  left: 0;
+  position: relative;
+  display: block;
+  content: '';
+  width: 50%;
+  height: 100%;
+  border-radius: 2em;
+  background: #fbfbfb;
+  transition: all 0.3s
+      cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    padding 0.3s ease, margin 0.3s ease;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 4px 0 rgba(0, 0, 0, 0.08);
 }
-
-.switcher-label {
-  margin-left: 5px;
+.toggle-btn.toggle-btn-on::after {
+  left: 50%;
 }
-
-.switcher-switch.checked {
-  transform: translateX(calc(var(--slide-width) * 1.5 / 2));
-  background: var(--switch-color);
+.toggle-btn.toggle-btn-on {
+  background: var(--main);
 }
-
-.switcher-switch.disabled {
-  cursor: not-allowed;
-  opacity: .1;
+.toggle-btn.toggle-btn-on:active {
+  box-shadow: none;
 }
-
-.switcher-slide.disabled {
-  cursor: not-allowd;
+.toggle-btn.toggle-btn-on:active::after {
+  margin-left: -0.8em;
+}
+.toggle-btn:active::after {
+  padding-right: 0.8em;
+}
+.toggle-input {
+  display: none;
 }
 </style>
