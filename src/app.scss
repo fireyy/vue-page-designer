@@ -22,3 +22,45 @@ $primary-color: #000;
 @import "../node_modules/spectre.css/src/forms";
 @import "../node_modules/spectre.css/src/tabs";
 @import "../node_modules/spectre.css/src/tooltips";
+@import "../node_modules/spectre.css/src/sliders";
+
+html,
+body,
+.app {
+  height: 100%;
+}
+html {
+  font-size: 18px;
+}
+body {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+}
+
+input[type="text"],
+input[type="date"] {
+  @extend .form-input;
+  @extend .input-sm;
+}
+input[type="color"] {
+  cursor: pointer;
+  width: 24px;
+  vertical-align: middle;
+  border: none;
+  &::-webkit-color-swatch {
+    border: none;
+    border-radius: 4px;
+  }
+  &::-webkit-color-swatch-wrapper {
+    padding: 1px;
+    border-radius: 4px;
+    border: 1px solid var(--main);
+  }
+}
+select {
+  @extend .form-select;
+  @extend .select-sm;
+}
+
+ .g-active {
+  outline: 1px solid #2196f3 !important;
+}

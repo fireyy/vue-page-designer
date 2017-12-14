@@ -2,10 +2,10 @@
   <div class="menu-bar">
     <details open>
       <summary><icon name="list" />可用组件</summary>
-      <ul @mousedown="updateSrollTop">
+      <ul class="widget-list" @mousedown="updateSrollTop">
         <li class="menu-item" @click="(e) => {addWidget(e, item)}" v-for="item in widgets" :key="item.name">
           <icon :name="item.icon" :title="item.title" />
-          <p class="menu-caption">{{item.title}}</p>
+          <span class="menu-caption">{{item.title}}</span>
         </li>
       </ul>
     </details>
@@ -65,19 +65,21 @@ export default {
 <style>
 .menu-bar ul {
   list-style: none;
-  padding: 0;
   margin: 0;
 }
 .menu-bar details {
   padding: 10px;
 }
 .menu-bar summary {
-  line-height: 50px;
+  padding: 5px 0;
   border-bottom: 1px solid #f5f5f5;
 }
 .menu-bar summary .svg-icon {
   margin-right: 5px;
   vertical-align: middle;
+}
+.widget-list {
+  padding: 0;
 }
 .menu-item {
   display: inline-block;
@@ -87,12 +89,12 @@ export default {
   padding: 15px 0 8px;
   transition: all 0.2s;
   position: relative;
-  padding: 0;
 }
 .menu-item .svg-icon {
   font-size: 24px;
 }
 .menu-caption {
+  display: block;
   font-size: 12px;
   width: 100%;
 }

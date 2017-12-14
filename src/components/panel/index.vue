@@ -42,7 +42,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .panel-tab {
   padding: 0;
 }
@@ -53,6 +53,7 @@ export default {
   overflow-y: auto;
 }
 .panel-row {
+  display: flex;
   font-size: 13px;
   line-height: 36px;
 }
@@ -60,10 +61,10 @@ export default {
   font-size: 16px;
   line-height: 34px;
   margin-top: 2px;
-  color: var(--main-light);
+  color: $gray-color;
 }
 .panel-row .svg-icon {
-  vertical-align: middle;
+  vertical-align: top;
 }
 .panel-label {
   display: inline-block;
@@ -73,11 +74,12 @@ export default {
   color: #999;
 }
 .panel-value {
-  width: 80px;
+  display: flex;
+  align-items: center;
 }
 .panel-slider-wrap {
   flex-grow: 1;
-  padding-top: 6px;
+  padding: 6px 20px;
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -110,11 +112,8 @@ export default {
   border: none;
   border-top: 1px solid #f5f5f5;
 }
+.panel-wrap select,
 .panel-wrap input[type="text"] {
-  width: 100%;
-  height: 100%;
-}
-.panel-wrap select {
   width: 100%;
 }
 .panel-preview {

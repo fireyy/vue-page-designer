@@ -7,14 +7,14 @@
 
     <div class="panel-row" flex v-if="activeElement.href !== undefined">
       <div class="panel-label">链接至</div>
-      <div class="cell">
+      <div class="panel-value">
         <input type="text" v-model="activeElement.href" placeholder="绝对路径，以https://开头">
       </div>
     </div>
 
     <div class="panel-row" flex v-if="activeElement.href !== undefined">
       <div class="panel-label">跳转至</div>
-      <div class="cell">
+      <div class="panel-value">
         <select>
           <option>无</option>
           <option>TODO: href</option>
@@ -24,7 +24,7 @@
 
     <div class="panel-row" flex v-if="activeElement.hoverPic !== undefined">
       <div class="panel-label">hover 图片</div>
-      <div class="cell">
+      <div class="panel-value">
         <div class="panel-preview"
           @click="addPic('addHoverPic')"
           :style="{ backgroundImage: 'url(' + activeElement.hoverPic + ')' }">
@@ -42,7 +42,7 @@
 
     <div class="panel-row" flex v-if="activeElement.expirePic !== undefined">
       <div class="panel-label">结束图片</div>
-      <div class="cell">
+      <div class="panel-value">
         <div class="panel-preview"
           @click="addPic('addExpirePic')"
           :style="{ backgroundImage: 'url(' + activeElement.expirePic + ')' }">
@@ -70,10 +70,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.cell {
-  flex-grow: 1;
-  padding-left: 20px;
-}
-</style>

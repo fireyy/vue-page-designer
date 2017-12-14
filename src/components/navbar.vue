@@ -1,5 +1,9 @@
 <template>
   <header class="navbar">
+    <section class="navbar-section"></section>
+    <section class="logo navbar-center">
+      <icon name="anchor" :options="{ 'stroke-width': 1 }" />
+    </section>
     <section class="navbar-section">
       <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="复制元件 Ctrl + C" @click="copyWidget">
         <icon name="copy" /> 复制
@@ -7,11 +11,6 @@
       <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="删除元件 Ctrl + D" @click="dele">
         <icon name="trash-2" /> 删除
       </a>
-    </section>
-    <section class="logo navbar-center">
-      <icon name="anchor" :options="{ 'stroke-width': 1 }" />
-    </section>
-    <section class="navbar-section">
       <a href="#" @click="preview" class="btn btn-link tooltip tooltip-bottom" data-tooltip="预览 Ctrl + P"><icon name="airplay" /> 预览</a>
       <a href="#" @click="save" class="btn btn-link tooltip tooltip-bottom" data-tooltip="预览 Ctrl + S"><icon name="save" /> 保存</a>
     </section>
@@ -88,14 +87,8 @@ export default {
     color: $light-color;
     margin-right: 15px;
   }
-  .navbar-section:not(:last-child):first-child {
-    justify-content: flex-end;
-  }
-  .navbar-section:not(:first-child):last-child {
-    justify-content: flex-start;
-  }
   .logo {
-    padding: 5px 0;
+    padding: 10px 0;
     font-size: 20px;
     width: 100px;
     justify-content: center;

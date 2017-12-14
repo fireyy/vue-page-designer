@@ -168,7 +168,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .mu-lisder-wrapper {
   width: 100%;
   height: 24px;
@@ -194,7 +194,7 @@ export default {
   position: absolute;
   height: 2px;
   width: 100%;
-  background-color: var(--main);
+  background-color: $primary-color;
   left: 0;
   top: 50%;
   margin-top: -1px;
@@ -204,7 +204,7 @@ export default {
   top: 50%;
   width: 12px;
   height: 12px;
-  background-color: var(--main);
+  background-color: $primary-color;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width .3s, height .3s;

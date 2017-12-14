@@ -1,7 +1,7 @@
 <template>
   <div class="panel-wrap" v-if="!activeElement.page && tab === 1">
     <!-- 公共属性 -->
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="layers" />
       <div class="panel-label">层级</div>
       <div class="panel-value">{{ activeElement.z }}</div>
@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="more-horizontal" />
       <div class="panel-label">宽度</div>
       <div class="panel-value">{{ activeElement.width }}</div>
@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="more-vertical" />
       <div class="panel-label">高度</div>
       <div class="panel-value">{{ activeElement.height }}</div>
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="arrow-right" />
       <div class="panel-label">横坐标</div>
       <div class="panel-value">{{ activeElement.left }}</div>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="arrow-down" />
       <div class="panel-label">纵坐标</div>
       <div class="panel-value">{{ activeElement.top }}</div>
@@ -52,7 +52,7 @@
     <!-- 添加到容器 -->
     <div v-if="activeElement.type === 'braid-pic' || activeElement.type === 'braid-txt'">
       <hr>
-      <div class="panel-row" flex>
+      <div class="panel-row">
         <icon name="layout" />
         <div class="panel-label">所属容器</div>
         <div class="panel-value">
