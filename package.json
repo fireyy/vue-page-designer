@@ -16,7 +16,7 @@
     "dev": "poi",
     "build": "poi build",
     "gh": "gh-pages -d example/dist",
-    "deploy": "npm run build:example && npm run gh"
+    "deploy": "npm run build && npm run gh"
   },
   "author": "fireyy <fireyy@gmail.com>",
   "dependencies": {
