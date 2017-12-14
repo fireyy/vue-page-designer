@@ -1,14 +1,14 @@
 <template>
   <div class="panel-wrap" v-if="tab === 3">
-    <div class="func" style="right: 60px">
+    <button class="btn btn-action float-right mx-1">
       <icon name="plus" @click="addAnimation" />
-    </div>
+    </button>
 
-    <div class="func" style="right: 20px;">
+    <button class="btn btn-action float-right">
       <icon name="play" @click="play" />
-    </div>
+    </button>
 
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="film" />
       <div class="panel-label">选择动画</div>
       <div class="panel-value">
@@ -21,15 +21,15 @@
 
     <div v-if="currentAnimation">
       <hr>
-      <div class="panel-row" flex>
+      <div class="panel-row">
         <icon name="type" />
         <div class="panel-label">动画名称</div>
-        <div class="panel-cell">
+        <div class="panel-value">
           <input type="text" v-model.trim="currentAnimation.name" @input="validateName" placeholder="动画名称，仅限英文">
         </div>
       </div>
 
-      <div class="panel-row" flex>
+      <div class="panel-row">
         <icon name="clock" />
         <div class="panel-label">动画时长</div>
         <div class="panel-value">
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <div class="panel-row" flex>
+      <div class="panel-row">
         <icon name="watch" />
         <div class="panel-label">动画延迟</div>
         <div class="panel-value">
@@ -45,15 +45,15 @@
         </div>
       </div>
 
-      <div class="panel-row" flex>
+      <div class="panel-row">
         <icon name="repeat" />
         <div class="panel-label">动画循环</div>
-        <div class="panel-cell">
+        <div class="panel-value">
           <input type="text" v-model.number="currentAnimation.iteration" placeholder="输入0表示无限循环">
         </div>
       </div>
 
-      <div class="panel-row" flex>
+      <div class="panel-row">
         <icon name="activity" />
         <div class="panel-label">缓动函数</div>
         <div class="panel-value">
@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <div class="panel-row" flex>
+      <div class="panel-row">
         <icon name="rotate-cw" />
         <div class="panel-label">动画方向</div>
         <div class="panel-value">
@@ -80,7 +80,7 @@
         </div>
       </div>
 
-      <div class="panel-row" flex>
+      <div class="panel-row">
         <icon name="chevrons-down" />
         <div class="panel-label">fill-mode</div>
         <div class="panel-value">
@@ -96,7 +96,7 @@
       <hr>
 
       <div v-for="(val, i) in currentAnimation.keyframes" :key="i">
-        <div class="panel-row" flex>
+        <div class="panel-row">
           <icon name="stop-circle" />
           <div class="panel-label">stop - {{ i }}</div>
           <div class="panel-value">{{ val.stop }}%</div>
@@ -105,11 +105,11 @@
           </div>
         </div>
         <textarea placeholder="IMPORTANT: use rem, not px" v-model="val.css"></textarea>
-        <icon name="plus"
-          class="addframe"
-          v-if="i + 1 === currentAnimation.keyframes.length"
-          @click="addkeyframe"
-        />
+        <div style="margin: 10px 0 0 20px;">
+          <button v-if="i + 1 === currentAnimation.keyframes.length" class="btn btn-primary" @click="addkeyframe">
+            <icon name="plus" /> 添加新的动画
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -251,25 +251,6 @@ export default {
 </script>
 
 <style scoped>
-.func {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  transition: all, 0.3s;
-  text-align: center;
-  position: absolute;
-  top: 16px;
-  color: var(--main);
-  cursor: pointer;
-  padding-top: 3px;
-  line-height: 32px;
-}
-.func:hover {
-  background-color: #f5f5f5;
-}
-.func .svg-icon {
-  font-size: 20px;
-}
 textarea {
   width: 290px;
   height: 100px;
@@ -278,16 +259,5 @@ textarea {
   padding: 4px 6px;
   margin-left: 20px;
   border-color: #ccc;
-}
-.addframe {
-  cursor: pointer;
-  font-size: 18px;
-  transition: all 0.3s;
-  margin-left: 10px;
-  vertical-align: bottom;
-  color: var(--main-light);
-}
-.addframe:hover {
-  color: var(--main);
 }
 </style>

@@ -22,6 +22,7 @@ export default {
     notify (info, type) {
       if (this.show) return
       this.info = info || 'Success!'
+      // FIXME: type = "success" or "warning"
       this.type = type || true
       this.show = true
       setTimeout(() => {
@@ -32,23 +33,17 @@ export default {
 }
 </script>
 
-<style scoped>
-  .toast {
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    padding: 0 20px;
-    border-radius: 4px;
-    background-color: var(--main-light);
-    color: #fff;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 70px;
-    transition: all .3s;
-  }
-  .drop-enter, .drop-leave-active {
-    opacity: 0;
-    top: 60px;
-  }
+<style lang="scss">
+.toast {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 70px;
+  width: auto;
+  transition: all .3s;
+}
+.drop-enter, .drop-leave-active {
+  opacity: 0;
+  top: 60px;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <i :title="title" class="svg-icon" v-html="icon" @click="handleClick"></i>
+  <i :title="title" class="icon svg-icon" v-html="icon" @click="handleClick"></i>
 </template>
 <script>
 import feather from "feather-icons"
@@ -25,8 +25,14 @@ export default {
 </script>
 <style>
 .svg-icon svg {
-  width: auto;
-  height: 1em;
+  box-sizing: border-box;
   display: inline-block;
+  font-size: inherit;
+  font-style: normal;
+  height: 1em;
+  position: relative;
+  text-indent: -9999px;
+  vertical-align: middle;
+  width: auto;
 }
 </style>

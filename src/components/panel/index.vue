@@ -51,20 +51,23 @@ export default {
   padding: 15px 20px;
   position: relative;
   overflow-y: auto;
+  .btn-action {
+    background-color: none;
+    border: none;
+    border-radius: 50%;
+  }
+  .btn-action:hover {
+    background-color: #f5f5f5;
+  }
 }
 .panel-row {
   display: flex;
   font-size: 13px;
   line-height: 36px;
 }
-.panel-row i {
-  font-size: 16px;
-  line-height: 34px;
-  margin-top: 2px;
-  color: $gray-color;
-}
 .panel-row .svg-icon {
-  vertical-align: top;
+  font-size: 16px;
+  color: $gray-color;
 }
 .panel-label {
   display: inline-block;
@@ -74,6 +77,7 @@ export default {
   color: #999;
 }
 .panel-value {
+  min-width: 80px;
   display: flex;
   align-items: center;
 }
@@ -89,18 +93,8 @@ export default {
 .panel-cell {
   flex-grow: 1;
 }
-.panel-wrap label {
-  color: #ccc;
-  padding-right: 12px;
-  margin-left: -4px;
-  font-size: 12px;
-  line-height: inherit;
-}
-.panel-wrap input:checked + label .svg-icon svg {
+.panel-wrap input:checked ~ .svg-icon svg {
   stroke: #333;
-}
-.panel-wrap input[type="radio"] {
-  width: 0;
 }
 .panel-select {
   width: 100%;
