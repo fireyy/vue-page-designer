@@ -68,12 +68,16 @@ export default {
   height: 100%;
   border-right: 1px solid #eee;
   color: var(--main);
-  padding: 10px 10px 0;
+  padding: 0 10px;
   user-select: none;
   box-sizing: content-box;
 }
 .menu-bar details {
   margin-bottom: 10px;
+}
+.menu-bar summary {
+  line-height: 50px;
+  border-bottom: 1px solid #f5f5f5;
 }
 .menu-bar summary .svg-icon {
   margin-right: 5px;

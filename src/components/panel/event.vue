@@ -76,10 +76,4 @@ export default {
   flex-grow: 1;
   padding-left: 20px;
 }
-select {
-  height: 100%;
-}
-input {
-  width: 100%;
-}
 </style>

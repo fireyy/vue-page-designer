@@ -129,10 +129,12 @@ export default {
   border: none;
   border-top: 1px solid #f5f5f5;
 }
-.panel-wrap select,
 .panel-wrap input[type="text"] {
   width: 100%;
   height: 100%;
+}
+.panel-wrap select {
+  width: 100%;
 }
 .panel-preview {
   width: 50px;

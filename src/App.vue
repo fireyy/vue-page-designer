@@ -227,13 +227,19 @@ label {
 }
 select {
   appearance: none;
-  border-radius: 0;
+  border-radius: 4px;
   outline: none;
-  border: none;
+  border: 1px solid var(--main-light);
+  padding: 5px 15px 5px 3px;
+  height: 28px;
   cursor: pointer;
   font-family: inherit;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>')
-    no-repeat 100% 50%;
+  background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='%23000000'%20d='M2%200L0%202h4zm0%205L0%203h4z'/%3E%3C/svg%3E") no-repeat right 5px center;
+  background-size: 8px;
+}
+select:focus {
+  border-color: var(--main);
+  box-shadow: 0 0 0 .1rem rgba(0,0,0, .1);
 }
 textarea {
   outline: none;
