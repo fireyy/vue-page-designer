@@ -6,7 +6,7 @@ module.exports = {
   homepage: "/",
   presets: [
     require("poi-preset-sass-resources")({
-      resources: path.join(__dirname, "src", "app.scss")
+      resources: path.join(__dirname, "src", "_variables.scss")
     })
   ]
 }

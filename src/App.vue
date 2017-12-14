@@ -1,9 +1,6 @@
 <template>
   <div class="app">
-    <!-- 顶栏 -->
     <navbar></navbar>
-
-    <!-- 主体 -->
     <div class="body container">
       <div class="columns col-gapless">
         <toolbar class="toolbar column" :zoom="zoom"></toolbar>
@@ -17,11 +14,7 @@
         <panel class="control-panel column"></panel>
       </div>
     </div>
-
-    <!-- 全局组件 | 上传图片 -->
     <uploader></uploader>
-
-    <!-- 全局组件 | 提示信息 -->
     <toast></toast>
   </div>
 </template>

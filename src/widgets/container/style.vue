@@ -1,18 +1,18 @@
 <template>
 	<div v-if="activeElement.type === 'braid-container'">
     <hr>
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="credit-card" />
       <div class="panel-label">容器名称</div>
-      <div>
-        <input type="text" v-model.trim="activeElement.name" placeholder="起个名儿">
+      <div class="panel-value">
+        <input type="text" v-model.trim="activeElement.name" placeholder="容器名称必填">
       </div>
     </div>
 
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="grid" />
       <div class="panel-label">display</div>
-      <div>
+      <div class="panel-value">
         <select v-model="activeElement.display">
           <option>flex</option>
           <option>block</option>
@@ -20,10 +20,10 @@
       </div>
     </div>
 
-    <div class="panel-row" flex v-show="activeElement.display === 'flex'">
+    <div class="panel-row" v-show="activeElement.display === 'flex'">
       <icon name="shuffle" />
       <div class="panel-label">主轴方向</div>
-      <div>
+      <div class="panel-value">
         <select v-model="activeElement.dir">
           <option>row</option>
           <option>row-reverse</option>
@@ -33,10 +33,10 @@
       </div>
     </div>
 
-    <div class="panel-row" flex v-show="activeElement.display === 'flex'">
+    <div class="panel-row" v-show="activeElement.display === 'flex'">
       <icon name="align-justify" />
       <div class="panel-label">主轴分布</div>
-      <div>
+      <div class="panel-value">
         <select v-model="activeElement.justify">
           <option>flex-start</option>
           <option>space-between</option>
@@ -47,10 +47,10 @@
       </div>
     </div>
 
-    <div class="panel-row" flex v-show="activeElement.display === 'flex'">
+    <div class="panel-row" v-show="activeElement.display === 'flex'">
       <icon name="align-center" />
       <div class="panel-label">侧轴分布</div>
-      <div>
+      <div class="panel-value">
         <select v-model="activeElement.align">
           <option>flex-start</option>
           <option>center</option>
@@ -60,19 +60,19 @@
     </div>
 
     <hr>
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="target" />
       <div class="panel-label">背景色</div>
       <div class="panel-value">{{ activeElement.bgColor }}</div>
-      <div>
+      <div class="panel-value">
         <input type="color" v-model="activeElement.bgColor">
       </div>
     </div>
 
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="image" />
       <div class="panel-label">背景图</div>
-      <div class="panel-cell">
+      <div class="panel-value">
         <div class="panel-preview"
           @click="addPic"
           :style="{ backgroundImage: 'url(' + activeElement.backPic + ')' }">
@@ -81,23 +81,23 @@
       </div>
     </div>
 
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="square" />
       <div class="panel-label">圆角</div>
-      <div>
+      <div class="panel-value">
         <input type="text" v-model="activeElement.radius">
       </div>
     </div>
 
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="maximize" />
       <div class="panel-label">边的宽度</div>
-      <div>
+      <div class="panel-value">
         <input type="text" v-model="activeElement.borderWidth">
       </div>
     </div>
 
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="edit-3" />
       <div class="panel-label">边的颜色</div>
       <div class="panel-value">{{ activeElement.borderColor }}</div>
@@ -109,15 +109,15 @@
 </template>
 
 <script>
-	export default {
-    name: 'braid-container-style',
-		props: ['activeElement'],
-    methods: {
-      addPic () {
-        $communicator.$emit('upload', (payload) => {
-          this.$store.commit('addContainerBackPic', payload)
-        })
-      }
+export default {
+  name: 'braid-container-style',
+  props: ['activeElement'],
+  methods: {
+    addPic () {
+      $communicator.$emit('upload', (payload) => {
+        this.$store.commit('addContainerBackPic', payload)
+      })
     }
-	}
+  }
+}
 </script>
