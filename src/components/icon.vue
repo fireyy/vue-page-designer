@@ -31,7 +31,6 @@ export default {
   font-style: normal;
   height: 1em;
   position: relative;
-  text-indent: -9999px;
   vertical-align: middle;
   width: auto;
 }

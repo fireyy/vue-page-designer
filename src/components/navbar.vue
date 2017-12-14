@@ -1,8 +1,7 @@
 <template>
   <header class="navbar">
-    <section class="navbar-section"></section>
-    <section class="logo navbar-center">
-      <icon name="anchor" :options="{ 'stroke-width': 1 }" />
+    <section class="logo navbar-section">
+      <icon name="anchor" />
     </section>
     <section class="navbar-section">
       <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="复制元件 Ctrl + C" @click="copyWidget">
@@ -84,14 +83,15 @@ export default {
     }
   }
   .btn.btn-link {
-    color: $light-color;
+    color: $gray-color;
     margin-right: 15px;
   }
+  .btn.btn-link:hover {
+    color: $light-color;
+  }
   .logo {
-    padding: 10px 0;
+    padding: 10px 0 10px 10px;
     font-size: 20px;
-    width: 100px;
-    justify-content: center;
     .svg-icon {
       width: 30px;
       text-align: center;

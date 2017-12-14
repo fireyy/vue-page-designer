@@ -62,21 +62,22 @@ export default {
 }
 </script>
 
-<style>
-.menu-bar ul {
-  list-style: none;
-  margin: 0;
-}
-.menu-bar details {
-  padding: 10px;
-}
-.menu-bar summary {
-  padding: 5px 0;
-  border-bottom: 1px solid #f5f5f5;
-}
-.menu-bar summary .svg-icon {
-  margin-right: 5px;
-  vertical-align: middle;
+<style lang="scss">
+.menu-bar {
+  ul {
+    list-style: none;
+    margin: 0;
+  }
+  details {
+    padding: 10px;
+  }
+  summary {
+    padding: 5px 0;
+    border-bottom: 1px solid #f5f5f5;
+    .svg-icon {
+      margin-right: 5px;
+    }
+  }
 }
 .widget-list {
   padding: 0;
@@ -89,36 +90,36 @@ export default {
   padding: 15px 0 8px;
   transition: all 0.2s;
   position: relative;
-}
-.menu-item .svg-icon {
-  font-size: 24px;
-}
-.menu-caption {
-  display: block;
-  font-size: 12px;
-  width: 100%;
-}
-.menu-item:hover {
-  transform: scale(1.2);
+  &:hover {
+    transform: scale(1.2);
+  }
+  .svg-icon {
+    font-size: 24px;
+  }
+  .menu-caption {
+    display: block;
+    font-size: 12px;
+    width: 100%;
+  }
 }
 .layer-list {
   padding: 10px;
-}
-.layer-list li {
-  text-align: left;
-  cursor: pointer;
-  white-space: nowrap;
-  line-height: 24px;
-  padding-left: 5px;
-}
-.layer-list li::before {
-  content: '› ';
-}
-.layer-list li:hover {
-  background: #f5f5f5;
-}
-.layer-list li.layer-active {
-  color: var(--light);
-  background: var(--main);
+  li {
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+    line-height: 24px;
+    padding-left: 5px;
+    &:hover {
+      background: #f5f5f5;
+    }
+    &::before {
+      content: '› ';
+    }
+    &.layer-active {
+      color: $light-color;
+      background: $primary-color;
+    }
+  }
 }
 </style>
