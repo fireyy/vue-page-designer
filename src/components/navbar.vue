@@ -1,29 +1,21 @@
 <template>
-  <div class="nav" flex>
-    <!-- logo -->
-    <div class="logo">
+  <header class="navbar">
+    <section class="navbar-section">
+      <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="复制元件 Ctrl + C" @click="copyWidget">
+        <icon name="copy" /> 复制
+      </a>
+      <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="删除元件 Ctrl + D" @click="dele">
+        <icon name="trash-2" /> 删除
+      </a>
+    </section>
+    <section class="logo navbar-center">
       <icon name="anchor" :options="{ 'stroke-width': 1 }" />
-    </div>
-
-    <!-- 菜单栏 -->
-    <ul flex class="middle">
-      <li @click="preview" class="tooltip tooltip-bottom" data-tooltip="预览 Preview">
-        <icon name="airplay" />
-      </li>
-    </ul>
-
-    <!-- 工具栏 -->
-    <div class="side">
-      <ul v-show="show">
-        <li class="tooltip tooltip-bottom" data-tooltip="复制元件 Ctrl + C" @click="copyWidget">
-          <icon name="copy" />
-        </li>
-        <li class="tooltip tooltip-bottom" data-tooltip="删除元件 Delete" @click="dele">
-          <icon name="trash-2" />
-        </li>
-      </ul>
-    </div>
-  </div>
+    </section>
+    <section class="navbar-section">
+      <a href="#" @click="preview" class="btn btn-link tooltip tooltip-bottom" data-tooltip="预览 Ctrl + P"><icon name="airplay" /> 预览</a>
+      <a href="#" @click="save" class="btn btn-link tooltip tooltip-bottom" data-tooltip="预览 Ctrl + S"><icon name="save" /> 保存</a>
+    </section>
+  </header>
 </template>
 
 <script>
@@ -60,6 +52,11 @@ export default {
       //
     },
 
+    // TODO: 保存
+    save () {
+      //
+    },
+
     // 复制元件
     copyWidget () {
       this.$store.commit("copy")
@@ -79,53 +76,35 @@ export default {
 }
 </script>
 
-<style scoped>
-.logo {
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  font-size: 35px;
-  color: #fff;
-  text-align: center;
-}
-.nav {
-  width: 100%;
-  height: 50px;
-  flex-shrink: 0;
-  background-color: var(--main);
-}
-.middle {
-  flex-grow: 1;
-  justify-content: center;
-}
-.side {
-  width: 400px;
-  height: 50px;
-}
-li {
-  display: inline-block;
-  height: 50px;
-  cursor: pointer;
-  line-height: 50px;
-  color: var(--light);
-  margin-right: 5px;
-}
-.middle .svg-icon,
-.side .svg-icon {
-  font-size: 18px;
-}
-i {
-  color: #eee;
-  line-height: inherit;
-  vertical-align: middle;
-}
-.pt12 {
-  padding-top: 12px;
-}
-.pt14 {
-  padding-top: 14px;
-}
-.f16 {
-  font-size: 16px;
+<style lang="scss">
+.navbar {
+  background: $primary-color;
+  .svg-icon {
+    svg {
+      vertical-align: middle;
+    }
+  }
+  .btn.btn-link {
+    color: $light-color;
+    margin-right: 15px;
+  }
+  .navbar-section:not(:last-child):first-child {
+    justify-content: flex-end;
+  }
+  .navbar-section:not(:first-child):last-child {
+    justify-content: flex-start;
+  }
+  .logo {
+    padding: 5px 0;
+    font-size: 20px;
+    width: 100px;
+    justify-content: center;
+    .svg-icon {
+      width: 30px;
+      text-align: center;
+      background-color: $light-color;
+      border-radius: 50%;
+    }
+  }
 }
 </style>

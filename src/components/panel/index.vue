@@ -1,9 +1,9 @@
 <template>
-  <div class="control-panel">
-    <ul class="tabs" flex>
-      <li class="tab" :class="{active: activeTab === 1}" @click="activeTab = 1">参数</li>
-      <li class="tab" :class="{active: activeTab === 2}" @click="activeTab = 2">交互</li>
-      <li class="tab" :class="{active: activeTab === 3}" @click="activeTab = 3">动画</li>
+  <div>
+    <ul class="tab tab-block panel-tab">
+      <li class="tab-item" :class="{active: activeTab === 1}" @click="activeTab = 1"><a>参数</a></li>
+      <li class="tab-item" :class="{active: activeTab === 2}" @click="activeTab = 2"><a>交互</a></li>
+      <li class="tab-item" :class="{active: activeTab === 3}" @click="activeTab = 3"><a>动画</a></li>
     </ul>
 
     <page :activeElement="activeElement" :tab="activeTab"></page>
@@ -42,29 +42,10 @@ export default {
 }
 </script>
 
-<style scoped>
-.control-panel {
-  width: 400px;
-  border-left: 1px solid #f5f5f5;
-  user-select: none;
-}
-.tabs {
-  border-bottom: 1px solid #f5f5f5;
-}
-.tab {
-  width: 33.33%;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  cursor: pointer;
-}
-.active {
-  border-bottom: 2px solid var(--main);
-}
-</style>
-
-<!-- 面板区域公共样式 -->
 <style>
+.panel-tab {
+  padding: 0;
+}
 .panel-wrap {
   height: calc(100% - 50px);
   padding: 15px 20px;

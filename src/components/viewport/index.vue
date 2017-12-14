@@ -166,6 +166,8 @@ export default {
   height: 100%;
   overflow: auto;
   font-size: 0;
+  border: 1px solid #f5f5f5;
+  border-width: 0 1px;
   background-image: linear-gradient(
       45deg,
       #f5f5f5 25%,

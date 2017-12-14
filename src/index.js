@@ -10,6 +10,8 @@ import switcher from './components/switcher'
 import icon from './components/icon'
 import widget from './plugins/widget'
 
+import './app.scss'
+
 // 全局注册组件
 Vue.component('slider', slider)
 Vue.component('toast', toast)

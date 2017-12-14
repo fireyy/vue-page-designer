@@ -20,13 +20,9 @@
     "deploy": "npm run build:example && npm run gh"
   },
   "author": "fireyy <fireyy@gmail.com>",
-  "poi": {
-    "entry": "example/index.js",
-    "dist": "example/dist",
-    "homepage": "/"
-  },
   "dependencies": {
-    "feather-icons": "^4.0.1"
+    "feather-icons": "^4.0.1",
+    "spectre.css": "^0.5.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.3",
@@ -34,9 +30,15 @@
     "eslint-config-fireyy": "^1.0.0",
     "eslint-plugin-vue": "^4.0.0-beta.2",
     "gh-pages": "^1.0.0",
-    "poi": "^9.1.4"
+    "node-sass": "^4.7.2",
+    "poi": "^9.1.4",
+    "poi-preset-sass-resources": "^1.0.1",
+    "sass-loader": "^6.0.6"
   },
   "eslintConfig": {
-    "extends": ["fireyy", "plugin:vue/essential"]
+    "extends": [
+      "fireyy",
+      "plugin:vue/essential"
+    ]
   }
 }

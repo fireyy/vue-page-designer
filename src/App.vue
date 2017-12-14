@@ -4,23 +4,18 @@
     <navbar></navbar>
 
     <!-- 主体 -->
-    <div flex class="body">
-      <!-- 左侧元件菜单 -->
-      <toolbar :zoom="zoom"></toolbar>
-      <!-- 中部编辑区 -->
-      <div class="viewport">
-        <!-- 画布 -->
-        <viewport :zoom="zoom"></viewport>
-
-        <!-- 页面缩放 -->
-        <div class="zoom-wrap">
-          <slider @input="dozoom" :value="zoom" :step="1" :tuning="false" />
-          <div class="zoom-value">{{ zoom }}%</div>
+    <div class="body container">
+      <div class="columns col-gapless">
+        <toolbar class="toolbar column" :zoom="zoom"></toolbar>
+        <div class="viewport column">
+          <viewport :zoom="zoom"></viewport>
+          <div class="zoom-wrap">
+            <slider @input="dozoom" :value="zoom" :step="1" :tuning="false" />
+            <div class="zoom-value">{{ zoom }}%</div>
+          </div>
         </div>
+        <panel class="control-panel column"></panel>
       </div>
-
-      <!-- 右侧参数面板 -->
-      <panel></panel>
     </div>
 
     <!-- 全局组件 | 上传图片 -->
@@ -64,18 +59,44 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 .body {
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 40px);
   overflow: hidden;
   flex-direction: row;
+  &.container {
+    padding: 0;
+  }
+}
+.columns {
+  height: 100%;
+}
+.toolbar,
+.viewport,
+.control-panel {
+  height: 100%;
+}
+.toolbar {
+  background: #fff;
+  user-select: none;
+  box-sizing: content-box;
+  &.column {
+    flex: none;
+    width: 150px;
+  }
 }
 .viewport {
-  flex-grow: 1;
   position: relative;
   overflow: hidden;
-  height: 100%;
+}
+.control-panel {
+  background: #fff;
+  user-select: none;
+  &.column {
+    flex: none;
+    width: 400px;
+  }
 }
 .zoom-wrap {
   width: 200px;
@@ -122,50 +143,16 @@ export default {
   outline: 1px solid var(--sub) !important;
 }
 
-/* basic reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 html,
 body,
 .app {
   height: 100%;
 }
 html {
-  font-size: 28px;
+  font-size: 12px;
 }
 body {
-  -webkit-font-smoothing: antialiased;
-  text-size-adjust: 100%;
-  font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans",
-    "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Droid Sans Fallback",
-    "Microsoft YaHei", sans-serif;
-}
-a {
-  color: inherit;
-  text-decoration: none;
-}
-a:active,
-a:focus,
-a:hover {
-  outline-width: 0;
-  background-color: transparent;
-}
-ul,
-ol {
-  list-style-type: none;
-}
-img {
-  border: none;
-}
-input {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  font-family: inherit;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
 }
 input[type="color"] {
   cursor: pointer;

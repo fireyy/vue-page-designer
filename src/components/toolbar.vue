@@ -62,18 +62,14 @@ export default {
 }
 </script>
 
-<style scoped>
-.menu-bar {
-  width: 100px;
-  height: 100%;
-  border-right: 1px solid #eee;
-  color: var(--main);
-  padding: 0 10px;
-  user-select: none;
-  box-sizing: content-box;
+<style>
+.menu-bar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 .menu-bar details {
-  margin-bottom: 10px;
+  padding: 10px;
 }
 .menu-bar summary {
   line-height: 50px;
@@ -91,6 +87,7 @@ export default {
   padding: 15px 0 8px;
   transition: all 0.2s;
   position: relative;
+  padding: 0;
 }
 .menu-item .svg-icon {
   font-size: 24px;

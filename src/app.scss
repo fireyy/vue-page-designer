@@ -1,0 +1,24 @@
+// Define variables to override default ones
+$primary-color: #000;
+
+@import "../node_modules/spectre.css/src/variables";
+@import "../node_modules/spectre.css/src/mixins";
+
+// fix for @extend ".clearfix".
+.clearfix {
+  @include clearfix();
+}
+
+// Reset and dependencies
+@import "../node_modules/spectre.css/src/normalize";
+@import "../node_modules/spectre.css/src/base";
+
+// Layout
+@import "../node_modules/spectre.css/src/layout";
+@import "../node_modules/spectre.css/src/navbar";
+
+// Import only the needed components
+@import "../node_modules/spectre.css/src/buttons";
+@import "../node_modules/spectre.css/src/forms";
+@import "../node_modules/spectre.css/src/tabs";
+@import "../node_modules/spectre.css/src/tooltips";
