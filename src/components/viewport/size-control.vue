@@ -122,7 +122,7 @@ export default {
 .square {
   width: 10px;
   height: 10px;
-  border: 1px solid var(--sub);
+  border: 1px solid #2196f3;
   background-color: #fff;
   flex-shrink: 0;
 }

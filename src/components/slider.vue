@@ -1,5 +1,6 @@
 <!-- based on muse-ui -->
 <!-- http://www.muse-ui.org/#/slider -->
+<!-- TODO: use input range -->
 <template>
   <div :class="{'mu-lisder-wrapper': tuning}">
     <div class="mu-slider" :class="sliderClass"
