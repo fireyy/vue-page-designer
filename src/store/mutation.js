@@ -1,3 +1,5 @@
+import generate from 'nanoid/generate'
+
 export default {
   // 选中元件与取消选中
   select (state, payload) {
@@ -151,8 +153,12 @@ export default {
 
   // 添加组件
   addWidget (state, { data: data = null, item }) {
-    let def = { top: state.top, uuid: new Date().getTime() }
+    let def = { top: state.top, uuid: generate('1234567890abcdef', 10) }
     let setting = JSON.parse(JSON.stringify(item.setting))
+
+    if (setting.type === "braid-container") {
+      setting.name = def.uuid
+    }
 
     if (data) {
       data.forEach(function (val) {
