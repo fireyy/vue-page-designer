@@ -1,7 +1,6 @@
 // Define variables to override default ones
-$primary-color: #000;
+@import "variables";
 
-@import "../node_modules/spectre.css/src/variables";
 @import "../node_modules/spectre.css/src/mixins";
 
 // fix for @extend ".clearfix".
@@ -10,7 +9,6 @@ $primary-color: #000;
 }
 
 // Reset and dependencies
-@import "../node_modules/spectre.css/src/normalize";
 @import "../node_modules/spectre.css/src/base";
 
 @import "../node_modules/spectre.css/src/utilities";
@@ -37,6 +35,8 @@ html {
 }
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
 input[type="text"],
