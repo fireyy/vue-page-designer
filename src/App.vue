@@ -245,4 +245,41 @@ textarea {
   outline: none;
   font-family: inherit;
 }
+.tooltip {
+  position: relative;
+}
+.tooltip::after {
+  background: rgba(0, 0, 0, .6);
+  border-radius: 4px;
+  bottom: 100%;
+  color: var(--light);
+  content: attr(data-tooltip);
+  display: block;
+  font-size: 12px;
+  line-height: 20px;
+  left: 50%;
+  max-width: 320px;
+  opacity: 0;
+  overflow: hidden;
+  padding: 2px 4px;
+  pointer-events: none;
+  position: absolute;
+  text-overflow: ellipsis;
+  transform: translate(-50%, 4px);
+  transition: all .2s ease;
+  white-space: pre;
+  z-index: 300;
+}
+.tooltip:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -2px);
+}
+.tooltip.tooltip-bottom::after {
+  bottom: auto;
+  top: 100%;
+  transform: translate(-50%, -4px);
+}
+.tooltip.tooltip-bottom:hover::after {
+  transform: translate(-50%, 2px);
+}
 </style>

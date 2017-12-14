@@ -7,19 +7,19 @@
 
     <!-- 菜单栏 -->
     <ul flex class="middle">
-      <li @click="preview">
-        <icon name="airplay" /> 预览
+      <li @click="preview" class="tooltip tooltip-bottom" data-tooltip="预览 Preview">
+        <icon name="airplay" />
       </li>
     </ul>
 
     <!-- 工具栏 -->
     <div class="side">
       <ul v-show="show">
-        <li title="复制元件 Ctrl + C" @click="copyWidget">
-          <icon name="copy" /> 复制
+        <li class="tooltip tooltip-bottom" data-tooltip="复制元件 Ctrl + C" @click="copyWidget">
+          <icon name="copy" />
         </li>
-        <li title="删除元件 Delete" @click="dele">
-          <icon name="trash-2" /> 删除
+        <li class="tooltip tooltip-bottom" data-tooltip="删除元件 Delete" @click="dele">
+          <icon name="trash-2" />
         </li>
       </ul>
     </div>
@@ -104,18 +104,15 @@ export default {
 }
 li {
   display: inline-block;
-  min-width: 50px;
   height: 50px;
   cursor: pointer;
   line-height: 50px;
   color: var(--light);
-  margin-right: 20px;
+  margin-right: 5px;
 }
 .middle .svg-icon,
 .side .svg-icon {
   font-size: 18px;
-  margin-right: 5px;
-  vertical-align: middle;
 }
 i {
   color: #eee;
