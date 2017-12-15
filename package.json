@@ -15,10 +15,10 @@
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
     "prepublishOnly": "npm run build",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build": "node build/build.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build:example": "cd example && cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build:example": "node build/build.example.js",
     "gh": "gh-pages -d example/dist",
     "deploy": "npm run build:example && npm run gh"
   },
