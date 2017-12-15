@@ -11,16 +11,17 @@
     "dist"
   ],
   "scripts": {
+    "bump": "standard-version",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
-    "prepublishOnly": "npm run build",
     "build": "node build/build.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build:example": "node build/build.example.js",
     "gh": "gh-pages -d example/dist",
-    "deploy": "npm run build:example && npm run gh"
+    "deploy": "npm run build:example && npm run gh",
+    "release": "npm run build && npm run bump && git push --follow-tags origin master && npm publish"
   },
   "author": "fireyy <fireyy@gmail.com>",
   "dependencies": {
@@ -73,6 +74,7 @@
     "sass-loader": "^6.0.6",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
+    "standard-version": "^4.2.0",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
     "vue-jest": "^1.0.2",
