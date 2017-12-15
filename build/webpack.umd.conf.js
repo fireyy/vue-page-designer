@@ -37,7 +37,12 @@ module.exports = {
   output: {
     path: assetsRoot,
     filename: assetsPath('vue-page-designer.js'),
-    libraryTarget: "umd"
+    libraryTarget: "umd",
+    library: 'vuePageDesigner',
+    umdNamedDefine: true
+  },
+  externals: {
+    "vue": "Vue"
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

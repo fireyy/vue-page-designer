@@ -2,6 +2,7 @@
   <i :title="title" class="icon svg-icon" v-html="icon" @click="handleClick"></i>
 </template>
 <script>
+// TODO: use fontawesome instead
 import feather from 'feather-icons'
 
 export default {
