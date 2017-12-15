@@ -163,6 +163,8 @@ export default {
 
 <style scoped>
 .holder {
+  display: flex;
+  justify-content: center;
   height: 100%;
   overflow: auto;
   font-size: 0;
