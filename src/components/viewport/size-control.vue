@@ -52,10 +52,10 @@ export default {
     elm () {
       var target = this.$store.state.activeElement
       var type = this.$store.state.type
-      var exclusions = ["braid-bg", "braid-pic", "page"]
+      var exclusions = ['braid-bg', 'braid-pic', 'page']
 
-      if (exclusions.indexOf(type) > -1) return ""
-      if (target.belong !== "page") return ""
+      if (exclusions.indexOf(type) > -1) return ''
+      if (target.belong !== 'page') return ''
 
       return target
     }
@@ -63,7 +63,7 @@ export default {
 
   data () {
     return {
-      type: "" // 调整方向 left | right | up | down
+      type: '' // 调整方向 left | right | up | down
     }
   },
 
@@ -71,22 +71,22 @@ export default {
     handlemousedown (e, type, originX, originY) {
       e.stopPropagation()
       this.type = type
-      this.$store.commit("initmove", {
+      this.$store.commit('initmove', {
         startX: e.pageX,
         startY: e.pageY,
         originX: this.elm[originX],
         originY: this.elm[originY]
       })
 
-      document.addEventListener("mousemove", this.handlemousemove, true)
-      document.addEventListener("mouseup", this.handlemouseup, true)
+      document.addEventListener('mousemove', this.handlemousemove, true)
+      document.addEventListener('mouseup', this.handlemouseup, true)
     },
 
     handlemousemove (e) {
       e.stopPropagation()
       e.preventDefault()
 
-      this.$store.commit("resize", {
+      this.$store.commit('resize', {
         x: e.pageX,
         y: e.pageY,
         type: this.type
@@ -94,9 +94,9 @@ export default {
     },
 
     handlemouseup () {
-      document.removeEventListener("mousemove", this.handlemousemove, true)
-      document.removeEventListener("mouseup", this.handlemouseup, true)
-      this.$store.commit("stopmove")
+      document.removeEventListener('mousemove', this.handlemousemove, true)
+      document.removeEventListener('mouseup', this.handlemouseup, true)
+      this.$store.commit('stopmove')
     }
   }
 }

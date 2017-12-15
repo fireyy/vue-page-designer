@@ -114,7 +114,7 @@ export default {
   props: ['activeElement'],
   methods: {
     addPic () {
-      $communicator.$emit('upload', (payload) => {
+      window.$communicator.$emit('upload', (payload) => {
         this.$store.commit('addContainerBackPic', payload)
       })
     }

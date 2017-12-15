@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import widget from "@/plugins/widget"
-import { move } from "@/mixins"
+import widget from '../plugins/widget'
+import { move } from '../mixins'
 
 export default {
   mixins: [move],
-  props: ["zoom"],
+  props: ['zoom'],
   data () {
     return {}
   },
@@ -42,18 +42,18 @@ export default {
   methods: {
     // 添加组件
     addWidget (e, item) {
-      this.$store.dispatch("addWidget", item)
+      this.$store.dispatch('addWidget', item)
     },
 
     // 为确保添加的元件出现在可视区内，用画布向上滚动距离作为元件初始 top 值
     updateSrollTop () {
-      var top = document.getElementById("viewport").scrollTop / this.zoom * 100
-      this.$store.commit("updateSrollTop", top)
+      var top = document.getElementById('viewport').scrollTop / this.zoom * 100
+      this.$store.commit('updateSrollTop', top)
     },
 
     activeLayer (e, index, item) {
       // FIXME: scroll to layer
-      this.$store.commit("select", {
+      this.$store.commit('select', {
         type: item.type,
         index: index
       })
@@ -63,6 +63,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../_variables.scss';
 .menu-bar {
   ul {
     list-style: none;

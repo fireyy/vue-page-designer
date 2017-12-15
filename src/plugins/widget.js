@@ -1,5 +1,5 @@
 // 注册 内置 widgets
-import * as inner from '@/widgets'
+import * as inner from '../widgets'
 
 var widgets, widgetStyle
 

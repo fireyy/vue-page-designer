@@ -12,7 +12,9 @@ function normalizeMap (map) {
 
 const createMapState = _store => states => {
   const res = {}
-  for (const { k, v } of normalizeMap(states)) {
+  const db = normalizeMap(states)
+  for (const k in db) {
+    let v = db[k]
     res[k] = function () {
       const store = _store || this.$store
       return typeof v === 'function'
@@ -25,7 +27,9 @@ const createMapState = _store => states => {
 
 const mapToMethods = (sourceName, runnerName, _store) => map => {
   const res = {}
-  for (const { k, v } of normalizeMap(map)) {
+  const db = normalizeMap(map)
+  for (const k in db) {
+    let v = db[k]
     res[k] = function (payload) {
       const store = _store || this.$store
       const source = store[sourceName]
@@ -86,9 +90,7 @@ export default class Store {
   }
 
   commit (type, payload) {
-    for (const sub of this.subscribers) {
-      sub({ type, payload }, this.state)
-    }
+    this.subscribers.forEach(sub => sub({ type, payload }, this.state))
     const mutation = resolveSource(this.mutations, type)
     return mutation && mutation(this.state, payload)
   }

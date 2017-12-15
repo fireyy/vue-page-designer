@@ -2,10 +2,10 @@
   <i :title="title" class="icon svg-icon" v-html="icon" @click="handleClick"></i>
 </template>
 <script>
-import feather from "feather-icons"
+import feather from 'feather-icons'
 
 export default {
-  name: "icon",
+  name: 'icon',
   props: {
     title: String,
     name: String,
@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     handleClick () {
-      this.$emit("click")
+      this.$emit('click')
     }
   }
 }

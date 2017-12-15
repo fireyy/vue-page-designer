@@ -1,4 +1,4 @@
-import braidContainer from './container'
+import braidContainer from './container/index.vue'
 import braidContainerStyle from './container/style.vue'
 
 export const widgets = {

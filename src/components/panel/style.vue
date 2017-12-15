@@ -67,12 +67,12 @@
 </template>
 
 <script>
-import widget from "@/plugins/widget"
+import widget from '../../plugins/widget'
 
 export default {
-  name: "panel-style",
+  name: 'panel-style',
 
-  props: ["activeElement", "tab"],
+  props: ['activeElement', 'tab'],
 
   data () {
     return {}
@@ -91,7 +91,7 @@ export default {
     containerName () {
       var arr = []
       this.$store.state.widgets.map(
-        val => val.type === "braid-container" && val.name && arr.push(val.name)
+        val => val.type === 'braid-container' && val.name && arr.push(val.name)
       )
 
       return arr

@@ -55,7 +55,7 @@
 
 <script>
 export default {
-  props: ["activeElement", "tab"],
+  props: ['activeElement', 'tab'],
   methods: {
     /**
      * 添加/替换图片
@@ -63,7 +63,7 @@ export default {
      * @param type { String } 添加图片类型
      */
     addPic (type) {
-      $communicator.$emit("upload", payload => {
+      window.$communicator.$emit('upload', payload => {
         this.$store.commit(type, payload)
       })
     }

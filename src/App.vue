@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import navbar from "./components/navbar.vue"
-import toolbar from "./components/toolbar.vue"
-import panel from "./components/panel"
-import viewport from "./components/viewport"
+import navbar from './components/navbar.vue'
+import toolbar from './components/toolbar.vue'
+import panel from './components/panel/index.vue'
+import viewport from './components/viewport/index.vue'
 
 export default {
   components: {
@@ -35,12 +35,12 @@ export default {
 
   mounted () {
     // 初始化选中元件（将页面作为初始选中元件）
-    this.$store.commit("initActive")
+    this.$store.commit('initActive')
   },
 
   methods: {
     dozoom (val) {
-      this.$store.commit("zoom", val)
+      this.$store.commit('zoom', val)
     }
   },
 

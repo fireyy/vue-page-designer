@@ -12,10 +12,10 @@ export default {
   computed: {
     classes: function () {
       return {
-        "toggle-btn": true,
-        "toggle-btn-on": this.toggled,
-        "toggle-btn-off": !this.toggled,
-        "toggle-btn-disabled": this.disabled
+        'toggle-btn': true,
+        'toggle-btn-on': this.toggled,
+        'toggle-btn-off': !this.toggled,
+        'toggle-btn-disabled': this.disabled
       }
     },
 
@@ -38,7 +38,7 @@ export default {
         return false
       }
       this.toggled = !this.toggled
-      this.$emit("input", this.toggled)
+      this.$emit('input', this.toggled)
     }
   },
 
@@ -66,8 +66,8 @@ export default {
     labelUnchecked: {
       type: String,
       default: ''
-    },
-  },
+    }
+  }
 }
 </script>
 

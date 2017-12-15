@@ -170,6 +170,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../_variables.scss';
 .mu-lisder-wrapper {
   width: 100%;
   height: 24px;

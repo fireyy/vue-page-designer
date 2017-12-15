@@ -14,7 +14,7 @@ export default {
     }
   },
   mounted () {
-    $communicator.$on('notify', (option) => {
+    window.$communicator.$on('notify', (option) => {
       this.notify(option.info, option.type)
     })
   },

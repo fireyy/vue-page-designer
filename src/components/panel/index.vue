@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import page from "./page"
-import style from "./style"
-import event from "./event"
-import animation from "./animation"
+import page from './page.vue'
+import style from './style.vue'
+import event from './event.vue'
+import animation from './animation.vue'
 
 export default {
   components: {
@@ -43,6 +43,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../../_variables.scss';
 .panel-tab {
   padding: 0;
 }

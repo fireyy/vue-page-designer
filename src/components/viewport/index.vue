@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import ref from "./ref-lines"
-import control from "./size-control"
-import { move } from "@/mixins"
+import ref from './ref-lines.vue'
+import control from './size-control.vue'
+import { move } from '../../mixins'
 
 export default {
-  name: "viewport",
+  name: 'viewport',
   components: {
     ref: ref, // 参考线
     control: control // 尺寸控制
@@ -45,7 +45,7 @@ export default {
 
   mixins: [move],
 
-  props: ["zoom"],
+  props: ['zoom'],
 
   data () {
     return {}
@@ -54,12 +54,12 @@ export default {
   mounted () {
     // 采用事件代理的方式监听元件的选中操作
     document
-      .getElementById("viewport")
-      .addEventListener("mousedown", this.handleSelection, false)
+      .getElementById('viewport')
+      .addEventListener('mousedown', this.handleSelection, false)
 
     // 绑定键盘上下左右键用于元件的移动
     document.addEventListener(
-      "keydown",
+      'keydown',
       e => {
         e.stopPropagation()
         var target = this.$store.state.activeElement
@@ -94,26 +94,26 @@ export default {
   methods: {
     handleSelection (e) {
       var target = e.target
-      var type = target.getAttribute("data-type")
+      var type = target.getAttribute('data-type')
 
       if (type) {
-        var index = target.getAttribute("data-index")
+        var index = target.getAttribute('data-index')
 
         // 设置选中元素
-        this.$store.commit("select", {
+        this.$store.commit('select', {
           type: type,
           index: index ? parseInt(index) : -1
         })
 
         // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
-        var target = this.$store.state.activeElement
-        if (target.belong === "page" && type !== "braid-bg") {
+        target = this.$store.state.activeElement
+        if (target.belong === 'page' && type !== 'braid-bg') {
           this.initmovement(e) // 参见 mixins
         }
       } else {
         // 取消选中元素
-        this.$store.commit("select", {
-          type: "page",
+        this.$store.commit('select', {
+          type: 'page',
           index: -1
         })
       }
@@ -121,9 +121,9 @@ export default {
 
     // FIXME: indexOf('image') 替换图片
     replaceImage (e) {
-      if (this.id.toLowerCase().indexOf("image") > -1) {
-        $communicator.$emit("upload", payload => {
-          this.$store.commit("replaceImage", payload)
+      if (this.id.toLowerCase().indexOf('image') > -1) {
+        window.$communicator.$emit('upload', payload => {
+          this.$store.commit('replaceImage', payload)
         })
       }
     }
@@ -132,7 +132,7 @@ export default {
   computed: {
     // 已添加的组件
     widgetStore () {
-      return this.$store.state.widgets.filter(item => item.belong === "page")
+      return this.$store.state.widgets.filter(item => item.belong === 'page')
     },
 
     // 画布高度
@@ -149,7 +149,7 @@ export default {
     id () {
       var type = this.$store.state.type
       var index = this.$store.state.index
-      index = index >= 0 ? index : ""
+      index = index >= 0 ? index : ''
       return type + index
     },
 

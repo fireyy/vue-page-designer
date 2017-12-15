@@ -40,32 +40,32 @@
 
 <script>
 export default {
-  name: "braid-container",
-  icon: "layout",
-  title: "容器",
+  name: 'braid-container',
+  icon: 'layout',
+  title: '容器',
   setting: {
-    type: "braid-container",
+    type: 'braid-container',
     hasGuide: true,
-    name: "",
+    name: '',
     width: 650,
     height: 300,
     left: 50,
     top: 0,
     z: 0,
-    display: "flex",
-    bgColor: "",
-    backPic: "",
-    backPicUrl: "",
+    display: 'flex',
+    bgColor: '',
+    backPic: '',
+    backPicUrl: '',
     radius: 0,
-    borderColor: "",
+    borderColor: '',
     borderWidth: 0,
-    dir: "row",
-    justify: "flex-start",
-    align: "flex-start",
-    belong: "page",
-    animationName: ""
+    dir: 'row',
+    justify: 'flex-start',
+    align: 'flex-start',
+    belong: 'page',
+    animationName: ''
   },
-  props: ["h", "val", "i", "id", "playState"],
+  props: ['h', 'val', 'i', 'id', 'playState'],
 
   computed: {
     // 子组件

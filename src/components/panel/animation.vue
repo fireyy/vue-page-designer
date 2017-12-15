@@ -116,14 +116,14 @@
 </template>
 
 <script>
-import { getAnimateCss } from "@/utils/css-generate.js"
+import { getAnimateCss } from '../../utils/css-generate.js'
 export default {
-  name: "panel-animation",
-  props: ["activeElement", "tab"],
+  name: 'panel-animation',
+  props: ['activeElement', 'tab'],
 
   data () {
     return {
-      currentName: "",
+      currentName: '',
       currentAnimation: null
     }
   },
@@ -140,16 +140,16 @@ export default {
   methods: {
     addAnimation () {
       // 检查是否存在未命名动画，避免重复添加
-      if (this.$store.state.animation.some(val => val.name === "")) {
-        $communicator.$emit("notify", {
-          info: "还有未命名动画，请先命名",
+      if (this.$store.state.animation.some(val => val.name === '')) {
+        window.$communicator.$emit('notify', {
+          info: '还有未命名动画，请先命名',
           type: false
         })
         return
       }
-      this.$store.commit("addAnimation")
-      this.currentName = ""
-      this.getCurrentAnimation("")
+      this.$store.commit('addAnimation')
+      this.currentName = ''
+      this.getCurrentAnimation('')
     },
 
     getCurrentAnimation (name) {
@@ -159,34 +159,34 @@ export default {
 
     addkeyframe () {
       var name = this.currentAnimation.name
-      if (name === "") {
-        $communicator.$emit("notify", {
-          info: "请先为动画命名"
+      if (name === '') {
+        window.$communicator.$emit('notify', {
+          info: '请先为动画命名'
         })
         return
       }
-      this.$store.commit("addkeyframe", name)
+      this.$store.commit('addkeyframe', name)
     },
 
     validateName (e) {
       var value = e.target.value
-      if (value === "") return
+      if (value === '') return
       if (!/^[a-zA-Z]/.test(value)) {
         this.$nextTick(() => {
-          this.currentAnimation.name = ""
+          this.currentAnimation.name = ''
         })
-        $communicator.$emit("notify", {
-          info: "动画名称必须以英文开头",
+        window.$communicator.$emit('notify', {
+          info: '动画名称必须以英文开头',
           type: false
         })
       }
 
       if (/\W/g.test(value)) {
         this.$nextTick(() => {
-          this.currentAnimation.name = value.replace(/\W/g, "")
+          this.currentAnimation.name = value.replace(/\W/g, '')
         })
-        $communicator.$emit("notify", {
-          info: "请勿使用英文和数字以外的字符",
+        window.$communicator.$emit('notify', {
+          info: '请勿使用英文和数字以外的字符',
           type: false
         })
       }
@@ -194,7 +194,7 @@ export default {
 
     play () {
       // stop animation if any
-      this.$store.commit("setAnimation", false)
+      this.$store.commit('setAnimation', false)
 
       setTimeout(() => {
         var animations = this.$store.state.animation
@@ -202,7 +202,7 @@ export default {
 
         animations.map(val => {
           // build style code and insert into document
-          var id = "anm-" + val.name
+          var id = 'anm-' + val.name
           var styleNode = document.getElementById(id)
 
           if (styleNode) {
@@ -213,7 +213,7 @@ export default {
               false
             )
           } else {
-            var style = document.createElement("style")
+            var style = document.createElement('style')
             style.id = id
             style.innerHTML = getAnimateCss(
               val.name,
@@ -225,7 +225,7 @@ export default {
           }
         })
 
-        this.$store.commit("setAnimation", true)
+        this.$store.commit('setAnimation', true)
       }, 200)
     }
   },
@@ -243,7 +243,7 @@ export default {
       if (val.animationName !== undefined) {
         this.currentName = val.animationName
       } else {
-        this.currentName = ""
+        this.currentName = ''
       }
     }
   }

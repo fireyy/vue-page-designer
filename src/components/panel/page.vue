@@ -36,6 +36,6 @@
 
 <script>
 export default {
-  props: ["activeElement", "tab"]
+  props: ['activeElement', 'tab']
 }
 </script>

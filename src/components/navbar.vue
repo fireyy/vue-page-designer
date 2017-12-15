@@ -21,11 +21,11 @@ export default {
   mounted () {
     // Ctrl + C 复制元件
     document.addEventListener(
-      "keyup",
+      'keyup',
       e => {
         e.stopPropagation()
         if (e.ctrlKey && e.keyCode === 67) {
-          this.$store.commit("copy")
+          this.$store.commit('copy')
         }
       },
       true
@@ -33,11 +33,11 @@ export default {
 
     // Delete 删除选中元件
     document.addEventListener(
-      "keyup",
+      'keyup',
       e => {
         e.stopPropagation()
         if (e.keyCode === 46) {
-          this.$store.commit("delete")
+          this.$store.commit('delete')
         }
       },
       true
@@ -57,24 +57,25 @@ export default {
 
     // 复制元件
     copyWidget () {
-      this.$store.commit("copy")
+      this.$store.commit('copy')
     },
 
     // 删除元件
     dele () {
-      this.$store.commit("delete")
+      this.$store.commit('delete')
     }
   },
 
   computed: {
     show () {
-      return this.$store.state.type !== "page"
+      return this.$store.state.type !== 'page'
     }
   }
 }
 </script>
 
 <style lang="scss">
+@import '../_variables.scss';
 .navbar {
   background: $primary-color;
   .svg-icon {

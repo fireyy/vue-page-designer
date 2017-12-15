@@ -24,7 +24,7 @@ export default {
   },
 
   mounted () {
-    this.uploader = document.getElementById("uploader")
+    this.uploader = document.getElementById('uploader')
 
     /**
      * 在全局通信中介上注册上传图片自定义事件
@@ -35,7 +35,7 @@ export default {
      * @param payload { Array } 图片上传、下载完成后的一个包含所有图片对象的数组
      * @param multiple { Boolean } 是否上传多张，默认为 false
      */
-    $communicator.$on("upload", (cb, multiple) => {
+    window.$communicator.$on('upload', (cb, multiple) => {
       this.multiple = !!multiple
       this.cb = cb
       setTimeout(() => {
@@ -49,7 +49,7 @@ export default {
     handleUpload () {
       var files = this.uploader.files
 
-      if (!files || files.length == 0) return
+      if (!files || files.length === 0) return
 
       files = Array.prototype.slice.call(this.uploader.files)
 
@@ -80,15 +80,15 @@ export default {
         // url = files[i]
         var url = window.URL.createObjectURL(files[i])
 
-        new Promise(res => {
-          this.getImageWidth(url, res)
+        new Promise(resolve => {
+          this.getImageWidth(url, resolve)
         }).then(size => {
           payload.push({
             width: size.w,
             height: size.h,
             top: this.top,
             url: url, // 图片预览地址
-            src: "images/" + files[i].name // 图片实际地址
+            src: 'images/' + files[i].name // 图片实际地址
           })
 
           // 所有图片下载完毕，跳到下一步，否则继续下载
