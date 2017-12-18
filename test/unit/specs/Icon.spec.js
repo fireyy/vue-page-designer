@@ -8,6 +8,7 @@ describe('Icon.vue', () => {
   beforeEach(() => {
     cmp = shallow(Icon, {
       propsData: {
+        title: 'test text',
         name: 'type'
       }
     })
@@ -15,6 +16,10 @@ describe('Icon.vue', () => {
 
   it('equals name to `type`', () => {
     expect(cmp.vm.name).toEqual('type')
+  })
+
+  it('equals title to `test text`', () => {
+    expect(cmp.vm.title).toEqual('test text')
   })
 
   it('should render correct contents', () => {
