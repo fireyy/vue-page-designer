@@ -2,8 +2,8 @@
   <div
     class="lz-container"
     data-type="braid-container"
-    :data-index="i"
-    :class="[{'g-active': 'braid-container' + i === id}, playState ? 'anm-' + val.animationName : '']"
+    :data-uuid="val.uuid"
+    :class="[playState ? 'anm-' + val.animationName : '']"
     :style="{
       display: val.display,
       position: 'absolute',
@@ -26,10 +26,10 @@
     <!-- 子组件 -->
     <component
       :is="val.type"
-      v-for="(val, i) in childs"
-      :key="i"
-      :i="i"
-      :id="id"
+      class="layer layer-child"
+      :class="{'g-active': current === val.uuid}"
+      v-for="val in childs"
+      :key="val.uuid"
       :val="val"
       :h="val.height"
       :w="val.width"
@@ -65,7 +65,7 @@ export default {
     belong: 'page',
     animationName: ''
   },
-  props: ['h', 'val', 'i', 'id', 'playState'],
+  props: ['h', 'val', 'playState'],
 
   computed: {
     // 子组件
@@ -73,6 +73,10 @@ export default {
       return this.$store.state.widgets.filter(
         item => item.belong === this.val.name
       )
+    },
+
+    current () {
+      return this.$store.state.uuid
     }
   }
 }

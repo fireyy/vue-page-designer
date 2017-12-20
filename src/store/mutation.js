@@ -3,12 +3,11 @@ const generate = require('nanoid/generate')
 export default {
   // 选中元件与取消选中
   select (state, payload) {
-    state.type = payload.type
-    state.index = payload.index
-    if (payload.index === -1) {
+    state.uuid = payload.uuid
+    if (payload.uuid === -1) {
       state.activeElement = state.page
     } else {
-      state.activeElement = state.widgets[payload.index]
+      state.activeElement = state.widgets.find(w => w.uuid === payload.uuid)
     }
   },
 

@@ -12,10 +12,9 @@
       <component
         :is="val.type"
         class="layer"
-        v-for="(val, i) in widgetStore"
-        :key="i"
-        :i="i"
-        :id="id"
+        :class="{'g-active': id === val.uuid}"
+        v-for="val in widgetStore"
+        :key="val.uuid"
         :val="val"
         :h="height"
         :w="750"
@@ -97,12 +96,11 @@ export default {
       var type = target.getAttribute('data-type')
 
       if (type) {
-        var index = target.getAttribute('data-index')
+        var uuid = target.getAttribute('data-uuid')
 
         // 设置选中元素
         this.$store.commit('select', {
-          type: type,
-          index: index ? parseInt(index) : -1
+          uuid: uuid || -1
         })
 
         // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
@@ -113,8 +111,7 @@ export default {
       } else {
         // 取消选中元素
         this.$store.commit('select', {
-          type: 'page',
-          index: -1
+          uuid: -1
         })
       }
     },
@@ -147,10 +144,11 @@ export default {
 
     // 选中项id
     id () {
-      var type = this.$store.state.type
-      var index = this.$store.state.index
-      index = index >= 0 ? index : ''
-      return type + index
+      // var type = this.$store.state.type
+      // var index = this.$store.state.index
+      // index = index >= 0 ? index : ''
+      // return type + index
+      return this.$store.state.uuid
     },
 
     // 动画播放状态

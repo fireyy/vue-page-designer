@@ -12,7 +12,7 @@
     <details>
       <summary><icon name="layers" />已加组件</summary>
       <ul class="layer-list">
-        <li :class="{'layer-active': layer === activeElement}" v-for="(layer, i) in layers" :key="i" @click="(e) => {activeLayer(e, i, layer)}">{{layer.type}}</li>
+        <li :class="{'layer-active': layer === activeElement}" v-for="layer in layers" :key="layer.uuid" @click="(e) => {activeLayer(e, layer)}">{{layer.type}}</li>
       </ul>
     </details>
   </div>
@@ -51,11 +51,10 @@ export default {
       this.$store.commit('updateSrollTop', top)
     },
 
-    activeLayer (e, index, item) {
+    activeLayer (e, item) {
       // FIXME: scroll to layer
       this.$store.commit('select', {
-        type: item.type,
-        index: index
+        uuid: item.uuid
       })
     }
   }

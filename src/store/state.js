@@ -3,6 +3,7 @@ export default {
   zoom: 64,               // 画布缩放百分比
   type: 'page',           // 选中元素类型
   index: -1,              // 选中元素索引
+  uuid: null,             // 选中元素uuid
   counter: 0,             // 容器副本命名时避免重名所用的计数器
 
   originX: 0,             // 选中元件的横向初始值
