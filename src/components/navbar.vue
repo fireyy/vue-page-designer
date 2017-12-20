@@ -50,9 +50,9 @@ export default {
       //
     },
 
-    // TODO: 保存
+    // 保存
     save () {
-      //
+      this.$store.dispatch('save')
     },
 
     // 复制元件

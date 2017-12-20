@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-page-designer :widgets="widgets" :widgetStyle="widgetStyle" />
+    <vue-page-designer :widgets="widgets" :widgetStyle="widgetStyle" @save="handleSave" />
   </div>
 </template>
 
@@ -13,6 +13,12 @@ export default {
     return {
       widgets,
       widgetStyle
+    }
+  },
+
+  methods: {
+    handleSave (data) {
+      console.log('saving:', data)
     }
   },
 

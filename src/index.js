@@ -40,6 +40,9 @@ const vuePageDesigner = {
       widgets: this.widgets,
       widgetStyle: this.widgetStyle
     })
+    window.$communicator.$on('save', () => {
+      this.$emit('save', store.state)
+    })
   },
   render (h) {
     return h('App')

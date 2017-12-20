@@ -12,5 +12,8 @@ export default {
         index: state.widgets.length - 1
       })
     }
+  },
+  save ({ state }) {
+    window.$communicator.$emit('save', state)
   }
 }
