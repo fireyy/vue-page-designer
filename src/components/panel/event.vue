@@ -12,16 +12,6 @@
       </div>
     </div>
 
-    <div class="panel-row" flex v-if="activeElement.href !== undefined">
-      <div class="panel-label">跳转至</div>
-      <div class="panel-value">
-        <select>
-          <option>无</option>
-          <option>TODO: href</option>
-        </select>
-      </div>
-    </div>
-
     <div class="panel-row" flex v-if="activeElement.hoverPic !== undefined">
       <div class="panel-label">hover 图片</div>
       <div class="panel-value">
