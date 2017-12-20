@@ -12,17 +12,6 @@
       </div>
     </div>
 
-    <div class="panel-row" flex v-if="activeElement.hoverPic !== undefined">
-      <div class="panel-label">hover 图片</div>
-      <div class="panel-value">
-        <div class="panel-preview"
-          @click="addPic('addHoverPic')"
-          :style="{ backgroundImage: 'url(' + activeElement.hoverPic + ')' }">
-          <icon name="plus" v-show="!activeElement.hoverPic" />
-        </div>
-      </div>
-    </div>
-
     <hr>
 
     <div class="panel-row" flex>
