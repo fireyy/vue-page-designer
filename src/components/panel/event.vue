@@ -1,32 +1,14 @@
 <template>
   <div class="panel-wrap" v-if="tab === 2">
-    <div class="panel-row" flex>
+    <div class="panel-row">
       <icon name="link" />
       <div class="panel-label">点击时</div>
     </div>
 
-    <div class="panel-row" flex v-if="activeElement.href !== undefined">
+    <div class="panel-row" v-if="activeElement.href !== undefined">
       <div class="panel-label">链接至</div>
       <div class="panel-value">
         <input type="text" v-model="activeElement.href" placeholder="绝对路径，以https://开头">
-      </div>
-    </div>
-
-    <hr>
-
-    <div class="panel-row" flex>
-      <icon name="clock" />
-      <div class="panel-label">活动结束时</div>
-    </div>
-
-    <div class="panel-row" flex v-if="activeElement.expirePic !== undefined">
-      <div class="panel-label">结束图片</div>
-      <div class="panel-value">
-        <div class="panel-preview"
-          @click="addPic('addExpirePic')"
-          :style="{ backgroundImage: 'url(' + activeElement.expirePic + ')' }">
-          <icon name="plus" v-show="!activeElement.expirePic" />
-        </div>
       </div>
     </div>
   </div>
@@ -34,18 +16,6 @@
 
 <script>
 export default {
-  props: ['activeElement', 'tab'],
-  methods: {
-    /**
-     * 添加/替换图片
-     *
-     * @param type { String } 添加图片类型
-     */
-    addPic (type) {
-      window.$communicator.$emit('upload', payload => {
-        this.$store.commit(type, payload)
-      })
-    }
-  }
+  props: ['activeElement', 'tab']
 }
 </script>

@@ -169,18 +169,6 @@ export default {
     }
   },
 
-  // 添加 hover 图片
-  addHoverPic (state, payload) {
-    state.activeElement.hoverPic = payload[0].url
-    state.activeElement.hoverSrc = payload[0].src
-  },
-
-  // 添加 结束状态 图片
-  addExpirePic (state, payload) {
-    state.activeElement.expirePic = payload[0].url
-    state.activeElement.expireSrc = payload[0].src
-  },
-
   // 替换图片
   replaceImage (state, payload) {
     state.activeElement.width = payload[0].width
