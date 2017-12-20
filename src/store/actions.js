@@ -1,6 +1,6 @@
 export default {
   addWidget ({ state, commit }, item) {
-    if (item.isUpload) {
+    if (item.setting.isUpload) {
       window.$communicator.$emit('upload', (payload) => {
         commit('addWidget', { data: payload, item })
       }, true)
@@ -8,8 +8,7 @@ export default {
       commit('addWidget', { item })
       // 设置选中
       commit('select', {
-        type: item.setting.type,
-        index: state.widgets.length - 1
+        uuid: state.widgets[state.widgets.length - 1].uuid
       })
     }
   },

@@ -31,11 +31,11 @@ export default {
     guides () {
       var state = this.$store.state
       var guides = []
-      var index = state.index
+      var uuid = state.uuid
 
-      state.widgets.forEach((item, i) => {
+      state.widgets.forEach(item => {
         // 排除选中元素
-        if (item.hasGuide && i === index) return
+        if (item.hasGuide && item.uuid === uuid) return
         // 排除容器中的元件
         if (item.hasGuide && item.belong !== 'page') return
 

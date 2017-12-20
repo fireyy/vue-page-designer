@@ -6,8 +6,11 @@ export default {
     state.uuid = payload.uuid
     if (payload.uuid === -1) {
       state.activeElement = state.page
+      state.type = 'page'
     } else {
-      state.activeElement = state.widgets.find(w => w.uuid === payload.uuid)
+      let widget = state.widgets.find(w => w.uuid === payload.uuid)
+      state.activeElement = widget
+      state.type = widget.type
     }
   },
 
@@ -146,8 +149,8 @@ export default {
 
     // 重置 activeElement
     state.activeElement = state.page
-    state.type = 'page'
-    state.index = -1
+    // state.type = 'page'
+    state.uuid = -1
   },
 
   // 添加组件

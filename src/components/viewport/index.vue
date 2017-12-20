@@ -116,9 +116,9 @@ export default {
       }
     },
 
-    // FIXME: indexOf('image') 替换图片
+    // 替换图片
     replaceImage (e) {
-      if (this.id.toLowerCase().indexOf('image') > -1) {
+      if (this.$store.state.activeElement.isUpload) {
         window.$communicator.$emit('upload', payload => {
           this.$store.commit('replaceImage', payload)
         })
