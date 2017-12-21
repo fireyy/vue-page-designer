@@ -1,6 +1,6 @@
 <template>
   <transition name="drop">
-    <div class="toast" v-show="show">{{ info }}</div>
+    <div class="toast" :class="klass" v-show="show">{{ info }}</div>
   </transition>
 </template>
 
@@ -9,8 +9,17 @@ export default {
   data () {
     return {
       info: '',
-      type: true,
+      type: 'warning',
       show: false
+    }
+  },
+  computed: {
+    klass () {
+      return {
+        'toast-success': this.type === 'success',
+        'toast-warning': this.type === 'warning',
+        'toast-error': this.type === 'error'
+      }
     }
   },
   mounted () {
@@ -22,8 +31,7 @@ export default {
     notify (info, type) {
       if (this.show) return
       this.info = info || 'Success!'
-      // FIXME: type = "success" or "warning"
-      this.type = type || true
+      if (type) this.type = type
       this.show = true
       setTimeout(() => {
         this.show = false
