@@ -6,7 +6,6 @@ import slider from './components/slider.vue'
 import toast from './components/toast.vue'
 import uploader from './components/uploader.vue'
 import popbox from './components/popbox.vue'
-import switcher from './components/switcher.vue'
 import icon from './components/icon.vue'
 import widget from './plugins/widget'
 
@@ -17,7 +16,6 @@ Vue.component('slider', slider)
 Vue.component('toast', toast)
 Vue.component('uploader', uploader)
 Vue.component('popbox', popbox)
-Vue.component('switcher', switcher)
 Vue.component('icon', icon)
 
 /**
