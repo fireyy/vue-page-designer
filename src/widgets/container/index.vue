@@ -39,10 +39,13 @@
 </template>
 
 <script>
+import stylec from './style.vue'
+
 export default {
   name: 'braid-container',
   icon: 'layout',
   title: '容器',
+  panel: stylec,
   setting: {
     type: 'braid-container',
     hasGuide: true,

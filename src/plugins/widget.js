@@ -1,19 +1,22 @@
 // 注册 内置 widgets
-import * as inner from '../widgets'
+import inner from '../widgets'
 
-var widgets, widgetStyle
+var widgets
+var widgetStyle = {}
 
 const install = (Vue, config = {}) => {
   if (install.installed) return
 
-  widgets = Object.assign({}, inner.widgets, config.widgets)
-  widgetStyle = Object.assign({}, inner.widgetStyle, config.widgetStyle)
+  widgets = Object.assign({}, inner, config.widgets)
 
   Object.keys(widgets).forEach(key => {
     Vue.component(key, widgets[key])
-  })
-  Object.keys(widgetStyle).forEach(key => {
-    Vue.component(key, widgetStyle[key])
+    // style panel
+    let panel = Object.assign({}, widgets[key]['panel'])
+    Vue.component(panel.name, panel)
+    widgetStyle[panel.name] = panel
+    // remove panel from object
+    delete widgets[key]['panel']
   })
 }
 

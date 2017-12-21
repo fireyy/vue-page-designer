@@ -1,10 +1,5 @@
 import braidContainer from './container/index.vue'
-import braidContainerStyle from './container/style.vue'
 
-export const widgets = {
+export default {
   braidContainer
-}
-
-export const widgetStyle = {
-  braidContainerStyle
 }

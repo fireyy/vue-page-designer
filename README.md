@@ -51,7 +51,6 @@ You can add custom components, save callback.
 | save | `(data) => void` | When you click the Save button, feed back to you to save the data |
 | value | `Object` | Editor initial value, you can pass the value of the save callback and resume the draft |
 | widgets | `Object` | Vue Components. Custom components for editor. see [Example](https://github.com/fireyy/vue-page-designer-widgets/blob/master/src/index.js) |
-| widgetStyle | `Object` | Vue Components. Custom components style config for editor. see [Example](https://github.com/fireyy/vue-page-designer-widgets/blob/master/src/index.js) |
 
 ## Parameter: `save`
 
@@ -75,7 +74,7 @@ The `value` came from `save`.
 </template>
 ```
 
-## Parameter: `widgets` and `widgetStyle`
+## Parameter: `widgets`
 
 You can install default widget in `vue-page-designer-widgets`
 
@@ -88,18 +87,17 @@ Import and use it
 ```html
 <template>
   <div id="app">
-    <vue-page-designer :widgets="widgets" :widgetStyle="widgetStyle" />
+    <vue-page-designer :widgets="widgets" />
   </div>
 </template>
 <script>
 import vuePageDesigner from 'vue-page-designer'
-import { widgets, widgetStyle } from 'vue-page-designer-widgets'
+import widgets from 'vue-page-designer-widgets'
 
 export default {
   data () {
     return {
-      widgets,
-      widgetStyle
+      widgets
     }
   },
 

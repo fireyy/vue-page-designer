@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-    <vue-page-designer :value="value" :widgets="widgets" :widgetStyle="widgetStyle" @save="handleSave" />
+    <vue-page-designer :value="value" :widgets="widgets" @save="handleSave" />
   </div>
 </template>
 
 <script>
-import { widgets, widgetStyle } from 'vue-page-designer-widgets'
+import widgets from 'vue-page-designer-widgets'
 import vuePageDesigner from '../src'
 
 export default {
   data () {
     return {
       value: null,
-      widgets,
-      widgetStyle
+      widgets
     }
   },
 

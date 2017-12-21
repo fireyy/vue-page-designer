@@ -29,16 +29,13 @@ const vuePageDesigner = {
   store,
   props: {
     value: Object,
-    widgets: Object,
-    widgetStyle: Object
+    widgets: Object
   },
   components: { App },
   created () {
     // 注册 widgets
-    // TODO: 合并 widgets 和 widgetStyle
     Vue.use(widget, {
-      widgets: this.widgets,
-      widgetStyle: this.widgetStyle
+      widgets: this.widgets
     })
     // 初始化已有数据
     if (this.value) {
