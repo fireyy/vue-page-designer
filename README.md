@@ -49,7 +49,7 @@ You can add custom components, save callback.
 | Props | Type | Description |
 | -------- | -------- | -------- |
 | save | `(data) => void` | When you click the Save button, feed back to you to save the data |
-| value | `string` | Editor initial value, you can pass the value of the onSave callback and resume the draft |
+| value | `Object` | Editor initial value, you can pass the value of the save callback and resume the draft |
 | widgets | `Object` | Vue Components. Custom components for editor. see [Example](https://github.com/fireyy/vue-page-designer-widgets/blob/master/src/index.js) |
 | widgetStyle | `Object` | Vue Components. Custom components style config for editor. see [Example](https://github.com/fireyy/vue-page-designer-widgets/blob/master/src/index.js) |
 

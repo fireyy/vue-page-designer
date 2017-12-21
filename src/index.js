@@ -28,16 +28,22 @@ const vuePageDesigner = {
   name: 'vue-page-designer',
   store,
   props: {
+    value: Object,
     widgets: Object,
     widgetStyle: Object
   },
   components: { App },
   created () {
     // 注册 widgets
+    // TODO: 合并 widgets 和 widgetStyle
     Vue.use(widget, {
       widgets: this.widgets,
       widgetStyle: this.widgetStyle
     })
+    // 初始化已有数据
+    if (this.value) {
+      store.replaceState(this.value)
+    }
     window.$communicator.$on('save', () => {
       this.$emit('save', store.state)
     })

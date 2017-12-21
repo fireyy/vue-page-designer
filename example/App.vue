@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-page-designer :widgets="widgets" :widgetStyle="widgetStyle" @save="handleSave" />
+    <vue-page-designer :value="value" :widgets="widgets" :widgetStyle="widgetStyle" @save="handleSave" />
   </div>
 </template>
 
@@ -11,14 +11,23 @@ import vuePageDesigner from '../src'
 export default {
   data () {
     return {
+      value: null,
       widgets,
       widgetStyle
+    }
+  },
+
+  created () {
+    let data = window.localStorage.getItem('vpd-data')
+    if (data) {
+      this.value = JSON.parse(data)
     }
   },
 
   methods: {
     handleSave (data) {
       console.log('saving:', data)
+      window.localStorage.setItem('vpd-data', JSON.stringify(data))
     }
   },
 
