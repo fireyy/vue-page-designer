@@ -21,7 +21,7 @@
 <script>
 import widget from '../plugins/widget'
 import { move } from '../mixins'
-import { cumulativeOffset } from '../utils/offset'
+import { cumulativeOffset, checkInView } from '../utils/offset'
 
 export default {
   mixins: [move],
@@ -58,7 +58,7 @@ export default {
       })
       let viewport = document.querySelector('#viewport')
       let target = viewport.querySelector(`[data-uuid='${item.uuid}']`)
-      if (target) {
+      if (target && !checkInView(target)) {
         viewport.scrollTop = (cumulativeOffset(target).top - 50) * this.zoom / 100
       }
     }

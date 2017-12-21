@@ -13,3 +13,12 @@ export function cumulativeOffset (element) {
     left: left
   }
 }
+
+export function checkInView (el) {
+  let rect = el.getBoundingClientRect()
+  return (
+    rect.top < window.innerHeight &&
+    (rect.left < window.innerWidth &&
+      rect.right > 0)
+  )
+}
