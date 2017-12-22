@@ -15,6 +15,7 @@
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
+    "icon": "node build/build.icon.js",
     "build": "node build/build.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
@@ -25,7 +26,6 @@
   },
   "author": "fireyy <fireyy@gmail.com>",
   "dependencies": {
-    "feather-icons": "^4.0.1",
     "nanoid": "^1.0.1",
     "spectre.css": "^0.5.0",
     "vue": "^2.5.11"
@@ -57,6 +57,7 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "^3.0.0",
+    "feather-icons": "^4.5.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "gh-pages": "^1.0.0",

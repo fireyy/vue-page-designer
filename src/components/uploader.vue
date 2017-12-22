@@ -56,7 +56,7 @@ export default {
 
       files = Array.prototype.slice.call(this.uploader.files)
 
-      // TODO: 默认图片上传函数
+      // TODO: 默认图片上传函数 use fetch
       this.upload(files).then(res => {
         console.log('status: ', res.status)
         // 图片下载队列完成后执行回调

@@ -27,6 +27,7 @@ import navbar from './components/navbar.vue'
 import toolbar from './components/toolbar.vue'
 import panel from './components/panel/index.vue'
 import viewport from './components/viewport/index.vue'
+import loadSprite from './utils/load-sprite'
 
 export default {
   name: 'vue-page-designer',
@@ -48,6 +49,9 @@ export default {
         })
       }
     }
+  },
+  beforeCreate () {
+    loadSprite('http://p1cu7wuzw.bkt.clouddn.com/icons.svg', 'svgspriteit')
   },
   created () {
     // 注册 widgets
@@ -136,5 +140,10 @@ export default {
   position: absolute;
   top: 4px;
   left: -36px;
+}
+#svgspriteit {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
 }
 </style>
