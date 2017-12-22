@@ -4,7 +4,7 @@
       <summary><icon name="list" />可用组件</summary>
       <ul class="widget-list" @mousedown="updateSrollTop">
         <li class="menu-item" @click="(e) => {addWidget(e, item)}" v-for="item in widgets" :key="item.name">
-          <icon :name="item.icon" :title="item.title" />
+          <icon :svg="item.icon" :title="item.title" />
           <span class="menu-caption">{{item.title}}</span>
         </li>
       </ul>

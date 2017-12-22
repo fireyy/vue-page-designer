@@ -8,13 +8,14 @@ import feather from 'feather-icons'
 export default {
   name: 'icon',
   props: {
+    svg: String,
     title: String,
     name: String,
     options: Object
   },
   computed: {
     icon () {
-      return feather.icons[this.name].toSvg(this.options)
+      return this.svg || feather.icons[this.name].toSvg(this.options)
     }
   },
   methods: {
