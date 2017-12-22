@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-page-designer :value="value" :widgets="widgets" @save="handleSave" />
+    <vue-page-designer :value="value" :widgets="widgets" @save="handleSave" :upload="handleUpload" />
   </div>
 </template>
 
@@ -27,6 +27,15 @@ export default {
     handleSave (data) {
       console.log('saving:', data)
       window.localStorage.setItem('vpd-data', JSON.stringify(data))
+    },
+    handleUpload (files) {
+      console.log('uploading:', files)
+      return new Promise(resolve => {
+        resolve({
+          files: files,
+          status: 200
+        })
+      })
     }
   },
 

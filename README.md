@@ -48,19 +48,10 @@ You can add custom components, save callback.
 
 | Props | Type | Description |
 | -------- | -------- | -------- |
-| save | `(data) => void` | When you click the Save button, feed back to you to save the data |
 | value | `Object` | Editor initial value, you can pass the value of the save callback and resume the draft |
 | widgets | `Object` | Vue Components. Custom components for editor. see [Example](https://github.com/fireyy/vue-page-designer-widgets/blob/master/src/index.js) |
-
-## Parameter: `save`
-
-```html
-<template>
-  <div id="app">
-    <vue-page-designer @save="(data) => { console.log('send the value data to your server', data) }" />
-  </div>
-</template>
-```
+| save | `(data) => void` | When you click the Save button, feed back to you to save the data |
+| upload | `(files) => Promise` | Editor upload function, allowing you to implement your own upload-file's request |
 
 ## Parameter: `value`
 
@@ -101,12 +92,44 @@ export default {
     }
   },
 
+  components: {
+    vuePageDesigner
+  }
+}
+</script>
+```
+
+## Parameter: `save`
+
+```html
+<template>
+  <div id="app">
+    <vue-page-designer @save="(data) => { console.log('send the value data to your server', data) }" />
+  </div>
+</template>
+```
+
+## Parameter: `upload`
+
+```html
+<template>
+  <div id="app">
+    <vue-page-designer :upload="upload" />
+  </div>
+</template>
+<script>
+import vuePageDesigner from 'vue-page-designer'
+
+export default {
   methods: {
-    handleSave (data) {
-      console.log('saving:', data)
+    upload (files) {
+      return yourApiUpload(files).then(res => {
+        return res.data
+      }).catch(err => {
+        console.log(err)
+      })
     }
   },
-
   components: {
     vuePageDesigner
   }

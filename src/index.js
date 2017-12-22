@@ -1,13 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-import store from './store'
 
 import slider from './components/slider.vue'
 import toast from './components/toast.vue'
 import uploader from './components/uploader.vue'
 import popbox from './components/popbox.vue'
 import icon from './components/icon.vue'
-import widget from './plugins/widget'
 
 import './app.scss'
 
@@ -24,30 +22,4 @@ Vue.component('icon', icon)
  */
 window.$communicator = new Vue()
 
-const vuePageDesigner = {
-  name: 'vue-page-designer',
-  store,
-  props: {
-    value: Object,
-    widgets: Object
-  },
-  components: { App },
-  created () {
-    // 注册 widgets
-    Vue.use(widget, {
-      widgets: this.widgets
-    })
-    // 初始化已有数据
-    if (this.value) {
-      store.replaceState(this.value)
-    }
-    window.$communicator.$on('save', () => {
-      this.$emit('save', store.state)
-    })
-  },
-  render (h) {
-    return h('App')
-  }
-}
-
-export default vuePageDesigner
+export default App

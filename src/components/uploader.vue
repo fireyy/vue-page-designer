@@ -8,6 +8,9 @@
 
 <script>
 export default {
+  props: {
+    upload: Function
+  },
   data () {
     return {
       multiple: false, // 是否允许上传多张
@@ -53,16 +56,15 @@ export default {
 
       files = Array.prototype.slice.call(this.uploader.files)
 
-      // 上传图片
-      // $.post('', files, () => {
-
-      // })
-
-      // 图片下载队列完成后执行回调
-      new Promise(resolve => {
-        this.handleLoadQueue(resolve, files)()
-      }).then(payload => {
-        this.cb(payload)
+      // TODO: 默认图片上传函数
+      this.upload(files).then(res => {
+        console.log('status: ', res.status)
+        // 图片下载队列完成后执行回调
+        new Promise(resolve => {
+          this.handleLoadQueue(resolve, res.files)()
+        }).then(payload => {
+          this.cb(payload)
+        })
       })
     },
 

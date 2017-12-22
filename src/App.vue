@@ -14,25 +14,54 @@
         <panel class="control-panel column"></panel>
       </div>
     </div>
-    <uploader></uploader>
+    <uploader :upload="upload"></uploader>
     <toast></toast>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import store from './store'
+import widget from './plugins/widget'
 import navbar from './components/navbar.vue'
 import toolbar from './components/toolbar.vue'
 import panel from './components/panel/index.vue'
 import viewport from './components/viewport/index.vue'
 
 export default {
+  name: 'vue-page-designer',
+  store,
   components: {
     navbar, // 顶部导航栏
     toolbar, // 左侧菜单栏
     panel, // 右侧参数面板
     viewport // 页面画布
   },
-
+  props: {
+    value: Object,
+    widgets: Object,
+    upload: {
+      type: Function,
+      default (files) {
+        return new Promise(resolve => {
+          resolve(files)
+        })
+      }
+    }
+  },
+  created () {
+    // 注册 widgets
+    Vue.use(widget, {
+      widgets: this.widgets
+    })
+    // 初始化已有数据
+    if (this.value) {
+      store.replaceState(this.value)
+    }
+    window.$communicator.$on('save', () => {
+      this.$emit('save', store.state)
+    })
+  },
   mounted () {
     // 初始化选中元件（将页面作为初始选中元件）
     this.$store.commit('initActive')
