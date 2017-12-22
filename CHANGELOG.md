@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/fireyy/vue-page-designer/compare/v0.2.0...v0.3.0) (2017-12-22)
+
+
+### Features
+
+* add upload function for use your owner upload api ([becf9eb](https://github.com/fireyy/vue-page-designer/commit/becf9eb))
+* widget icon use svg string ([67e6b05](https://github.com/fireyy/vue-page-designer/commit/67e6b05))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/fireyy/vue-page-designer/compare/v0.1.0...v0.2.0) (2017-12-21)
 
