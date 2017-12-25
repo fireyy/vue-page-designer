@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-page-designer :value="value" :widgets="widgets" @save="handleSave" :upload="handleUpload" />
+    <vue-page-designer :value="value" :widgets="widgets" @save="handleSave" :upload="handleUpload" :uploadOption="uploadOption" />
   </div>
 </template>
 
@@ -12,7 +12,10 @@ export default {
   data () {
     return {
       value: null,
-      widgets
+      widgets,
+      uploadOption: {
+        url: 'https://jsonplaceholder.typicode.com/photos'
+      }
     }
   },
 

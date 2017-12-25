@@ -9,7 +9,8 @@
 <script>
 export default {
   props: {
-    upload: Function
+    upload: Function,
+    uploadOption: Object
   },
   data () {
     return {
@@ -56,8 +57,9 @@ export default {
 
       files = Array.prototype.slice.call(this.uploader.files)
 
-      // TODO: 默认图片上传函数 use fetch
-      this.upload(files).then(res => {
+      let uploadFn = this.upload || this.defaultUpload
+
+      uploadFn(files).then(res => {
         console.log('status: ', res.status)
         // 图片下载队列完成后执行回调
         new Promise(resolve => {
@@ -66,6 +68,20 @@ export default {
           this.cb(payload)
         })
       })
+    },
+
+    defaultUpload (files) {
+      if (this.uploadOption.url) {
+        var data = new FormData()
+        files.forEach(file => data.append('file[]', file))
+
+        return fetch(this.uploadOption.url, {
+          method: 'POST',
+          body: data
+        })
+      } else {
+        alert('请配置图片上传api地址')
+      }
     },
 
     /**

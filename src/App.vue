@@ -14,7 +14,7 @@
         <panel class="control-panel column"></panel>
       </div>
     </div>
-    <uploader :upload="upload"></uploader>
+    <uploader :upload="upload" :uploadOption="uploadOption"></uploader>
     <toast></toast>
   </div>
 </template>
@@ -41,14 +41,8 @@ export default {
   props: {
     value: Object,
     widgets: Object,
-    upload: {
-      type: Function,
-      default (files) {
-        return new Promise(resolve => {
-          resolve(files)
-        })
-      }
-    }
+    upload: Function,
+    uploadOption: Object
   },
   beforeCreate () {
     loadSprite('http://p1cu7wuzw.bkt.clouddn.com/icons.svg', 'svgspriteit')
