@@ -45,7 +45,8 @@ export default {
     uploadOption: Object
   },
   beforeCreate () {
-    loadSprite('http://p1cu7wuzw.bkt.clouddn.com/icons.svg', 'svgspriteit')
+    // TODO: custom svg path by config
+    loadSprite('//p1cu7wuzw.bkt.clouddn.com/icons.svg', 'svgspriteit')
   },
   created () {
     // 注册 widgets
