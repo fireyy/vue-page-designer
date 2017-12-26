@@ -46,7 +46,7 @@ export default {
   },
   beforeCreate () {
     // TODO: custom svg path by config
-    loadSprite('//p1cu7wuzw.bkt.clouddn.com/icons.svg', 'svgspriteit')
+    loadSprite('//unpkg.com/vue-page-designer/icon.svg', 'svgspriteit')
   },
   created () {
     // 注册 widgets
