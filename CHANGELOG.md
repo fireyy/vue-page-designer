@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/fireyy/vue-page-designer/compare/v0.4.0...v0.5.0) (2017-12-26)
+
+
+### Bug Fixes
+
+* example static path ([e30f5bf](https://github.com/fireyy/vue-page-designer/commit/e30f5bf))
+* svg remote path ([85ffbe9](https://github.com/fireyy/vue-page-designer/commit/85ffbe9))
+
+
+### Features
+
+* simple defaultUpload function ([69064fa](https://github.com/fireyy/vue-page-designer/commit/69064fa))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/fireyy/vue-page-designer/compare/v0.3.0...v0.4.0) (2017-12-22)
 
