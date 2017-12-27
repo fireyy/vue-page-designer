@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/fireyy/vue-page-designer/compare/v0.5.4...v0.6.0) (2017-12-27)
+
+
+### Bug Fixes
+
+* child widget data-title ([4742551](https://github.com/fireyy/vue-page-designer/commit/4742551))
+
+
+### Features
+
+* add updateData api ([27f6c7c](https://github.com/fireyy/vue-page-designer/commit/27f6c7c))
+* container use slot ([b7825c9](https://github.com/fireyy/vue-page-designer/commit/b7825c9))
+
+
+
 <a name="0.5.4"></a>
 ## [0.5.4](https://github.com/fireyy/vue-page-designer/compare/v0.5.3...v0.5.4) (2017-12-26)
 
