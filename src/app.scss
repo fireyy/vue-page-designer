@@ -63,7 +63,25 @@ select {
   @extend .form-select;
   @extend .select-sm;
 }
-
- .g-active {
+.layer {
+  &:hover {
+    outline: 1px solid #ddd !important;
+  }
+}
+.g-active {
   outline: 1px solid #2196f3 !important;
+  &:hover {
+    outline: 1px solid #2196f3 !important;
+  }
+  &::after {
+    content: attr(data-title);
+    background: #2196f3;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 5px;
+    font-size: 12px;
+    border-radius: 0 0 0 4px;
+  }
 }

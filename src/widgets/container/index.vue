@@ -24,17 +24,8 @@
     }">
 
     <!-- 子组件 -->
-    <component
-      :is="val.type"
-      class="layer layer-child"
-      :class="{'g-active': current === val.uuid}"
-      v-for="val in childs"
-      :key="val.uuid"
-      :val="val"
-      :h="val.height"
-      :w="val.width"
-      :playState="playState">
-    </component>
+    <!-- TODO: 改用 slot 实现 -->
+    <slot></slot>
   </div>
 </template>
 
