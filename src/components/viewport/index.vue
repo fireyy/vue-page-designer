@@ -11,8 +11,8 @@
       <!-- 组件 -->
       <component
         :is="val.type"
-        class="layer"
         :data-title="val.type"
+        class="layer"
         :class="{'g-active': id === val.uuid}"
         v-for="val in widgetStore"
         :key="val.uuid"
@@ -23,6 +23,7 @@
         <component
           v-if="val.type === 'braid-container'"
           :is="child.type"
+          :data-title="child.type"
           class="layer layer-child"
           :class="{'g-active': id === child.uuid}"
           v-for="child in getChilds(val.name)"

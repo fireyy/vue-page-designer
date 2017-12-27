@@ -24,7 +24,6 @@
     }">
 
     <!-- 子组件 -->
-    <!-- TODO: 改用 slot 实现 -->
     <slot></slot>
   </div>
 </template>
@@ -59,20 +58,7 @@ export default {
     belong: 'page',
     animationName: ''
   },
-  props: ['h', 'val', 'playState'],
-
-  computed: {
-    // 子组件
-    childs () {
-      return this.$store.state.widgets.filter(
-        item => item.belong === this.val.name
-      )
-    },
-
-    current () {
-      return this.$store.state.uuid
-    }
-  }
+  props: ['h', 'val', 'playState']
 }
 </script>
 
