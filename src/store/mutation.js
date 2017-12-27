@@ -218,5 +218,11 @@ export default {
   // 动画的播放与停止
   setAnimation (state, status) {
     state.playState = status
+  },
+
+  // 更新数据
+  updateData (state, {uuid, key, value}) {
+    let widget = state.widgets.find(w => w.uuid === uuid)
+    widget[key] = value
   }
 }
