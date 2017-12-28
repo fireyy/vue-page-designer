@@ -1,8 +1,11 @@
 <template>
   <button
     data-type="braid-button"
+    v-html="val.text"
     :data-uuid="val.uuid"
     :class="[playState ? 'anm-' + val.animationName : '']"
+    contenteditable="true"
+    @blur="(e) => updateText(e, val.uuid)"
     :style="{
       position: 'absolute',
       width: val.width / 7.5 + '%',
@@ -29,8 +32,8 @@ export default {
     isChild: true,
     hasGuide: true,
     name: '',
-    width: 150,
-    height: 30,
+    width: 250,
+    height: 60,
     left: 50,
     top: 0,
     z: 0,
@@ -38,10 +41,22 @@ export default {
     backPic: '',
     backPicUrl: '',
     color: '#ffffff',
+    text: '按钮',
     belong: 'page',
     animationName: ''
   },
-  props: ['h', 'val', 'playState']
+  props: ['h', 'val', 'playState'],
+
+  methods: {
+    updateText (e, uuid) {
+      let text = e.target.innerHTML
+      this.$store.commit('updateData', {
+        uuid: uuid,
+        key: 'text',
+        value: text
+      })
+    }
+  }
 }
 </script>
 
