@@ -19,6 +19,8 @@
         :val="val"
         :h="height"
         :w="750"
+        :data-type="val.type"
+        :data-uuid="val.uuid"
         :playState="playState">
         <component
           v-if="val.type === 'braid-container'"
@@ -31,6 +33,8 @@
           :val="child"
           :h="height"
           :w="750"
+          :data-type="child.type"
+          :data-uuid="child.uuid"
           :playState="playState" />
       </component>
 

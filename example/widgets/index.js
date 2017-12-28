@@ -1,5 +1,5 @@
 import braidButton from './button/index.vue'
 
 export default {
-  braidButton
+  [braidButton.name]: braidButton
 }
