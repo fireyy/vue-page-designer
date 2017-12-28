@@ -42,7 +42,7 @@ export default {
 </style>
 ```
 
-A [Example](https://fireyy.github.io/vue-page-designer/), and [source](./example/). Also a [custom widget source](./example/widgets)
+A [example](https://fireyy.github.io/vue-page-designer/) ▶️, and [source](./example/). Also a [custom widget source](./example/widgets)
 
 # Options
 
