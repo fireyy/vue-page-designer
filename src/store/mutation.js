@@ -184,6 +184,12 @@ export default {
     state.activeElement.height = payload[0].height
   },
 
+  // 添加背景图
+  addBackPic (state, payload) {
+    state.activeElement.backPic = payload[0].url
+    state.activeElement.backPicUrl = payload[0].src
+  },
+
   // 添加动画
   addAnimation (state) {
     state.animation.push({

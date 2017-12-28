@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import widgets from 'vue-page-designer-widgets'
+import widgets from './widgets'
 import vuePageDesigner from '../src'
 
 export default {
