@@ -42,6 +42,8 @@ export default {
 </style>
 ```
 
+A [Example](https://fireyy.github.io/vue-page-designer/), and [source](./example/). Also a [custom widget source](./example/widgets)
+
 # Options
 
 You can add custom components, save callback.
@@ -83,7 +85,7 @@ Import and use it
 </template>
 <script>
 import vuePageDesigner from 'vue-page-designer'
-import widgets from 'vue-page-designer-widgets'
+import widgets from './widgets'
 
 export default {
   data () {
