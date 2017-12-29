@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/fireyy/vue-page-designer/compare/v0.6.0...v0.7.0) (2017-12-29)
+
+
+### Bug Fixes
+
+* color picker ([c9ad358](https://github.com/fireyy/vue-page-designer/commit/c9ad358))
+* depend vue-page-designer-widgets ([fa820af](https://github.com/fireyy/vue-page-designer/commit/fa820af))
+
+
+### Features
+
+* demo widgets ([9acfa02](https://github.com/fireyy/vue-page-designer/commit/9acfa02))
+* use store instead of window. ([f4ed3b8](https://github.com/fireyy/vue-page-designer/commit/f4ed3b8))
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/fireyy/vue-page-designer/compare/v0.5.4...v0.6.0) (2017-12-27)
 
