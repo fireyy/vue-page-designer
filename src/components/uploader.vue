@@ -35,11 +35,11 @@ export default {
      * 所有需要上传图片的地方均可调用
      *
      * 调用方法：
-     * $communicator.$emit('upload', function (payload) {/.../})
+     * this.$store.$emit('upload', function (payload) {/.../})
      * @param payload { Array } 图片上传、下载完成后的一个包含所有图片对象的数组
      * @param multiple { Boolean } 是否上传多张，默认为 false
      */
-    window.$communicator.$on('upload', (cb, multiple) => {
+    this.$store.$on('upload', (cb, multiple) => {
       this.multiple = !!multiple
       this.cb = cb
       setTimeout(() => {

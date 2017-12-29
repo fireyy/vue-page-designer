@@ -1,7 +1,7 @@
 export default {
-  addWidget ({ state, commit }, item) {
+  addWidget ({ state, commit, store }, item) {
     if (item.setting.isUpload) {
-      window.$communicator.$emit('upload', (payload) => {
+      store.$emit('upload', (payload) => {
         commit('addWidget', { data: payload, item })
       }, true)
     } else {
@@ -12,7 +12,7 @@ export default {
       })
     }
   },
-  save ({ state }) {
-    window.$communicator.$emit('save', state)
+  save ({ state, store }) {
+    store.$emit('save', state)
   }
 }

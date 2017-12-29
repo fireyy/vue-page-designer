@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted () {
-    window.$communicator.$on('notify', (option) => {
+    this.$store.$on('notify', (option) => {
       this.notify(option.info, option.type)
     })
   },

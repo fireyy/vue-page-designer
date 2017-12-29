@@ -101,10 +101,6 @@ export default {
           }
 
           state.counter += 1
-        } else {
-          window.$communicator.$emit('notify', {
-            info: '只有命名容器才能复制，请先命名'
-          })
         }
       }
 

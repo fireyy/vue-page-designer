@@ -84,6 +84,14 @@ export default class Store {
     }
   }
 
+  $emit (event, ...args) {
+    return this.vm.$emit(event, ...args)
+  }
+
+  $on (event, callback) {
+    return this.vm.$on(event, callback)
+  }
+
   subscribe (sub) {
     this.subscribers.push(sub)
     return () => this.subscribers.splice(this.subscribers.indexOf(sub), 1)
@@ -100,7 +108,8 @@ export default class Store {
     const ctx = {
       state: this.state,
       dispatch: this.dispatch.bind(this),
-      commit: this.commit.bind(this)
+      commit: this.commit.bind(this),
+      store: this
     }
     return Promise.resolve(action && action(ctx, payload))
   }

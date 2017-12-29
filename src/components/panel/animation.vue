@@ -141,7 +141,7 @@ export default {
     addAnimation () {
       // 检查是否存在未命名动画，避免重复添加
       if (this.$store.state.animation.some(val => val.name === '')) {
-        window.$communicator.$emit('notify', {
+        this.$store.$emit('notify', {
           info: '还有未命名动画，请先命名'
         })
         return
@@ -159,7 +159,7 @@ export default {
     addkeyframe () {
       var name = this.currentAnimation.name
       if (name === '') {
-        window.$communicator.$emit('notify', {
+        this.$store.$emit('notify', {
           info: '请先为动画命名'
         })
         return
@@ -174,7 +174,7 @@ export default {
         this.$nextTick(() => {
           this.currentAnimation.name = ''
         })
-        window.$communicator.$emit('notify', {
+        this.$store.$emit('notify', {
           info: '动画名称必须以英文开头'
         })
       }
@@ -183,7 +183,7 @@ export default {
         this.$nextTick(() => {
           this.currentAnimation.name = value.replace(/\W/g, '')
         })
-        window.$communicator.$emit('notify', {
+        this.$store.$emit('notify', {
           info: '请勿使用英文和数字以外的字符'
         })
       }

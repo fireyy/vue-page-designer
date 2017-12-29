@@ -136,7 +136,7 @@ export default {
     // 替换图片
     replaceImage (e) {
       if (this.$store.state.activeElement.isUpload) {
-        window.$communicator.$emit('upload', payload => {
+        this.$store.$emit('upload', payload => {
           this.$store.commit('replaceImage', payload)
         })
       }

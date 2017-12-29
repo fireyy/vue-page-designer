@@ -57,7 +57,7 @@ export default {
     if (this.value) {
       store.replaceState(this.value)
     }
-    window.$communicator.$on('save', () => {
+    store.$on('save', () => {
       this.$emit('save', store.state)
     })
   },
