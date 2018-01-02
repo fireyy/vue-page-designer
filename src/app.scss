@@ -2,15 +2,7 @@
 @import "variables";
 
 @import "../node_modules/spectre.css/src/mixins";
-
-// fix for @extend ".clearfix".
-.clearfix {
-  @include clearfix();
-}
-
-// Reset and dependencies
 @import "../node_modules/spectre.css/src/base";
-
 @import "../node_modules/spectre.css/src/utilities";
 
 // Layout
