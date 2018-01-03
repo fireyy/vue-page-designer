@@ -76,12 +76,8 @@ export default {
 
   // 复制元件
   copy (state, payload) {
-    if (
-      state.type === 'braid-pic' ||
-      state.type === 'braid-txt' ||
-      state.type === 'braid-container'
-    ) {
-      var copy = Object.assign({}, state.activeElement)
+    if (state.type !== 'page') {
+      var copy = Object.assign({}, state.activeElement, {top: state.top, uuid: generate('1234567890abcdef', 10)})
 
       // 由于容器的名称必须是唯一的，故复制容器需作处理
       if (state.type === 'braid-container') {
