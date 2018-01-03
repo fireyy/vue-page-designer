@@ -7,11 +7,10 @@
       <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="复制元件 Ctrl + C" @click="copyWidget">
         <icon name="copy" /> 复制
       </a>
-      <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="删除元件 Ctrl + D" @click="dele">
+      <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="删除元件 Delete" @click="dele">
         <icon name="trash-2" /> 删除
       </a>
-      <a href="#" @click="preview" class="btn btn-link tooltip tooltip-bottom" data-tooltip="预览 Ctrl + P"><icon name="airplay" /> 预览</a>
-      <a href="#" @click="save" class="btn btn-link tooltip tooltip-bottom" data-tooltip="预览 Ctrl + S"><icon name="save" /> 保存</a>
+      <a @click="save" class="btn btn-link tooltip tooltip-bottom" data-tooltip="保存 Ctrl + S"><icon name="save" /> 保存</a>
     </section>
   </header>
 </template>
@@ -24,8 +23,8 @@ export default {
       'keyup',
       e => {
         e.stopPropagation()
-        if (e.ctrlKey && e.keyCode === 67) {
-          this.$store.commit('copy')
+        if ((e.ctrlKey || e.metaKey) && e.keyCode === 67) {
+          this.copyWidget()
         }
       },
       true
@@ -37,7 +36,19 @@ export default {
       e => {
         e.stopPropagation()
         if (e.keyCode === 46) {
-          this.$store.commit('delete')
+          this.dele()
+        }
+      },
+      true
+    )
+
+    // Ctrl + S 保存
+    document.addEventListener(
+      'keyup',
+      e => {
+        e.stopPropagation()
+        if ((e.ctrlKey || e.metaKey) && e.keyCode === 83) {
+          this.save()
         }
       },
       true
@@ -45,11 +56,6 @@ export default {
   },
 
   methods: {
-    // TODO: 预览
-    preview () {
-      //
-    },
-
     // 保存
     save () {
       this.$store.dispatch('save')
