@@ -12,7 +12,7 @@
     <details>
       <summary><icon name="layers" />已加组件</summary>
       <ul class="layer-list">
-        <li :class="{'layer-active': layer === activeElement}" v-for="layer in layers" :key="layer.uuid" @click="(e) => {activeLayer(e, layer)}">{{layer.type}}</li>
+        <li :class="{'layer-active': layer === activeElement}" v-for="layer in layers" :key="layer.uuid" @click="(e) => {activeLayer(e, layer)}">{{getWidgetTitle(layer.type)}}</li>
       </ul>
     </details>
   </div>
@@ -61,6 +61,10 @@ export default {
       if (target && !checkInView(target)) {
         viewport.scrollTop = (cumulativeOffset(target).top - 50) * this.zoom / 100
       }
+    },
+
+    getWidgetTitle (type) {
+      return this.widgets[type].title || ''
     }
   }
 }
