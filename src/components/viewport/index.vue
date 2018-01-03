@@ -23,7 +23,7 @@
         :data-uuid="val.uuid"
         :playState="playState">
         <component
-          v-if="val.type === 'braid-container'"
+          v-if="val.isContainer"
           :is="child.type"
           :data-title="child.type"
           class="layer layer-child"

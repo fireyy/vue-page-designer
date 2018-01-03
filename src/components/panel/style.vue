@@ -47,10 +47,10 @@
     </div>
 
     <!-- 组件样式 -->
-    <component :is="widgetStyle[i]" v-for="(item, i) in widgetStyle" :key="i" :activeElement="activeElement" />
+    <component :is="widgetStyle[i]" v-for="(item, i) in widgetStyle" :key="i" :activeElement="activeElement" v-if="item.type === activeElement.type" />
 
     <!-- 添加到容器 -->
-    <div v-if="activeElement.type === 'braid-pic' || activeElement.type === 'braid-txt'">
+    <div v-if="activeElement.isChild">
       <hr>
       <div class="panel-row">
         <icon name="layout" />
@@ -91,7 +91,7 @@ export default {
     containerName () {
       var arr = []
       this.$store.state.widgets.map(
-        val => val.type === 'braid-container' && val.name && arr.push(val.name)
+        val => val.isContainer && val.name && arr.push(val.name)
       )
 
       return arr

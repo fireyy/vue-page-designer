@@ -80,7 +80,7 @@ export default {
       var copy = Object.assign({}, state.activeElement, {top: state.top, uuid: generate('1234567890abcdef', 10)})
 
       // 由于容器的名称必须是唯一的，故复制容器需作处理
-      if (state.type === 'braid-container') {
+      if (state.activeElement.isContainer) {
         var name = state.activeElement.name
         if (name) {
           // 设置容器副本的名称
@@ -125,7 +125,7 @@ export default {
     if (type === 'page') return
 
     // 如果删除的是容器，须将内部元件一并删除
-    if (type === 'braid-container') {
+    if (state.activeElement.isContainer) {
       var name = state.activeElement.name
 
       for (var i = 0; i < state.widgets.length; i++) {
@@ -149,7 +149,7 @@ export default {
     let def = { top: state.top, uuid: generate('1234567890abcdef', 10) }
     let setting = JSON.parse(JSON.stringify(item.setting))
 
-    if (setting.type === 'braid-container') {
+    if (setting.isContainer) {
       setting.name = def.uuid
     }
 
