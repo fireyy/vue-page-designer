@@ -51,11 +51,8 @@ export default {
   computed: {
     elm () {
       var target = this.$store.state.activeElement
-      var type = this.$store.state.type
-      var exclusions = ['braid-bg', 'braid-pic', 'page']
 
-      if (exclusions.indexOf(type) > -1) return ''
-      if (target.belong !== 'page') return ''
+      if (!target.resizable || target.belong !== 'page') return ''
 
       return target
     }

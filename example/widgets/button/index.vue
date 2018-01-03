@@ -28,8 +28,12 @@ export default {
   panel: stylec,
   setting: {
     type: WIDGET_NAME,
-    isChild: true,
+    isContainer: false,
+    isUpload: false,
     hasGuide: true,
+    isChild: true,
+    dragable: true,
+    resizable: true,
     name: '',
     width: 250,
     height: 60,

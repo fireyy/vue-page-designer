@@ -122,7 +122,7 @@ export default {
 
         // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
         target = this.$store.state.activeElement
-        if (target.belong === 'page' && type !== 'braid-bg') {
+        if (target.belong === 'page' && target.dragable) {
           this.initmovement(e) // 参见 mixins
         }
       } else {
