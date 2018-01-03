@@ -1,14 +1,14 @@
 <template>
   <div class="guides" v-show="moving">
     <!-- 横线 -->
-    <div class="horiz" :key="val + i" v-for="(val, i) in horiz"
-      :style="{top: val + 'px'}"
-      v-show="attachHoriz(val)"></div>
+    <div class="horiz" :key="val.id" v-for="val in horiz"
+      :style="{top: val.val + 'px'}"
+      v-show="attachHoriz(val.val)"></div>
 
     <!-- 竖线 -->
-    <div class="verti" :key="val + i" v-for="(val, i) in verti"
-      :style="{left: val + 'px'}"
-      v-show="attachVerti(val)"></div>
+    <div class="verti" :key="val.id" v-for="val in verti"
+      :style="{left: val.val + 'px'}"
+      v-show="attachVerti(val.val)"></div>
   </div>
 </template>
 
@@ -40,6 +40,7 @@ export default {
         if (item.hasGuide && item.belong !== 'page') return
 
         guides.push({
+          uuid: item.uuid,
           width: item.width,
           height: item.height,
           top: item.top,
@@ -66,10 +67,16 @@ export default {
         var bottom = top + val.height
 
         if (cor.indexOf(top) < 0 && top !== 0) {
-          cor.push(top)
+          cor.push({
+            id: `horiz-${val.uuid}-${top}`,
+            val: top
+          })
         }
         if (cor.indexOf(bottom) < 0) {
-          cor.push(bottom)
+          cor.push({
+            id: `horiz-${val.uuid}-${bottom}`,
+            val: bottom
+          })
         }
       })
 
@@ -85,10 +92,16 @@ export default {
         var right = left + val.width
 
         if (cor.indexOf(left) < 0 && left !== 0) {
-          cor.push(left)
+          cor.push({
+            id: `verti-${val.uuid}-${left}`,
+            val: left
+          })
         }
         if (cor.indexOf(right) < 0 && right < 750) {
-          cor.push(right)
+          cor.push({
+            id: `verti-${val.uuid}-${right}`,
+            val: right
+          })
         }
       })
 
