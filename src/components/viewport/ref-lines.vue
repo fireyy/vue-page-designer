@@ -1,12 +1,12 @@
 <template>
   <div class="guides" v-show="moving">
     <!-- 横线 -->
-    <div class="horiz" :key="val" v-for="val in horiz"
+    <div class="horiz" :key="val + i" v-for="(val, i) in horiz"
       :style="{top: val + 'px'}"
       v-show="attachHoriz(val)"></div>
 
     <!-- 竖线 -->
-    <div class="verti" :key="val" v-for="val in verti"
+    <div class="verti" :key="val + i" v-for="(val, i) in verti"
       :style="{left: val + 'px'}"
       v-show="attachVerti(val)"></div>
   </div>
