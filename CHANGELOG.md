@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.1"></a>
+## [0.7.1](https://github.com/fireyy/vue-page-designer/compare/v0.7.0...v0.7.1) (2018-01-03)
+
+
+### Bug Fixes
+
+* **remove:** .cleafix hack ([84e5627](https://github.com/fireyy/vue-page-designer/commit/84e5627))
+* copy widget ([876d05b](https://github.com/fireyy/vue-page-designer/commit/876d05b))
+* keycode ([49ccaed](https://github.com/fireyy/vue-page-designer/commit/49ccaed))
+* resize control ([d74afee](https://github.com/fireyy/vue-page-designer/commit/d74afee))
+* style config ([cdc9093](https://github.com/fireyy/vue-page-designer/commit/cdc9093))
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/fireyy/vue-page-designer/compare/v0.6.0...v0.7.0) (2017-12-29)
 
