@@ -2,8 +2,8 @@
   <div class="menu-bar">
     <details open>
       <summary><icon name="list" />可用组件</summary>
-      <ul class="widget-list" @mousedown="updateSrollTop">
-        <li class="menu-item" @click="(e) => {addWidget(e, item)}" v-for="item in widgets" :key="item.name">
+      <ul class="widget-list columns" @mousedown="updateSrollTop">
+        <li class="menu-item column col-6" @click="(e) => {addWidget(e, item)}" v-for="item in widgets" :key="item.name">
           <icon :svg="item.icon" :title="item.title" />
           <span class="menu-caption">{{item.title}}</span>
         </li>
@@ -88,9 +88,7 @@ export default {
   padding: 0;
 }
 .menu-item {
-  display: inline-block;
   text-align: center;
-  width: 50px;
   cursor: pointer;
   padding: 15px 0 8px;
   transition: all 0.2s;

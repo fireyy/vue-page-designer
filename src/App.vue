@@ -104,7 +104,7 @@ export default {
   box-sizing: content-box;
   &.column {
     flex: none;
-    width: 150px;
+    width: 120px;
   }
 }
 .viewport {
