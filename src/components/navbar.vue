@@ -1,17 +1,19 @@
 <template>
-  <header class="navbar">
-    <section class="logo navbar-section">
-      <icon name="anchor" />
-    </section>
-    <section class="navbar-section">
-      <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="复制元件 Ctrl + C" @click="copyWidget">
-        <icon name="copy" /> 复制
-      </a>
-      <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="删除元件 Delete" @click="dele">
-        <icon name="trash-2" /> 删除
-      </a>
-      <a @click="save" class="btn btn-link tooltip tooltip-bottom" data-tooltip="保存 Ctrl + S"><icon name="save" /> 保存</a>
-    </section>
+  <header class="header">
+    <div class="navbar container grid-xl">
+      <section class="logo navbar-section">
+        <icon name="anchor" />
+      </section>
+      <section class="navbar-section">
+        <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="复制元件 Ctrl + C" @click="copyWidget">
+          <icon name="copy" /> 复制
+        </a>
+        <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="删除元件 Delete" @click="dele">
+          <icon name="trash-2" /> 删除
+        </a>
+        <a @click="save" class="btn btn-link tooltip tooltip-bottom" data-tooltip="保存 Ctrl + S"><icon name="save" /> 保存</a>
+      </section>
+    </div>
   </header>
 </template>
 
@@ -82,8 +84,10 @@ export default {
 
 <style lang="scss">
 @import '../_variables.scss';
-.navbar {
+.header {
   background: $primary-color;
+}
+.navbar {
   .svg-icon {
     svg {
       vertical-align: middle;

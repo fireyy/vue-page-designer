@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <navbar></navbar>
-    <div class="body container">
+    <div class="body container grid-xl">
       <div class="columns col-gapless">
         <toolbar class="toolbar column" :zoom="zoom"></toolbar>
         <div class="viewport column">
@@ -86,6 +86,8 @@ export default {
   height: calc(100% - 50px);
   overflow: hidden;
   flex-direction: row;
+  // border: 1px solid #f5f5f5;
+  // border-width: 0 4px;
   &.container {
     padding: 0;
   }

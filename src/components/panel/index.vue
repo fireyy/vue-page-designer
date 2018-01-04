@@ -84,7 +84,7 @@ export default {
 }
 .panel-slider-wrap {
   flex-grow: 1;
-  padding: 6px 20px;
+  padding: 6px 5px;
   opacity: 0;
   transition: opacity 0.3s;
 }
