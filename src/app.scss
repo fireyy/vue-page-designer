@@ -1,20 +1,20 @@
 // Define variables to override default ones
 @import "variables";
 
-@import "../node_modules/spectre.css/src/mixins";
-@import "../node_modules/spectre.css/src/base";
-@import "../node_modules/spectre.css/src/utilities";
+@import "node_modules/spectre.css/src/mixins";
+@import "node_modules/spectre.css/src/base";
+@import "node_modules/spectre.css/src/utilities";
 
 // Layout
-@import "../node_modules/spectre.css/src/layout";
-@import "../node_modules/spectre.css/src/navbar";
+@import "node_modules/spectre.css/src/layout";
+@import "node_modules/spectre.css/src/navbar";
 
 // Import only the needed components
-@import "../node_modules/spectre.css/src/buttons";
-@import "../node_modules/spectre.css/src/forms";
-@import "../node_modules/spectre.css/src/tabs";
-@import "../node_modules/spectre.css/src/tooltips";
-@import "../node_modules/spectre.css/src/toasts";
+@import "node_modules/spectre.css/src/buttons";
+@import "node_modules/spectre.css/src/forms";
+@import "node_modules/spectre.css/src/tabs";
+@import "node_modules/spectre.css/src/tooltips";
+@import "node_modules/spectre.css/src/toasts";
 
 html,
 body,
