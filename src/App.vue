@@ -83,11 +83,9 @@ export default {
 <style lang="scss">
 .body {
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 54px);
   overflow: hidden;
   flex-direction: row;
-  // border: 1px solid #f5f5f5;
-  // border-width: 0 4px;
   &.container {
     padding: 0;
   }

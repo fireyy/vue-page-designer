@@ -85,7 +85,8 @@ export default {
 <style lang="scss">
 @import '../_variables.scss';
 .header {
-  background: $primary-color;
+  background-color: #24292e;
+  padding: 12px 0;
 }
 .navbar {
   .svg-icon {
@@ -101,7 +102,6 @@ export default {
     color: $light-color;
   }
   .logo {
-    padding: 10px 0 10px 10px;
     font-size: 20px;
     .svg-icon {
       width: 30px;
