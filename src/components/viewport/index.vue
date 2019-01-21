@@ -1,48 +1,50 @@
 <template>
-  <div class="holder" id="viewport">
-    <div class="screen"
-      @dblclick="replaceImage"
+  <div
+    id="viewport"
+    class="holder">
+    <div
       :style="{
         backgroundColor: backgroundColor,
         height: height + 'px',
         transform: 'scale(' + zoom / 100 + ')'
-      }">
+      }"
+      class="screen"
+      @dblclick="replaceImage">
 
       <!-- 组件 -->
       <component
+        v-for="val in widgetStore"
         :is="val.type"
         :data-title="val.type"
-        class="layer"
         :class="{'g-active': id === val.uuid}"
-        v-for="val in widgetStore"
         :key="val.uuid"
         :val="val"
         :h="height"
         :w="750"
         :data-type="val.type"
         :data-uuid="val.uuid"
-        :playState="playState">
+        :play-state="playState"
+        class="layer">
         <component
-          v-if="val.isContainer"
+          v-for="child in getChilds(val.name)"
           :is="child.type"
           :data-title="child.type"
-          class="layer layer-child"
           :class="{'g-active': id === child.uuid}"
-          v-for="child in getChilds(val.name)"
           :key="child.uuid"
           :val="child"
           :h="height"
           :w="750"
           :data-type="child.type"
           :data-uuid="child.uuid"
-          :playState="playState" />
+          :play-state="playState"
+          class="layer layer-child" />
       </component>
 
       <!-- 参考线 -->
-      <ref></ref>
+      <ref/>
 
       <!-- 尺寸控制器 -->
-      <control></control>
+      <control/>
     </div>
   </div>
 </template>
@@ -53,7 +55,7 @@ import control from './size-control.vue'
 import { move } from '../../mixins'
 
 export default {
-  name: 'viewport',
+  name: 'Viewport',
   components: {
     ref: ref, // 参考线
     control: control // 尺寸控制
@@ -65,6 +67,37 @@ export default {
 
   data () {
     return {}
+  },
+
+  computed: {
+    // 已添加的组件
+    widgetStore () {
+      return this.$store.state.widgets.filter(item => item.belong === 'page')
+    },
+
+    // 画布高度
+    height () {
+      return this.$store.state.page.height
+    },
+
+    // 页面背景色
+    backgroundColor () {
+      return this.$store.state.page.backgroundColor
+    },
+
+    // 选中项id
+    id () {
+      // var type = this.$store.state.type
+      // var index = this.$store.state.index
+      // index = index >= 0 ? index : ''
+      // return type + index
+      return this.$store.state.uuid
+    },
+
+    // 动画播放状态
+    playState () {
+      return this.$store.state.playState
+    }
   },
 
   mounted () {
@@ -147,37 +180,6 @@ export default {
       return this.$store.state.widgets.filter(
         item => item.belong === name
       )
-    }
-  },
-
-  computed: {
-    // 已添加的组件
-    widgetStore () {
-      return this.$store.state.widgets.filter(item => item.belong === 'page')
-    },
-
-    // 画布高度
-    height () {
-      return this.$store.state.page.height
-    },
-
-    // 页面背景色
-    backgroundColor () {
-      return this.$store.state.page.backgroundColor
-    },
-
-    // 选中项id
-    id () {
-      // var type = this.$store.state.type
-      // var index = this.$store.state.index
-      // index = index >= 0 ? index : ''
-      // return type + index
-      return this.$store.state.uuid
-    },
-
-    // 动画播放状态
-    playState () {
-      return this.$store.state.playState
     }
   }
 }

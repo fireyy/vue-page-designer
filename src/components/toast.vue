@@ -1,6 +1,9 @@
 <template>
   <transition name="drop">
-    <div class="toast" :class="klass" v-show="show">{{ info }}</div>
+    <div
+      v-show="show"
+      :class="klass"
+      class="toast">{{ info }}</div>
   </transition>
 </template>
 

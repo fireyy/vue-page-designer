@@ -1,11 +1,17 @@
 <template>
-  <div class="panel-wrap" v-if="tab === 3">
+  <div
+    v-if="tab === 3"
+    class="panel-wrap">
     <button class="btn btn-action float-right mx-1">
-      <icon name="plus" @click="addAnimation" />
+      <icon
+        name="plus"
+        @click="addAnimation" />
     </button>
 
     <button class="btn btn-action float-right">
-      <icon name="play" @click="play" />
+      <icon
+        name="play"
+        @click="play" />
     </button>
 
     <div class="panel-row">
@@ -14,7 +20,10 @@
       <div class="panel-value">
         <select v-model="currentName">
           <option value="">无</option>
-          <option v-for="(val, index) in animationNames" :key="index" :value="val">{{ val }}</option>
+          <option
+            v-for="(val, index) in animationNames"
+            :key="index"
+            :value="val">{{ val }}</option>
         </select>
       </div>
     </div>
@@ -25,7 +34,11 @@
         <icon name="type" />
         <div class="panel-label">动画名称</div>
         <div class="panel-value">
-          <input type="text" v-model.trim="currentAnimation.name" @input="validateName" placeholder="动画名称，仅限英文">
+          <input
+            v-model.trim="currentAnimation.name"
+            type="text"
+            placeholder="动画名称，仅限英文"
+            @input="validateName">
         </div>
       </div>
 
@@ -33,7 +46,10 @@
         <icon name="clock" />
         <div class="panel-label">动画时长</div>
         <div class="panel-value">
-          <input type="text" v-model.number="currentAnimation.duration" placeholder="请输入大于0的数字">
+          <input
+            v-model.number="currentAnimation.duration"
+            type="text"
+            placeholder="请输入大于0的数字">
         </div>
       </div>
 
@@ -41,7 +57,10 @@
         <icon name="watch" />
         <div class="panel-label">动画延迟</div>
         <div class="panel-value">
-          <input type="text" v-model.number="currentAnimation.delay" placeholder="请输入不小于0的数字">
+          <input
+            v-model.number="currentAnimation.delay"
+            type="text"
+            placeholder="请输入不小于0的数字">
         </div>
       </div>
 
@@ -49,7 +68,10 @@
         <icon name="repeat" />
         <div class="panel-label">动画循环</div>
         <div class="panel-value">
-          <input type="text" v-model.number="currentAnimation.iteration" placeholder="输入0表示无限循环">
+          <input
+            v-model.number="currentAnimation.iteration"
+            type="text"
+            placeholder="输入0表示无限循环">
         </div>
       </div>
 
@@ -95,18 +117,27 @@
 
       <hr>
 
-      <div v-for="(val, i) in currentAnimation.keyframes" :key="i">
+      <div
+        v-for="(val, i) in currentAnimation.keyframes"
+        :key="i">
         <div class="panel-row">
           <icon name="stop-circle" />
           <div class="panel-label">stop - {{ i }}</div>
           <div class="panel-value">{{ val.stop }}%</div>
           <div class="panel-slider-wrap">
-            <slider :step="1" v-model="val.stop" />
+            <slider
+              :step="1"
+              v-model="val.stop" />
           </div>
         </div>
-        <textarea placeholder="IMPORTANT: use rem, not px" v-model="val.css"></textarea>
+        <textarea
+          v-model="val.css"
+          placeholder="IMPORTANT: use rem, not px"/>
         <div style="margin: 10px 0 0 20px;">
-          <button v-if="i + 1 === currentAnimation.keyframes.length" class="btn btn-primary" @click="addkeyframe">
+          <button
+            v-if="i + 1 === currentAnimation.keyframes.length"
+            class="btn btn-primary"
+            @click="addkeyframe">
             <icon name="plus" /> 添加新的动画
           </button>
         </div>
@@ -118,7 +149,7 @@
 <script>
 import { getAnimateCss } from '../../utils/css-generate.js'
 export default {
-  name: 'panel-animation',
+  name: 'PanelAnimation',
   props: ['activeElement', 'tab'],
 
   data () {
@@ -134,6 +165,24 @@ export default {
       this.$store.state.animation.map(val => arr.push(val.name))
 
       return arr
+    }
+  },
+
+  watch: {
+    currentName: function (val) {
+      // 设置选中元件的动画名称
+      if (this.activeElement.animationName !== undefined) {
+        this.activeElement.animationName = val
+      }
+      this.getCurrentAnimation(val)
+    },
+
+    activeElement: function (val) {
+      if (val.animationName !== undefined) {
+        this.currentName = val.animationName
+      } else {
+        this.currentName = ''
+      }
     }
   },
 
@@ -224,24 +273,6 @@ export default {
 
         this.$store.commit('setAnimation', true)
       }, 200)
-    }
-  },
-
-  watch: {
-    currentName: function (val) {
-      // 设置选中元件的动画名称
-      if (this.activeElement.animationName !== undefined) {
-        this.activeElement.animationName = val
-      }
-      this.getCurrentAnimation(val)
-    },
-
-    activeElement: function (val) {
-      if (val.animationName !== undefined) {
-        this.currentName = val.animationName
-      } else {
-        this.currentName = ''
-      }
     }
   }
 }

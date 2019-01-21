@@ -1,7 +1,9 @@
 <template>
-  <input type="file" accept="image/png, image/jpeg, image/gif"
-    :multiple="multiple ? 'multiple' : false"
+  <input
     id="uploader"
+    :multiple="multiple ? 'multiple' : false"
+    type="file"
+    accept="image/png, image/jpeg, image/gif"
     style="display: none"
     @change="handleUpload">
 </template>

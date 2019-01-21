@@ -2,17 +2,29 @@
   <div class="menu-bar">
     <details open>
       <summary><icon name="list" />可用组件</summary>
-      <ul class="widget-list columns" @mousedown="updateSrollTop">
-        <li class="menu-item column col-6" @click="(e) => {addWidget(e, item)}" v-for="item in widgets" :key="item.name">
-          <icon :svg="item.icon" :title="item.title" />
-          <span class="menu-caption">{{item.title}}</span>
+      <ul
+        class="widget-list columns"
+        @mousedown="updateSrollTop">
+        <li
+          v-for="item in widgets"
+          :key="item.name"
+          class="menu-item column col-6"
+          @click="(e) => {addWidget(e, item)}">
+          <icon
+            :svg="item.icon"
+            :title="item.title" />
+          <span class="menu-caption">{{ item.title }}</span>
         </li>
       </ul>
     </details>
     <details>
       <summary><icon name="layers" />已加组件</summary>
       <ul class="layer-list">
-        <li :class="{'layer-active': layer === activeElement}" v-for="layer in layers" :key="layer.uuid" @click="(e) => {activeLayer(e, layer)}">{{getWidgetTitle(layer.type)}}</li>
+        <li
+          v-for="layer in layers"
+          :class="{'layer-active': layer === activeElement}"
+          :key="layer.uuid"
+          @click="(e) => {activeLayer(e, layer)}">{{ getWidgetTitle(layer.type) }}</li>
       </ul>
     </details>
   </div>

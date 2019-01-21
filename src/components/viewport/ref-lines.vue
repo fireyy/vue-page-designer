@@ -1,28 +1,28 @@
 <template>
-  <div class="guides" v-show="moving">
+  <div
+    v-show="moving"
+    class="guides">
     <!-- 横线 -->
-    <div class="horiz" :key="val.id" v-for="val in horiz"
+    <div
+      v-for="val in horiz"
+      v-show="attachHoriz(val.val)"
+      :key="val.id"
       :style="{top: val.val + 'px'}"
-      v-show="attachHoriz(val.val)"></div>
+      class="horiz"/>
 
     <!-- 竖线 -->
-    <div class="verti" :key="val.id" v-for="val in verti"
+    <div
+      v-for="val in verti"
+      v-show="attachVerti(val.val)"
+      :key="val.id"
       :style="{left: val.val + 'px'}"
-      v-show="attachVerti(val.val)"></div>
+      class="verti"/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ref-lines',
-  methods: {
-    attachHoriz (value) {
-      return this.horizontal.some(val => Math.abs(val - value) <= 1)
-    },
-    attachVerti (value) {
-      return this.vertical.some(val => Math.abs(val - value) <= 1)
-    }
-  },
+  name: 'RefLines',
 
   computed: {
     moving () {
@@ -128,6 +128,14 @@ export default {
       } else {
         return []
       }
+    }
+  },
+  methods: {
+    attachHoriz (value) {
+      return this.horizontal.some(val => Math.abs(val - value) <= 1)
+    },
+    attachVerti (value) {
+      return this.vertical.some(val => Math.abs(val - value) <= 1)
     }
   }
 }

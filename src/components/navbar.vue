@@ -5,13 +5,22 @@
         <icon name="anchor" />
       </section>
       <section class="navbar-section">
-        <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="复制元件 Ctrl + C" @click="copyWidget">
+        <a
+          class="btn btn-link tooltip tooltip-bottom"
+          data-tooltip="复制元件 Ctrl + C"
+          @click="copyWidget">
           <icon name="copy" /> 复制
         </a>
-        <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="删除元件 Delete" @click="dele">
+        <a
+          class="btn btn-link tooltip tooltip-bottom"
+          data-tooltip="删除元件 Delete"
+          @click="dele">
           <icon name="trash-2" /> 删除
         </a>
-        <a @click="save" class="btn btn-link tooltip tooltip-bottom" data-tooltip="保存 Ctrl + S"><icon name="save" /> 保存</a>
+        <a
+          class="btn btn-link tooltip tooltip-bottom"
+          data-tooltip="保存 Ctrl + S"
+          @click="save"><icon name="save" /> 保存</a>
       </section>
     </div>
   </header>
@@ -19,6 +28,12 @@
 
 <script>
 export default {
+
+  computed: {
+    show () {
+      return this.$store.state.type !== 'page'
+    }
+  },
   mounted () {
     // Ctrl + C 复制元件
     document.addEventListener(
@@ -71,12 +86,6 @@ export default {
     // 删除元件
     dele () {
       this.$store.commit('delete')
-    }
-  },
-
-  computed: {
-    show () {
-      return this.$store.state.type !== 'page'
     }
   }
 }

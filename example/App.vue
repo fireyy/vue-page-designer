@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <vue-page-designer :value="value" :widgets="widgets" @save="handleSave" :upload="handleUpload" :uploadOption="uploadOption" />
+    <vue-page-designer
+      :value="value"
+      :widgets="widgets"
+      :upload="handleUpload"
+      :upload-option="uploadOption"
+      @save="handleSave" />
   </div>
 </template>
 
@@ -9,6 +14,10 @@ import widgets from './widgets'
 import vuePageDesigner from '../src'
 
 export default {
+
+  components: {
+    vuePageDesigner
+  },
   data () {
     return {
       value: null,
@@ -40,10 +49,6 @@ export default {
         })
       })
     }
-  },
-
-  components: {
-    vuePageDesigner
   }
 }
 </script>

@@ -1,53 +1,63 @@
 <template>
-	<div v-show="elm">
-		<!-- 左 -->
-	  <div class="verti"
-	  	@mousedown="handlemousedown($event, 'left', 'left', 'width')"
-	    :style="{
-	      height: elm.height + 'px',
-	      top: elm.top + 'px',
-	      left: elm.left + 'px'
-	    }">
-	    <div class="square"></div>
-	  </div>
+  <div v-show="elm">
+    <!-- 左 -->
+    <div
+      :style="{
+        height: elm.height + 'px',
+        top: elm.top + 'px',
+        left: elm.left + 'px'
+      }"
+      class="verti"
+      @mousedown="handlemousedown($event, 'left', 'left', 'width')">
+      <div class="square"/>
+    </div>
 
-		<!-- 右 -->
-	  <div class="verti"
-		  @mousedown="handlemousedown($event, 'right', 'width')"
-	    :style="{
-	      height: elm.height + 'px',
-	      top: elm.top + 'px',
-	      left: elm.left + elm.width + 'px'
-	    }">
-	    <div class="square"></div>
-	  </div>
+    <!-- 右 -->
+    <div
+      :style="{
+        height: elm.height + 'px',
+        top: elm.top + 'px',
+        left: elm.left + elm.width + 'px'
+      }"
+      class="verti"
+      @mousedown="handlemousedown($event, 'right', 'width')">
+      <div class="square"/>
+    </div>
 
-		<!-- 上 -->
-	  <div class="horiz"
-		  @mousedown="handlemousedown($event, 'up', 'top', 'height')"
-	    :style="{
-	      width: elm.width + 'px',
-	      top: elm.top + 'px',
-	      left: elm.left + 'px'
-	    }">
-	    <div class="square"></div>
-	  </div>
+    <!-- 上 -->
+    <div
+      :style="{
+        width: elm.width + 'px',
+        top: elm.top + 'px',
+        left: elm.left + 'px'
+      }"
+      class="horiz"
+      @mousedown="handlemousedown($event, 'up', 'top', 'height')">
+      <div class="square"/>
+    </div>
 
-		<!-- 下 -->
-	  <div class="horiz"
-		  @mousedown="handlemousedown($event, 'down', 'height')"
-	    :style="{
-	      width: elm.width + 'px',
-	      top: elm.top + elm.height + 'px',
-	      left: elm.left + 'px'
-	    }">
-	    <div class="square"></div>
-	  </div>
-	</div>
+    <!-- 下 -->
+    <div
+      :style="{
+        width: elm.width + 'px',
+        top: elm.top + elm.height + 'px',
+        left: elm.left + 'px'
+      }"
+      class="horiz"
+      @mousedown="handlemousedown($event, 'down', 'height')">
+      <div class="square"/>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
+
+  data () {
+    return {
+      type: '' // 调整方向 left | right | up | down
+    }
+  },
   computed: {
     elm () {
       var target = this.$store.state.activeElement
@@ -55,12 +65,6 @@ export default {
       if (!target.resizable || target.belong !== 'page') return ''
 
       return target
-    }
-  },
-
-  data () {
-    return {
-      type: '' // 调整方向 left | right | up | down
     }
   },
 

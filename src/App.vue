@@ -1,21 +1,29 @@
 <template>
   <div class="app">
-    <navbar></navbar>
+    <navbar/>
     <div class="body container grid-xl">
       <div class="columns col-gapless">
-        <toolbar class="toolbar column" :zoom="zoom"></toolbar>
+        <toolbar
+          :zoom="zoom"
+          class="toolbar column"/>
         <div class="viewport column">
-          <viewport :zoom="zoom"></viewport>
+          <viewport :zoom="zoom"/>
           <div class="zoom-wrap">
-            <slider @input="dozoom" :value="zoom" :step="1" :tuning="false" />
+            <slider
+              :value="zoom"
+              :step="1"
+              :tuning="false"
+              @input="dozoom" />
             <div class="zoom-value">{{ zoom }}%</div>
           </div>
         </div>
-        <panel class="control-panel column"></panel>
+        <panel class="control-panel column"/>
       </div>
     </div>
-    <uploader :upload="upload" :uploadOption="uploadOption"></uploader>
-    <toast></toast>
+    <uploader
+      :upload="upload"
+      :upload-option="uploadOption"/>
+    <toast/>
   </div>
 </template>
 
@@ -30,7 +38,7 @@ import viewport from './components/viewport/index.vue'
 import loadSprite from './utils/load-sprite'
 
 export default {
-  name: 'vue-page-designer',
+  name: 'VuePageDesigner',
   store,
   components: {
     navbar, // 顶部导航栏
@@ -43,6 +51,12 @@ export default {
     widgets: Object,
     upload: Function,
     uploadOption: Object
+  },
+
+  computed: {
+    zoom () {
+      return this.$store.state.zoom
+    }
   },
   beforeCreate () {
     // TODO: custom svg path by config
@@ -69,12 +83,6 @@ export default {
   methods: {
     dozoom (val) {
       this.$store.commit('zoom', val)
-    }
-  },
-
-  computed: {
-    zoom () {
-      return this.$store.state.zoom
     }
   }
 }

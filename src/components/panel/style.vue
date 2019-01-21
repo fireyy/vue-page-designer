@@ -1,12 +1,17 @@
 <template>
-  <div class="panel-wrap" v-if="!activeElement.page && tab === 1">
+  <div
+    v-if="!activeElement.page && tab === 1"
+    class="panel-wrap">
     <!-- 公共属性 -->
     <div class="panel-row">
       <icon name="layers" />
       <div class="panel-label">层级</div>
       <div class="panel-value">{{ activeElement.z }}</div>
       <div class="panel-slider-wrap">
-        <slider v-model="activeElement.z" :step="1" :max="20" />
+        <slider
+          v-model="activeElement.z"
+          :step="1"
+          :max="20" />
       </div>
     </div>
 
@@ -15,7 +20,10 @@
       <div class="panel-label">宽度</div>
       <div class="panel-value">{{ activeElement.width }}</div>
       <div class="panel-slider-wrap">
-        <slider v-model="activeElement.width" :step="1" :max="750" />
+        <slider
+          v-model="activeElement.width"
+          :step="1"
+          :max="750" />
       </div>
     </div>
 
@@ -24,7 +32,10 @@
       <div class="panel-label">高度</div>
       <div class="panel-value">{{ activeElement.height }}</div>
       <div class="panel-slider-wrap">
-        <slider v-model="activeElement.height" :step="1" :max="height" />
+        <slider
+          v-model="activeElement.height"
+          :step="1"
+          :max="height" />
       </div>
     </div>
 
@@ -33,7 +44,10 @@
       <div class="panel-label">横坐标</div>
       <div class="panel-value">{{ activeElement.left }}</div>
       <div class="panel-slider-wrap">
-        <slider v-model="activeElement.left" :step="1" :max="750" />
+        <slider
+          v-model="activeElement.left"
+          :step="1"
+          :max="750" />
       </div>
     </div>
 
@@ -42,12 +56,20 @@
       <div class="panel-label">纵坐标</div>
       <div class="panel-value">{{ activeElement.top }}</div>
       <div class="panel-slider-wrap">
-        <slider v-model="activeElement.top" :step="1" :max="height" />
+        <slider
+          v-model="activeElement.top"
+          :step="1"
+          :max="height" />
       </div>
     </div>
 
     <!-- 组件样式 -->
-    <component :is="widgetStyle[i]" v-for="(item, i) in widgetStyle" :key="i" :activeElement="activeElement" v-if="item.type === activeElement.type" />
+    <component
+      v-for="(item, i) in widgetStyle"
+      v-if="item.type === activeElement.type"
+      :is="widgetStyle[i]"
+      :key="i"
+      :active-element="activeElement" />
 
     <!-- 添加到容器 -->
     <div v-if="activeElement.isChild">
@@ -58,7 +80,9 @@
         <div class="panel-value">
           <select v-model="activeElement.belong">
             <option>page</option>
-            <option v-for="(val, index) in containerName" :key="index">{{ val }}</option>
+            <option
+              v-for="(val, index) in containerName"
+              :key="index">{{ val }}</option>
           </select>
         </div>
       </div>
@@ -70,7 +94,7 @@
 import widget from '../../plugins/widget'
 
 export default {
-  name: 'panel-style',
+  name: 'PanelStyle',
 
   props: ['activeElement', 'tab'],
 
