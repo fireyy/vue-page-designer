@@ -1,6 +1,6 @@
 {
   "name": "vue-page-designer",
-  "version": "0.7.1",
+  "version": "1.0.0",
   "description": "A vue component for drag-and-drop to design and build mobile website.",
   "repository": {
     "url": "fireyy/vue-page-designer",
@@ -16,7 +16,7 @@
     "dist/*.css"
   ],
   "scripts": {
-    "bump": "standard-version",
+    "bump": "standard-version --release-as 1.0.0",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue ./src ./example --fix",
     "icon": "node scripts/icon.js",
