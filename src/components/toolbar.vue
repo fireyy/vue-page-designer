@@ -1,7 +1,7 @@
 <template>
   <div class="menu-bar">
     <details open>
-      <summary><icon name="list" />可用组件</summary>
+      <summary><vpd-icon name="list" />可用组件</summary>
       <ul
         class="widget-list columns"
         @mousedown="updateSrollTop">
@@ -10,7 +10,7 @@
           :key="item.name"
           class="menu-item column col-6"
           @click="(e) => {addWidget(e, item)}">
-          <icon
+          <vpd-icon
             :svg="item.icon"
             :title="item.title" />
           <span class="menu-caption">{{ item.title }}</span>
@@ -18,7 +18,7 @@
       </ul>
     </details>
     <details>
-      <summary><icon name="layers" />已加组件</summary>
+      <summary><vpd-icon name="layers" />已加组件</summary>
       <ul class="layer-list">
         <li
           v-for="layer in layers"
@@ -34,9 +34,10 @@
 import widget from '../plugins/widget'
 import { move } from '../mixins'
 import { cumulativeOffset, checkInView } from '../utils/offset'
+import vpd from '../mixins/vpd'
 
 export default {
-  mixins: [move],
+  mixins: [move, vpd],
   props: ['zoom'],
   data () {
     return {}
@@ -46,26 +47,26 @@ export default {
       return widget.getWidgets()
     },
     layers () {
-      return this.$store.state.widgets
+      return this.$vpd.state.widgets
     },
     activeElement () {
-      return this.$store.state.activeElement
+      return this.$vpd.state.activeElement
     }
   },
   methods: {
     // 添加组件
     addWidget (e, item) {
-      this.$store.dispatch('addWidget', item)
+      this.$vpd.dispatch('addWidget', item)
     },
 
     // 为确保添加的元件出现在可视区内，用画布向上滚动距离作为元件初始 top 值
     updateSrollTop () {
       var top = document.getElementById('viewport').scrollTop / this.zoom * 100
-      this.$store.commit('updateSrollTop', top)
+      this.$vpd.commit('updateSrollTop', top)
     },
 
     activeLayer (e, item) {
-      this.$store.commit('select', {
+      this.$vpd.commit('select', {
         uuid: item.uuid
       })
       let viewport = document.querySelector('#viewport')

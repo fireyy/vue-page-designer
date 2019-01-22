@@ -7759,9 +7759,10 @@ vue-loader@^15.3.0:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-page-designer-widgets@^0.1.1:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/vue-page-designer-widgets/-/vue-page-designer-widgets-0.1.2.tgz#93b2981b2a7a28d36c270bb7dc31c544e8b14193"
+vue-page-designer-widgets@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/vue-page-designer-widgets/-/vue-page-designer-widgets-0.1.4.tgz#cee2e36e563b1eb1cc461ac3b43ecebb2340e915"
+  integrity sha512-SfFTp9H0sSNVUHfMrnMbYx8iRr/ClwBBbeYc0LPgILXQZVK5xNbdqCZhCq2cPAUh/BY/H2omqWPdHOG1YZuFAw==
 
 vue-runtime-helpers@^0.2.0:
   version "0.2.0"

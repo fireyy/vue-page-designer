@@ -51,8 +51,9 @@
 </template>
 
 <script>
+import vpd from '../../mixins/vpd'
 export default {
-
+  mixins: [vpd],
   data () {
     return {
       type: '' // 调整方向 left | right | up | down
@@ -60,7 +61,7 @@ export default {
   },
   computed: {
     elm () {
-      var target = this.$store.state.activeElement
+      var target = this.$vpd.state.activeElement
 
       if (!target.resizable || target.belong !== 'page') return ''
 
@@ -72,7 +73,7 @@ export default {
     handlemousedown (e, type, originX, originY) {
       e.stopPropagation()
       this.type = type
-      this.$store.commit('initmove', {
+      this.$vpd.commit('initmove', {
         startX: e.pageX,
         startY: e.pageY,
         originX: this.elm[originX],
@@ -87,7 +88,7 @@ export default {
       e.stopPropagation()
       e.preventDefault()
 
-      this.$store.commit('resize', {
+      this.$vpd.commit('resize', {
         x: e.pageX,
         y: e.pageY,
         type: this.type
@@ -97,7 +98,7 @@ export default {
     handlemouseup () {
       document.removeEventListener('mousemove', this.handlemousemove, true)
       document.removeEventListener('mouseup', this.handlemouseup, true)
-      this.$store.commit('stopmove')
+      this.$vpd.commit('stopmove')
     }
   }
 }

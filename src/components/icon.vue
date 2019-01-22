@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-  name: 'Icon',
+  name: 'VpdIcon',
   props: {
     svg: String,
     title: String,

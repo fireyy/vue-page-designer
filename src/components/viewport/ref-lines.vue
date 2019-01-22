@@ -21,15 +21,17 @@
 </template>
 
 <script>
+import vpd from '../../mixins/vpd'
+
 export default {
   name: 'RefLines',
-
+  mixins: [vpd],
   computed: {
     moving () {
-      return this.$store.state.moving
+      return this.$vpd.state.moving
     },
     guides () {
-      var state = this.$store.state
+      var state = this.$vpd.state
       var guides = []
       var uuid = state.uuid
 
@@ -110,7 +112,7 @@ export default {
 
     // 移动元素上下边坐标
     horizontal () {
-      var a = this.$store.state.activeElement
+      var a = this.$vpd.state.activeElement
       if (a) {
         var h = Math.round(a.height)
         return [a.top, a.top + h]
@@ -121,7 +123,7 @@ export default {
 
     // 移动元素左中右坐标
     vertical () {
-      var a = this.$store.state.activeElement
+      var a = this.$vpd.state.activeElement
       if (a) {
         var w = Math.round(a.width / 2)
         return [a.left, a.left + w, a.left + w * 2]

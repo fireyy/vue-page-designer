@@ -5,7 +5,7 @@
     <div class="box">
       <div class="top">
         <span>{{ title }}</span>
-        <icon
+        <vpd-icon
           class="close"
           name="x"
           @click="close" />
@@ -26,6 +26,7 @@
 </template>
 <script>
 export default {
+  name: 'VpdPopbox',
   props: ['title', 'id', 'content'],
   data () {
     return {

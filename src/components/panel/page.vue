@@ -5,7 +5,7 @@
     <div
       class="panel-row"
       flex>
-      <icon name="type" />
+      <vpd-icon name="type" />
       <div class="panel-label">页面标题</div>
       <div class="panel-value">
         <input
@@ -17,7 +17,7 @@
     <div
       class="panel-row"
       flex>
-      <icon name="smartphone" />
+      <vpd-icon name="smartphone" />
       <div class="panel-label">页面高度</div>
       <div class="panel-value">
         <input
@@ -29,7 +29,7 @@
     <div
       class="panel-row"
       flex>
-      <icon name="droplet" />
+      <vpd-icon name="droplet" />
       <div class="panel-label">页面背景色</div>
       <div class="panel-value">
         <input
@@ -41,7 +41,7 @@
     <div
       class="panel-row"
       flex>
-      <icon name="clock" />
+      <vpd-icon name="clock" />
       <div class="panel-label">截止日期</div>
       <div class="panel-value">
         <input

@@ -2,36 +2,37 @@
   <header class="header">
     <div class="navbar container grid-xl">
       <section class="logo navbar-section">
-        <icon name="anchor" />
+        <vpd-icon name="anchor" />
       </section>
       <section class="navbar-section">
         <a
           class="btn btn-link tooltip tooltip-bottom"
           data-tooltip="复制元件 Ctrl + C"
           @click="copyWidget">
-          <icon name="copy" /> 复制
+          <vpd-icon name="copy" /> 复制
         </a>
         <a
           class="btn btn-link tooltip tooltip-bottom"
           data-tooltip="删除元件 Delete"
           @click="dele">
-          <icon name="trash-2" /> 删除
+          <vpd-icon name="trash-2" /> 删除
         </a>
         <a
           class="btn btn-link tooltip tooltip-bottom"
           data-tooltip="保存 Ctrl + S"
-          @click="save"><icon name="save" /> 保存</a>
+          @click="save"><vpd-icon name="save" /> 保存</a>
       </section>
     </div>
   </header>
 </template>
 
 <script>
+import vpd from '../mixins/vpd'
 export default {
-
+  mixins: [vpd],
   computed: {
     show () {
-      return this.$store.state.type !== 'page'
+      return this.$vpd.state.type !== 'page'
     }
   },
   mounted () {
@@ -75,17 +76,17 @@ export default {
   methods: {
     // 保存
     save () {
-      this.$store.dispatch('save')
+      this.$vpd.dispatch('save')
     },
 
     // 复制元件
     copyWidget () {
-      this.$store.commit('copy')
+      this.$vpd.commit('copy')
     },
 
     // 删除元件
     dele () {
-      this.$store.commit('delete')
+      this.$vpd.commit('delete')
     }
   }
 }

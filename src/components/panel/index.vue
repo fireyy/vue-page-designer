@@ -35,6 +35,7 @@ import page from './page.vue'
 import style from './style.vue'
 import event from './event.vue'
 import animation from './animation.vue'
+import vpd from '../../mixins/vpd'
 
 export default {
   components: {
@@ -43,6 +44,7 @@ export default {
     event: event,
     animation: animation
   },
+  mixins: [vpd],
 
   data () {
     return {
@@ -53,7 +55,7 @@ export default {
   computed: {
     // 选中元素对象
     activeElement () {
-      return this.$store.state.activeElement
+      return this.$vpd.state.activeElement
     }
   }
 }

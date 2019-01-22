@@ -11,13 +11,8 @@
 
 <script>
 import widgets from './widgets'
-import vuePageDesigner from '../src'
 
 export default {
-
-  components: {
-    vuePageDesigner
-  },
   data () {
     return {
       value: null,

@@ -1,19 +1,22 @@
-import Vue from 'vue'
-import App from './App.vue'
+import VuePageDesigner from './App.vue'
 
 import slider from './components/slider.vue'
-import toast from './components/toast.vue'
-import uploader from './components/uploader.vue'
-import popbox from './components/popbox.vue'
 import icon from './components/icon.vue'
 
 import './app.scss'
 
-// 全局注册组件
-Vue.component('slider', slider)
-Vue.component('toast', toast)
-Vue.component('uploader', uploader)
-Vue.component('popbox', popbox)
-Vue.component('icon', icon)
+const install = function (Vue, opts = {}) {
+  Vue.component('VpdSlider', slider)
+  Vue.component('VpdIcon', icon)
 
-export default App
+  Vue.component('VuePageDesigner', VuePageDesigner)
+};
+
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue);
+}
+
+export default {
+  install,
+  VuePageDesigner
+}

@@ -16,7 +16,7 @@ const createMapState = _store => states => {
   for (const k in db) {
     let v = db[k]
     res[k] = function () {
-      const store = _store || this.$store
+      const store = _store || this.$vpd
       return typeof v === 'function'
         ? v.call(this, store.state)
         : store.state[v]
@@ -31,7 +31,7 @@ const mapToMethods = (sourceName, runnerName, _store) => map => {
   for (const k in db) {
     let v = db[k]
     res[k] = function (payload) {
-      const store = _store || this.$store
+      const store = _store || this.$vpd
       const source = store[sourceName]
       const runner = store[runnerName]
       const actualSource = typeof v === 'function' ? v.call(this, source) : v
@@ -42,15 +42,6 @@ const mapToMethods = (sourceName, runnerName, _store) => map => {
 }
 
 export default class Store {
-  static install (Vue) {
-    Vue.mixin({
-      beforeCreate () {
-        this.$store =
-          this.$options.store || (this.$parent && this.$parent.$store)
-      }
-    })
-  }
-
   constructor (
     { state, mutations = {}, actions = {}, plugins, subscribers = [] } = {}
   ) {

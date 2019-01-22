@@ -53,7 +53,7 @@ export default {
   methods: {
     updateText (e, uuid) {
       let text = e.target.innerHTML
-      this.$store.commit('updateData', {
+      this.$vpd.commit('updateData', {
         uuid: uuid,
         key: 'text',
         value: text

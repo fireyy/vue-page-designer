@@ -33,6 +33,7 @@
 
 <script>
 export default {
+  name: 'VpdSlider',
   props: {
     value: {
       type: [Number, String],

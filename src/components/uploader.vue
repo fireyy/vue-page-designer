@@ -9,7 +9,10 @@
 </template>
 
 <script>
+import vpd from '../mixins/vpd'
 export default {
+  name: 'VpdUploader',
+  mixins: [vpd],
   props: {
     upload: Function,
     uploadOption: Object
@@ -25,7 +28,7 @@ export default {
   computed: {
     // 图片初始位置纵坐标
     top () {
-      return this.$store.state.top
+      return this.$vpd.state.top
     }
   },
 
@@ -37,11 +40,11 @@ export default {
      * 所有需要上传图片的地方均可调用
      *
      * 调用方法：
-     * this.$store.$emit('upload', function (payload) {/.../})
+     * this.$vpd.$emit('upload', function (payload) {/.../})
      * @param payload { Array } 图片上传、下载完成后的一个包含所有图片对象的数组
      * @param multiple { Boolean } 是否上传多张，默认为 false
      */
-    this.$store.$on('upload', (cb, multiple) => {
+    this.$vpd.$on('upload', (cb, multiple) => {
       this.multiple = !!multiple
       this.cb = cb
       setTimeout(() => {

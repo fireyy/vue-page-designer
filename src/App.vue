@@ -9,7 +9,7 @@
         <div class="viewport column">
           <viewport :zoom="zoom"/>
           <div class="zoom-wrap">
-            <slider
+            <vpd-slider
               :value="zoom"
               :step="1"
               :tuning="false"
@@ -20,32 +20,38 @@
         <panel class="control-panel column"/>
       </div>
     </div>
-    <uploader
+    <vpd-uploader
       :upload="upload"
       :upload-option="uploadOption"/>
-    <toast/>
+    <vpd-toast/>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import store from './store'
 import widget from './plugins/widget'
 import navbar from './components/navbar.vue'
 import toolbar from './components/toolbar.vue'
 import panel from './components/panel/index.vue'
 import viewport from './components/viewport/index.vue'
 import loadSprite from './utils/load-sprite'
+import vpd from './mixins/vpd'
+import toast from './components/toast.vue'
+import uploader from './components/uploader.vue'
+import slider from './components/slider.vue'
 
 export default {
   name: 'VuePageDesigner',
-  store,
   components: {
     navbar, // 顶部导航栏
     toolbar, // 左侧菜单栏
     panel, // 右侧参数面板
-    viewport // 页面画布
+    viewport, // 页面画布
+    [toast.name]: toast, // 提示组件
+    [uploader.name]: uploader, // 上传组件
+    [slider.name]: slider
   },
+  mixins: [vpd],
   props: {
     value: Object,
     widgets: Object,
@@ -55,7 +61,7 @@ export default {
 
   computed: {
     zoom () {
-      return this.$store.state.zoom
+      return this.$vpd.state.zoom
     }
   },
   beforeCreate () {
@@ -69,20 +75,20 @@ export default {
     })
     // 初始化已有数据
     if (this.value) {
-      store.replaceState(this.value)
+      this.$vpd.replaceState(this.value)
     }
-    store.$on('save', () => {
-      this.$emit('save', store.state)
+    this.$vpd.$on('save', () => {
+      this.$emit('save', this.$vpd.state)
     })
   },
   mounted () {
     // 初始化选中元件（将页面作为初始选中元件）
-    this.$store.commit('initActive')
+    this.$vpd.commit('initActive')
   },
 
   methods: {
     dozoom (val) {
-      this.$store.commit('zoom', val)
+      this.$vpd.commit('zoom', val)
     }
   }
 }

@@ -3,7 +3,7 @@
     v-if="tab === 2"
     class="panel-wrap">
     <div class="panel-row">
-      <icon name="link" />
+      <vpd-icon name="link" />
       <div class="panel-label">点击时</div>
     </div>
 

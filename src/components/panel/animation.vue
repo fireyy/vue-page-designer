@@ -3,19 +3,19 @@
     v-if="tab === 3"
     class="panel-wrap">
     <button class="btn btn-action float-right mx-1">
-      <icon
+      <vpd-icon
         name="plus"
         @click="addAnimation" />
     </button>
 
     <button class="btn btn-action float-right">
-      <icon
+      <vpd-icon
         name="play"
         @click="play" />
     </button>
 
     <div class="panel-row">
-      <icon name="film" />
+      <vpd-icon name="film" />
       <div class="panel-label">选择动画</div>
       <div class="panel-value">
         <select v-model="currentName">
@@ -31,7 +31,7 @@
     <div v-if="currentAnimation">
       <hr>
       <div class="panel-row">
-        <icon name="type" />
+        <vpd-icon name="type" />
         <div class="panel-label">动画名称</div>
         <div class="panel-value">
           <input
@@ -43,7 +43,7 @@
       </div>
 
       <div class="panel-row">
-        <icon name="clock" />
+        <vpd-icon name="clock" />
         <div class="panel-label">动画时长</div>
         <div class="panel-value">
           <input
@@ -54,7 +54,7 @@
       </div>
 
       <div class="panel-row">
-        <icon name="watch" />
+        <vpd-icon name="watch" />
         <div class="panel-label">动画延迟</div>
         <div class="panel-value">
           <input
@@ -65,7 +65,7 @@
       </div>
 
       <div class="panel-row">
-        <icon name="repeat" />
+        <vpd-icon name="repeat" />
         <div class="panel-label">动画循环</div>
         <div class="panel-value">
           <input
@@ -76,7 +76,7 @@
       </div>
 
       <div class="panel-row">
-        <icon name="activity" />
+        <vpd-icon name="activity" />
         <div class="panel-label">缓动函数</div>
         <div class="panel-value">
           <select v-model="currentAnimation.timing">
@@ -90,7 +90,7 @@
       </div>
 
       <div class="panel-row">
-        <icon name="rotate-cw" />
+        <vpd-icon name="rotate-cw" />
         <div class="panel-label">动画方向</div>
         <div class="panel-value">
           <select v-model="currentAnimation.direction">
@@ -103,7 +103,7 @@
       </div>
 
       <div class="panel-row">
-        <icon name="chevrons-down" />
+        <vpd-icon name="chevrons-down" />
         <div class="panel-label">fill-mode</div>
         <div class="panel-value">
           <select v-model="currentAnimation.fill">
@@ -121,11 +121,11 @@
         v-for="(val, i) in currentAnimation.keyframes"
         :key="i">
         <div class="panel-row">
-          <icon name="stop-circle" />
+          <vpd-icon name="stop-circle" />
           <div class="panel-label">stop - {{ i }}</div>
           <div class="panel-value">{{ val.stop }}%</div>
           <div class="panel-slider-wrap">
-            <slider
+            <vpd-slider
               :step="1"
               v-model="val.stop" />
           </div>
@@ -138,7 +138,7 @@
             v-if="i + 1 === currentAnimation.keyframes.length"
             class="btn btn-primary"
             @click="addkeyframe">
-            <icon name="plus" /> 添加新的动画
+            <vpd-icon name="plus" /> 添加新的动画
           </button>
         </div>
       </div>
@@ -148,10 +148,11 @@
 
 <script>
 import { getAnimateCss } from '../../utils/css-generate.js'
+import vpd from '../../mixins/vpd'
 export default {
   name: 'PanelAnimation',
+  mixins: [vpd],
   props: ['activeElement', 'tab'],
-
   data () {
     return {
       currentName: '',
@@ -162,7 +163,7 @@ export default {
   computed: {
     animationNames () {
       var arr = []
-      this.$store.state.animation.map(val => arr.push(val.name))
+      this.$vpd.state.animation.map(val => arr.push(val.name))
 
       return arr
     }
@@ -189,31 +190,31 @@ export default {
   methods: {
     addAnimation () {
       // 检查是否存在未命名动画，避免重复添加
-      if (this.$store.state.animation.some(val => val.name === '')) {
-        this.$store.$emit('notify', {
+      if (this.$vpd.state.animation.some(val => val.name === '')) {
+        this.$vpd.$emit('notify', {
           info: '还有未命名动画，请先命名'
         })
         return
       }
-      this.$store.commit('addAnimation')
+      this.$vpd.commit('addAnimation')
       this.currentName = ''
       this.getCurrentAnimation('')
     },
 
     getCurrentAnimation (name) {
-      var result = this.$store.state.animation.filter(val => val.name === name)
+      var result = this.$vpd.state.animation.filter(val => val.name === name)
       this.currentAnimation = result[0]
     },
 
     addkeyframe () {
       var name = this.currentAnimation.name
       if (name === '') {
-        this.$store.$emit('notify', {
+        this.$vpd.$emit('notify', {
           info: '请先为动画命名'
         })
         return
       }
-      this.$store.commit('addkeyframe', name)
+      this.$vpd.commit('addkeyframe', name)
     },
 
     validateName (e) {
@@ -223,7 +224,7 @@ export default {
         this.$nextTick(() => {
           this.currentAnimation.name = ''
         })
-        this.$store.$emit('notify', {
+        this.$vpd.$emit('notify', {
           info: '动画名称必须以英文开头'
         })
       }
@@ -232,7 +233,7 @@ export default {
         this.$nextTick(() => {
           this.currentAnimation.name = value.replace(/\W/g, '')
         })
-        this.$store.$emit('notify', {
+        this.$vpd.$emit('notify', {
           info: '请勿使用英文和数字以外的字符'
         })
       }
@@ -240,10 +241,10 @@ export default {
 
     play () {
       // stop animation if any
-      this.$store.commit('setAnimation', false)
+      this.$vpd.commit('setAnimation', false)
 
       setTimeout(() => {
-        var animations = this.$store.state.animation
+        var animations = this.$vpd.state.animation
         if (animations.length === 0) return
 
         animations.map(val => {
@@ -271,7 +272,7 @@ export default {
           }
         })
 
-        this.$store.commit('setAnimation', true)
+        this.$vpd.commit('setAnimation', true)
       }, 200)
     }
   }
