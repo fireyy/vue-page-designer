@@ -1,14 +1,15 @@
 const path = require('path');
 const fs = require('fs');
 const replace = require('rollup-plugin-replace');
-const vue = require('rollup-plugin-vue').default;
+const vue = require('rollup-plugin-vue');
 const resolve = require('rollup-plugin-node-resolve');
-const css = require('rollup-plugin-css-only');
+const postcss = require('rollup-plugin-postcss');
 const buble = require('rollup-plugin-buble');
 const commonjs = require('rollup-plugin-commonjs');
 const filesize = require('filesize');
 const gzipSize = require('gzip-size');
 const { uglify } = require('rollup-plugin-uglify');
+const { minify } = require('uglify-es');
 
 const version = process.env.VERSION || require('../package.json').version;
 
@@ -48,17 +49,23 @@ function genConfig (options) {
   const config = {
     description: '',
     input: {
+      external: ['vue'],
       input: options.input || common.paths.input,
       plugins: [
         commonjs(),
         replace({ __VERSION__: version }),
-        css(),
+        postcss({
+          extract: true
+        }),
         vue({ css: false }),
         resolve(),
-        buble()
+        buble({ exclude: 'node_modules/**' })
       ]
     },
     output: {
+      globals: {
+        'vue': 'Vue'
+      },
       banner: common.banner,
       name: options.name,
       format: options.format,
@@ -73,7 +80,7 @@ function genConfig (options) {
   }
 
   if (options.env === 'production') {
-    config.input.plugins.push(uglify());
+    config.input.plugins.push(uglify({}, minify));
   }
 
   return config;
