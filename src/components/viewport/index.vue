@@ -1,48 +1,50 @@
 <template>
-  <div class="holder" id="viewport">
-    <div class="screen"
-      @dblclick="replaceImage"
+  <div
+    id="viewport"
+    class="holder">
+    <div
       :style="{
         backgroundColor: backgroundColor,
         height: height + 'px',
         transform: 'scale(' + zoom / 100 + ')'
-      }">
+      }"
+      class="screen"
+      @dblclick="replaceImage">
 
       <!-- 组件 -->
       <component
+        v-for="val in widgetStore"
         :is="val.type"
         :data-title="val.type"
-        class="layer"
         :class="{'g-active': id === val.uuid}"
-        v-for="val in widgetStore"
         :key="val.uuid"
         :val="val"
         :h="height"
         :w="750"
         :data-type="val.type"
         :data-uuid="val.uuid"
-        :playState="playState">
+        :play-state="playState"
+        class="layer">
         <component
-          v-if="val.isContainer"
+          v-for="child in getChilds(val.name)"
           :is="child.type"
           :data-title="child.type"
-          class="layer layer-child"
           :class="{'g-active': id === child.uuid}"
-          v-for="child in getChilds(val.name)"
           :key="child.uuid"
           :val="child"
           :h="height"
           :w="750"
           :data-type="child.type"
           :data-uuid="child.uuid"
-          :playState="playState" />
+          :play-state="playState"
+          class="layer layer-child" />
       </component>
 
       <!-- 参考线 -->
-      <ref></ref>
+      <ref/>
 
       <!-- 尺寸控制器 -->
-      <control></control>
+      <control/>
     </div>
   </div>
 </template>
@@ -51,20 +53,52 @@
 import ref from './ref-lines.vue'
 import control from './size-control.vue'
 import { move } from '../../mixins'
+import vpd from '../../mixins/vpd'
 
 export default {
-  name: 'viewport',
+  name: 'Viewport',
   components: {
     ref: ref, // 参考线
     control: control // 尺寸控制
   },
 
-  mixins: [move],
+  mixins: [move, vpd],
 
   props: ['zoom'],
 
   data () {
     return {}
+  },
+
+  computed: {
+    // 已添加的组件
+    widgetStore () {
+      return this.$vpd.state.widgets.filter(item => item.belong === 'page')
+    },
+
+    // 画布高度
+    height () {
+      return this.$vpd.state.page.height
+    },
+
+    // 页面背景色
+    backgroundColor () {
+      return this.$vpd.state.page.backgroundColor
+    },
+
+    // 选中项id
+    id () {
+      // var type = this.$vpd.state.type
+      // var index = this.$vpd.state.index
+      // index = index >= 0 ? index : ''
+      // return type + index
+      return this.$vpd.state.uuid
+    },
+
+    // 动画播放状态
+    playState () {
+      return this.$vpd.state.playState
+    }
   },
 
   mounted () {
@@ -78,7 +112,7 @@ export default {
       'keydown',
       e => {
         e.stopPropagation()
-        var target = this.$store.state.activeElement
+        var target = this.$vpd.state.activeElement
 
         // 左
         if (e.keyCode === 37 && target.left) {
@@ -116,18 +150,18 @@ export default {
         var uuid = target.getAttribute('data-uuid')
 
         // 设置选中元素
-        this.$store.commit('select', {
+        this.$vpd.commit('select', {
           uuid: uuid || -1
         })
 
         // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
-        target = this.$store.state.activeElement
+        target = this.$vpd.state.activeElement
         if (target.belong === 'page' && target.dragable) {
           this.initmovement(e) // 参见 mixins
         }
       } else {
         // 取消选中元素
-        this.$store.commit('select', {
+        this.$vpd.commit('select', {
           uuid: -1
         })
       }
@@ -135,49 +169,18 @@ export default {
 
     // 替换图片
     replaceImage (e) {
-      if (this.$store.state.activeElement.isUpload) {
-        this.$store.$emit('upload', payload => {
-          this.$store.commit('replaceImage', payload)
+      if (this.$vpd.state.activeElement.isUpload) {
+        this.$vpd.$emit('upload', payload => {
+          this.$vpd.commit('replaceImage', payload)
         })
       }
     },
 
     // 获取子组件
     getChilds (name) {
-      return this.$store.state.widgets.filter(
+      return this.$vpd.state.widgets.filter(
         item => item.belong === name
       )
-    }
-  },
-
-  computed: {
-    // 已添加的组件
-    widgetStore () {
-      return this.$store.state.widgets.filter(item => item.belong === 'page')
-    },
-
-    // 画布高度
-    height () {
-      return this.$store.state.page.height
-    },
-
-    // 页面背景色
-    backgroundColor () {
-      return this.$store.state.page.backgroundColor
-    },
-
-    // 选中项id
-    id () {
-      // var type = this.$store.state.type
-      // var index = this.$store.state.index
-      // index = index >= 0 ? index : ''
-      // return type + index
-      return this.$store.state.uuid
-    },
-
-    // 动画播放状态
-    playState () {
-      return this.$store.state.playState
     }
   }
 }

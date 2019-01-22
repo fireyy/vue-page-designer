@@ -1,9 +1,6 @@
 <template>
   <button
-    v-html="val.text"
     :class="[playState ? 'anm-' + val.animationName : '']"
-    contenteditable="true"
-    @blur="(e) => updateText(e, val.uuid)"
     :style="{
       position: 'absolute',
       width: val.width / 7.5 + '%',
@@ -14,7 +11,10 @@
       backgroundColor: val.bgColor,
       backgroundImage: 'url(' + val.backPic + ')',
       color: val.color
-    }"></button>
+    }"
+    contenteditable="true"
+    @blur="(e) => updateText(e, val.uuid)"
+    v-html="val.text"/>
 </template>
 
 <script>
@@ -53,7 +53,7 @@ export default {
   methods: {
     updateText (e, uuid) {
       let text = e.target.innerHTML
-      this.$store.commit('updateData', {
+      this.$vpd.commit('updateData', {
         uuid: uuid,
         key: 'text',
         value: text

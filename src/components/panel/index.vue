@@ -1,15 +1,32 @@
 <template>
   <div>
     <ul class="tab tab-block panel-tab">
-      <li class="tab-item" :class="{active: activeTab === 1}" @click="activeTab = 1"><a>参数</a></li>
-      <li class="tab-item" :class="{active: activeTab === 2}" @click="activeTab = 2"><a>交互</a></li>
-      <li class="tab-item" :class="{active: activeTab === 3}" @click="activeTab = 3"><a>动画</a></li>
+      <li
+        :class="{active: activeTab === 1}"
+        class="tab-item"
+        @click="activeTab = 1"><a>参数</a></li>
+      <li
+        :class="{active: activeTab === 2}"
+        class="tab-item"
+        @click="activeTab = 2"><a>交互</a></li>
+      <li
+        :class="{active: activeTab === 3}"
+        class="tab-item"
+        @click="activeTab = 3"><a>动画</a></li>
     </ul>
 
-    <page :activeElement="activeElement" :tab="activeTab"></page>
-    <appearance :activeElement="activeElement" :tab="activeTab"></appearance>
-    <event :activeElement="activeElement" :tab="activeTab"></event>
-    <animation :activeElement="activeElement" :tab="activeTab"></animation>
+    <page
+      :active-element="activeElement"
+      :tab="activeTab"/>
+    <appearance
+      :active-element="activeElement"
+      :tab="activeTab"/>
+    <event
+      :active-element="activeElement"
+      :tab="activeTab"/>
+    <animation
+      :active-element="activeElement"
+      :tab="activeTab"/>
   </div>
 </template>
 
@@ -18,6 +35,7 @@ import page from './page.vue'
 import style from './style.vue'
 import event from './event.vue'
 import animation from './animation.vue'
+import vpd from '../../mixins/vpd'
 
 export default {
   components: {
@@ -26,6 +44,7 @@ export default {
     event: event,
     animation: animation
   },
+  mixins: [vpd],
 
   data () {
     return {
@@ -36,7 +55,7 @@ export default {
   computed: {
     // 选中元素对象
     activeElement () {
-      return this.$store.state.activeElement
+      return this.$vpd.state.activeElement
     }
   }
 }

@@ -2,23 +2,38 @@
 <!-- http://www.muse-ui.org/#/slider -->
 <template>
   <div :class="{'mu-lisder-wrapper': tuning}">
-    <div class="mu-slider" :class="sliderClass"
+    <div
+      :class="sliderClass"
+      class="mu-slider"
       @focus="handleFocus"
       @blur="handleBlur"
       @mousedown="handleMouseDown"
       @mouseup="handleMouseUp">
-      <input type="hidden" :value="inputValue">
-      <div class="mu-slider-track"></div>
-      <div class="mu-slider-fill" :style="fillStyle"></div>
-      <div class="mu-slider-thumb" :style="thumbStyle"></div>
+      <input
+        :value="inputValue"
+        type="hidden">
+      <div class="mu-slider-track"/>
+      <div
+        :style="fillStyle"
+        class="mu-slider-fill"/>
+      <div
+        :style="thumbStyle"
+        class="mu-slider-thumb"/>
     </div>
-    <div v-if="tuning" class="mu-increment" @mousedown.stop="increase">+</div>
-    <div v-if="tuning" class="mu-decrement" @mousedown.stop="decrease">-</div>
+    <div
+      v-if="tuning"
+      class="mu-increment"
+      @mousedown.stop="increase">+</div>
+    <div
+      v-if="tuning"
+      class="mu-decrement"
+      @mousedown.stop="decrease">-</div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'VpdSlider',
   props: {
     value: {
       type: [Number, String],
@@ -71,6 +86,15 @@ export default {
         zero: this.inputValue <= this.min,
         active: this.active
       }
+    }
+  },
+
+  watch: {
+    value (val) {
+      this.inputValue = val
+    },
+    inputValue (val) {
+      this.$emit('input', val)
     }
   },
 
@@ -154,15 +178,6 @@ export default {
     decrease () {
       if (this.inputValue <= this.min) return
       this.inputValue -= this.step
-    }
-  },
-
-  watch: {
-    value (val) {
-      this.inputValue = val
-    },
-    inputValue (val) {
-      this.$emit('input', val)
     }
   }
 }

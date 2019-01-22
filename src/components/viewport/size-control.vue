@@ -1,56 +1,67 @@
 <template>
-	<div v-show="elm">
-		<!-- 左 -->
-	  <div class="verti"
-	  	@mousedown="handlemousedown($event, 'left', 'left', 'width')"
-	    :style="{
-	      height: elm.height + 'px',
-	      top: elm.top + 'px',
-	      left: elm.left + 'px'
-	    }">
-	    <div class="square"></div>
-	  </div>
+  <div v-show="elm">
+    <!-- 左 -->
+    <div
+      :style="{
+        height: elm.height + 'px',
+        top: elm.top + 'px',
+        left: elm.left + 'px'
+      }"
+      class="verti"
+      @mousedown="handlemousedown($event, 'left', 'left', 'width')">
+      <div class="square"/>
+    </div>
 
-		<!-- 右 -->
-	  <div class="verti"
-		  @mousedown="handlemousedown($event, 'right', 'width')"
-	    :style="{
-	      height: elm.height + 'px',
-	      top: elm.top + 'px',
-	      left: elm.left + elm.width + 'px'
-	    }">
-	    <div class="square"></div>
-	  </div>
+    <!-- 右 -->
+    <div
+      :style="{
+        height: elm.height + 'px',
+        top: elm.top + 'px',
+        left: elm.left + elm.width + 'px'
+      }"
+      class="verti"
+      @mousedown="handlemousedown($event, 'right', 'width')">
+      <div class="square"/>
+    </div>
 
-		<!-- 上 -->
-	  <div class="horiz"
-		  @mousedown="handlemousedown($event, 'up', 'top', 'height')"
-	    :style="{
-	      width: elm.width + 'px',
-	      top: elm.top + 'px',
-	      left: elm.left + 'px'
-	    }">
-	    <div class="square"></div>
-	  </div>
+    <!-- 上 -->
+    <div
+      :style="{
+        width: elm.width + 'px',
+        top: elm.top + 'px',
+        left: elm.left + 'px'
+      }"
+      class="horiz"
+      @mousedown="handlemousedown($event, 'up', 'top', 'height')">
+      <div class="square"/>
+    </div>
 
-		<!-- 下 -->
-	  <div class="horiz"
-		  @mousedown="handlemousedown($event, 'down', 'height')"
-	    :style="{
-	      width: elm.width + 'px',
-	      top: elm.top + elm.height + 'px',
-	      left: elm.left + 'px'
-	    }">
-	    <div class="square"></div>
-	  </div>
-	</div>
+    <!-- 下 -->
+    <div
+      :style="{
+        width: elm.width + 'px',
+        top: elm.top + elm.height + 'px',
+        left: elm.left + 'px'
+      }"
+      class="horiz"
+      @mousedown="handlemousedown($event, 'down', 'height')">
+      <div class="square"/>
+    </div>
+  </div>
 </template>
 
 <script>
+import vpd from '../../mixins/vpd'
 export default {
+  mixins: [vpd],
+  data () {
+    return {
+      type: '' // 调整方向 left | right | up | down
+    }
+  },
   computed: {
     elm () {
-      var target = this.$store.state.activeElement
+      var target = this.$vpd.state.activeElement
 
       if (!target.resizable || target.belong !== 'page') return ''
 
@@ -58,17 +69,11 @@ export default {
     }
   },
 
-  data () {
-    return {
-      type: '' // 调整方向 left | right | up | down
-    }
-  },
-
   methods: {
     handlemousedown (e, type, originX, originY) {
       e.stopPropagation()
       this.type = type
-      this.$store.commit('initmove', {
+      this.$vpd.commit('initmove', {
         startX: e.pageX,
         startY: e.pageY,
         originX: this.elm[originX],
@@ -83,7 +88,7 @@ export default {
       e.stopPropagation()
       e.preventDefault()
 
-      this.$store.commit('resize', {
+      this.$vpd.commit('resize', {
         x: e.pageX,
         y: e.pageY,
         type: this.type
@@ -93,7 +98,7 @@ export default {
     handlemouseup () {
       document.removeEventListener('mousemove', this.handlemousemove, true)
       document.removeEventListener('mouseup', this.handlemouseup, true)
-      this.$store.commit('stopmove')
+      this.$vpd.commit('stopmove')
     }
   }
 }

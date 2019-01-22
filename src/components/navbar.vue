@@ -2,23 +2,39 @@
   <header class="header">
     <div class="navbar container grid-xl">
       <section class="logo navbar-section">
-        <icon name="anchor" />
+        <vpd-icon name="anchor" />
       </section>
       <section class="navbar-section">
-        <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="复制元件 Ctrl + C" @click="copyWidget">
-          <icon name="copy" /> 复制
+        <a
+          class="btn btn-link tooltip tooltip-bottom"
+          data-tooltip="复制元件 Ctrl + C"
+          @click="copyWidget">
+          <vpd-icon name="copy" /> 复制
         </a>
-        <a class="btn btn-link tooltip tooltip-bottom" data-tooltip="删除元件 Delete" @click="dele">
-          <icon name="trash-2" /> 删除
+        <a
+          class="btn btn-link tooltip tooltip-bottom"
+          data-tooltip="删除元件 Delete"
+          @click="dele">
+          <vpd-icon name="trash-2" /> 删除
         </a>
-        <a @click="save" class="btn btn-link tooltip tooltip-bottom" data-tooltip="保存 Ctrl + S"><icon name="save" /> 保存</a>
+        <a
+          class="btn btn-link tooltip tooltip-bottom"
+          data-tooltip="保存 Ctrl + S"
+          @click="save"><vpd-icon name="save" /> 保存</a>
       </section>
     </div>
   </header>
 </template>
 
 <script>
+import vpd from '../mixins/vpd'
 export default {
+  mixins: [vpd],
+  computed: {
+    show () {
+      return this.$vpd.state.type !== 'page'
+    }
+  },
   mounted () {
     // Ctrl + C 复制元件
     document.addEventListener(
@@ -60,23 +76,17 @@ export default {
   methods: {
     // 保存
     save () {
-      this.$store.dispatch('save')
+      this.$vpd.dispatch('save')
     },
 
     // 复制元件
     copyWidget () {
-      this.$store.commit('copy')
+      this.$vpd.commit('copy')
     },
 
     // 删除元件
     dele () {
-      this.$store.commit('delete')
-    }
-  },
-
-  computed: {
-    show () {
-      return this.$store.state.type !== 'page'
+      this.$vpd.commit('delete')
     }
   }
 }

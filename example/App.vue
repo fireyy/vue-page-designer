@@ -1,12 +1,16 @@
 <template>
   <div id="app">
-    <vue-page-designer :value="value" :widgets="widgets" @save="handleSave" :upload="handleUpload" :uploadOption="uploadOption" />
+    <vue-page-designer
+      :value="value"
+      :widgets="widgets"
+      :upload="handleUpload"
+      :upload-option="uploadOption"
+      @save="handleSave" />
   </div>
 </template>
 
 <script>
 import widgets from './widgets'
-import vuePageDesigner from '../src'
 
 export default {
   data () {
@@ -40,10 +44,6 @@ export default {
         })
       })
     }
-  },
-
-  components: {
-    vuePageDesigner
   }
 }
 </script>

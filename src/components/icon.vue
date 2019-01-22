@@ -1,9 +1,13 @@
 <template>
-  <i :title="title" class="icon svg-icon" v-html="icon" @click="handleClick"></i>
+  <i
+    :title="title"
+    class="icon svg-icon"
+    @click="handleClick"
+    v-html="icon"/>
 </template>
 <script>
 export default {
-  name: 'icon',
+  name: 'VpdIcon',
   props: {
     svg: String,
     title: String,

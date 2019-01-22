@@ -1,22 +1,32 @@
 <template>
-  <div class="mask" v-if="show">
+  <div
+    v-if="show"
+    class="mask">
     <div class="box">
       <div class="top">
         <span>{{ title }}</span>
-        <icon class="close" name="x" @click="close" />
+        <vpd-icon
+          class="close"
+          name="x"
+          @click="close" />
       </div>
       <div class="body">
         <slot>{{ content }}</slot>
       </div>
-      <div class='footer'>
-        <button class="btn" @click="confirm">确定</button>
-        <button class="btn" @click="close">取消</button>
+      <div class="footer">
+        <button
+          class="btn"
+          @click="confirm">确定</button>
+        <button
+          class="btn"
+          @click="close">取消</button>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
+  name: 'VpdPopbox',
   props: ['title', 'id', 'content'],
   data () {
     return {

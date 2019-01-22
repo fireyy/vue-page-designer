@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/fireyy/vue-page-designer/compare/v1.0.0...v1.0.1) (2019-01-22)
+
+
+
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/fireyy/vue-page-designer/compare/v0.7.1...v1.0.0) (2019-01-22)
+
+
+### Bug Fixes
+
+* container fixed-width 1280px ([4a9cd1f](https://github.com/fireyy/vue-page-designer/commit/4a9cd1f))
+* ref line duplicate keys ([8339f14](https://github.com/fireyy/vue-page-designer/commit/8339f14))
+* ref line duplicate keys ([5adf53b](https://github.com/fireyy/vue-page-designer/commit/5adf53b))
+* rollup bundle external vue ([e06412d](https://github.com/fireyy/vue-page-designer/commit/e06412d))
+* sass import path ([dad291b](https://github.com/fireyy/vue-page-designer/commit/dad291b))
+* use vpd instead of store ([7e4be36](https://github.com/fireyy/vue-page-designer/commit/7e4be36))
+
+
+### Features
+
+* layer-list show widget title ([4892aa0](https://github.com/fireyy/vue-page-designer/commit/4892aa0))
+
+
+
 <a name="0.7.1"></a>
 ## [0.7.1](https://github.com/fireyy/vue-page-designer/compare/v0.7.0...v0.7.1) (2018-01-03)
 

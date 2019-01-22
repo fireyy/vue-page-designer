@@ -16,7 +16,23 @@ A drag-and-drop mobile website builder base on Vue.
 yarn add vue-page-designer
 ```
 
-You can start it quickly:
+You can start it quickly, in main.js:
+
+```js
+import Vue from 'vue';
+import vuePageDesigner from 'vue-page-designer'
+import 'vue-page-designer/dist/vue-page-designer.css'
+import App from './App.vue';
+
+Vue.use(vuePageDesigner);
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
+```
+
+Next, use it:
 
 ```html
 <template>
@@ -24,16 +40,6 @@ You can start it quickly:
     <vue-page-designer />
   </div>
 </template>
-
-<script>
-import vuePageDesigner from 'vue-page-designer'
-
-export default {
-  components: {
-    vuePageDesigner
-  }
-}
-</script>
 
 <style>
 #app {
@@ -84,7 +90,6 @@ Import and use it
   </div>
 </template>
 <script>
-import vuePageDesigner from 'vue-page-designer'
 import widgets from './widgets'
 
 export default {
@@ -92,10 +97,6 @@ export default {
     return {
       widgets
     }
-  },
-
-  components: {
-    vuePageDesigner
   }
 }
 </script>
@@ -120,8 +121,6 @@ export default {
   </div>
 </template>
 <script>
-import vuePageDesigner from 'vue-page-designer'
-
 export default {
   methods: {
     upload (files) {
@@ -131,9 +130,6 @@ export default {
         console.log(err)
       })
     }
-  },
-  components: {
-    vuePageDesigner
   }
 }
 </script>

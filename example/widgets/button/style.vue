@@ -1,33 +1,40 @@
 <template>
-	<div>
+  <div>
     <hr>
     <div class="panel-row">
-      <icon name="target" />
+      <vpd-icon name="target" />
       <div class="panel-label">背景色</div>
       <div class="panel-value">{{ activeElement.bgColor }}</div>
       <div class="panel-value">
-        <input type="color" v-model="activeElement.bgColor">
+        <input
+          v-model="activeElement.bgColor"
+          type="color">
       </div>
     </div>
 
     <div class="panel-row">
-      <icon name="image" />
+      <vpd-icon name="image" />
       <div class="panel-label">背景图</div>
       <div class="panel-value">
-        <div class="panel-preview"
-          @click="addPic"
-          :style="{ backgroundImage: 'url(' + activeElement.backPic + ')' }">
-          <icon name="plus" v-show="!activeElement.backPic" />
+        <div
+          :style="{ backgroundImage: 'url(' + activeElement.backPic + ')' }"
+          class="panel-preview"
+          @click="addPic">
+          <vpd-icon
+            v-show="!activeElement.backPic"
+            name="plus" />
         </div>
       </div>
     </div>
 
     <div class="panel-row">
-      <icon name="edit-3" />
+      <vpd-icon name="edit-3" />
       <div class="panel-label">文字颜色</div>
       <div class="panel-value">{{ activeElement.color }}</div>
       <div>
-        <input type="color" v-model="activeElement.color">
+        <input
+          v-model="activeElement.color"
+          type="color">
       </div>
     </div>
   </div>
@@ -35,12 +42,12 @@
 
 <script>
 export default {
-  name: 'braid-button-style',
+  name: 'BraidButtonStyle',
   props: ['activeElement'],
   methods: {
     addPic () {
-      this.$store.$emit('upload', (payload) => {
-        this.$store.commit('addBackPic', payload)
+      this.$vpd.$emit('upload', (payload) => {
+        this.$vpd.commit('addBackPic', payload)
       })
     }
   }

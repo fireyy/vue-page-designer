@@ -1,11 +1,17 @@
 <template>
   <transition name="drop">
-    <div class="toast" :class="klass" v-show="show">{{ info }}</div>
+    <div
+      v-show="show"
+      :class="klass"
+      class="toast">{{ info }}</div>
   </transition>
 </template>
 
 <script>
+import vpd from '../mixins/vpd'
 export default {
+  name: 'VpdToast',
+  mixins: [vpd],
   data () {
     return {
       info: '',
@@ -23,7 +29,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.$on('notify', (option) => {
+    this.$vpd.$on('notify', (option) => {
       this.notify(option.info, option.type)
     })
   },

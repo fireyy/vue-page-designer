@@ -1,48 +1,68 @@
 <template>
   <div class="app">
-    <navbar></navbar>
+    <navbar/>
     <div class="body container grid-xl">
       <div class="columns col-gapless">
-        <toolbar class="toolbar column" :zoom="zoom"></toolbar>
+        <toolbar
+          :zoom="zoom"
+          class="toolbar column"/>
         <div class="viewport column">
-          <viewport :zoom="zoom"></viewport>
+          <viewport :zoom="zoom"/>
           <div class="zoom-wrap">
-            <slider @input="dozoom" :value="zoom" :step="1" :tuning="false" />
+            <vpd-slider
+              :value="zoom"
+              :step="1"
+              :tuning="false"
+              @input="dozoom" />
             <div class="zoom-value">{{ zoom }}%</div>
           </div>
         </div>
-        <panel class="control-panel column"></panel>
+        <panel class="control-panel column"/>
       </div>
     </div>
-    <uploader :upload="upload" :uploadOption="uploadOption"></uploader>
-    <toast></toast>
+    <vpd-uploader
+      :upload="upload"
+      :upload-option="uploadOption"/>
+    <vpd-toast/>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import store from './store'
 import widget from './plugins/widget'
 import navbar from './components/navbar.vue'
 import toolbar from './components/toolbar.vue'
 import panel from './components/panel/index.vue'
 import viewport from './components/viewport/index.vue'
 import loadSprite from './utils/load-sprite'
+import vpd from './mixins/vpd'
+import toast from './components/toast.vue'
+import uploader from './components/uploader.vue'
+import slider from './components/slider.vue'
 
 export default {
-  name: 'vue-page-designer',
-  store,
+  name: 'VuePageDesigner',
   components: {
     navbar, // 顶部导航栏
     toolbar, // 左侧菜单栏
     panel, // 右侧参数面板
-    viewport // 页面画布
+    viewport, // 页面画布
+    [toast.name]: toast, // 提示组件
+    [uploader.name]: uploader, // 上传组件
+    [slider.name]: slider
   },
+  mixins: [vpd],
   props: {
     value: Object,
     widgets: Object,
     upload: Function,
     uploadOption: Object
+  },
+
+  computed: {
+    zoom () {
+      return this.$vpd.state.zoom
+    }
   },
   beforeCreate () {
     // TODO: custom svg path by config
@@ -55,26 +75,20 @@ export default {
     })
     // 初始化已有数据
     if (this.value) {
-      store.replaceState(this.value)
+      this.$vpd.replaceState(this.value)
     }
-    store.$on('save', () => {
-      this.$emit('save', store.state)
+    this.$vpd.$on('save', () => {
+      this.$emit('save', this.$vpd.state)
     })
   },
   mounted () {
     // 初始化选中元件（将页面作为初始选中元件）
-    this.$store.commit('initActive')
+    this.$vpd.commit('initActive')
   },
 
   methods: {
     dozoom (val) {
-      this.$store.commit('zoom', val)
-    }
-  },
-
-  computed: {
-    zoom () {
-      return this.$store.state.zoom
+      this.$vpd.commit('zoom', val)
     }
   }
 }
