@@ -6,6 +6,8 @@
     "url": "fireyy/vue-page-designer",
     "type": "git"
   },
+  "module": "dist/vue-page-designer.esm.js",
+  "unpkg": "dist/vue-page-designer.min.js",
   "main": "dist/vue-page-designer.js",
   "license": "WTFPL",
   "files": [
