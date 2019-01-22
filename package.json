@@ -1,6 +1,6 @@
 {
   "name": "vue-page-designer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A vue component for drag-and-drop to design and build mobile website.",
   "repository": {
     "url": "fireyy/vue-page-designer",
