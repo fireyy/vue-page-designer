@@ -16,7 +16,7 @@
     "dist/*.css"
   ],
   "scripts": {
-    "bump": "standard-version --release-as 1.0.0",
+    "bump": "standard-version",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue ./src ./example --fix",
     "icon": "node scripts/icon.js",
