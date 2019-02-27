@@ -9,7 +9,7 @@ const commonjs = require('rollup-plugin-commonjs');
 const filesize = require('filesize');
 const gzipSize = require('gzip-size');
 const { uglify } = require('rollup-plugin-uglify');
-const { minify } = require('uglify-es');
+const { minify } = require('terser');
 
 const version = process.env.VERSION || require('../package.json').version;
 
