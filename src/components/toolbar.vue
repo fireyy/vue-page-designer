@@ -1,7 +1,7 @@
 <template>
   <div class="menu-bar">
     <details open>
-      <summary><vpd-icon name="list" />可用组件</summary>
+      <summary><vpd-icon name="list" />{{ $t('data.components') }}</summary>
       <ul
         class="widget-list columns"
         @mousedown="updateSrollTop">
@@ -18,7 +18,7 @@
       </ul>
     </details>
     <details>
-      <summary><vpd-icon name="layers" />已加组件</summary>
+      <summary><vpd-icon name="layers" />{{ $t('data.added_components') }}</summary>
       <ul class="layer-list">
         <li
           v-for="layer in layers"
@@ -95,6 +95,9 @@ export default {
   }
   summary {
     padding: 5px 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     border-bottom: 1px solid #f5f5f5;
     .svg-icon {
       margin-right: 5px;

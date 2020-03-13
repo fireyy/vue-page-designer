@@ -16,10 +16,10 @@
 
     <div class="panel-row">
       <vpd-icon name="film" />
-      <div class="panel-label">选择动画</div>
+      <div class="panel-label">{{ $t('panel.animation.select') }}</div>
       <div class="panel-value">
         <select v-model="currentName">
-          <option value="">无</option>
+          <option value="">{{ $t('data.no') }}</option>
           <option
             v-for="(val, index) in animationNames"
             :key="index"
@@ -32,7 +32,7 @@
       <hr>
       <div class="panel-row">
         <vpd-icon name="type" />
-        <div class="panel-label">动画名称</div>
+        <div class="panel-label">{{ $t('data.name') }}</div>
         <div class="panel-value">
           <input
             v-model.trim="currentAnimation.name"
@@ -44,7 +44,7 @@
 
       <div class="panel-row">
         <vpd-icon name="clock" />
-        <div class="panel-label">动画时长</div>
+        <div class="panel-label">{{ $t('data.duration') }}</div>
         <div class="panel-value">
           <input
             v-model.number="currentAnimation.duration"
@@ -55,7 +55,7 @@
 
       <div class="panel-row">
         <vpd-icon name="watch" />
-        <div class="panel-label">动画延迟</div>
+        <div class="panel-label">{{ $t('data.delay') }}</div>
         <div class="panel-value">
           <input
             v-model.number="currentAnimation.delay"
@@ -66,7 +66,7 @@
 
       <div class="panel-row">
         <vpd-icon name="repeat" />
-        <div class="panel-label">动画循环</div>
+        <div class="panel-label">{{ $t('data.iteration') }}</div>
         <div class="panel-value">
           <input
             v-model.number="currentAnimation.iteration"
@@ -77,7 +77,7 @@
 
       <div class="panel-row">
         <vpd-icon name="activity" />
-        <div class="panel-label">缓动函数</div>
+        <div class="panel-label">{{ $t('data.timing') }}</div>
         <div class="panel-value">
           <select v-model="currentAnimation.timing">
             <option>linear</option>
@@ -91,7 +91,7 @@
 
       <div class="panel-row">
         <vpd-icon name="rotate-cw" />
-        <div class="panel-label">动画方向</div>
+        <div class="panel-label">{{ $t('data.direction') }}</div>
         <div class="panel-value">
           <select v-model="currentAnimation.direction">
             <option>normal</option>
@@ -138,7 +138,7 @@
             v-if="i + 1 === currentAnimation.keyframes.length"
             class="btn btn-primary"
             @click="addkeyframe">
-            <vpd-icon name="plus" /> 添加新的动画
+            <vpd-icon name="plus" /> {{ $t('data.actions.add') }}
           </button>
         </div>
       </div>
@@ -192,7 +192,7 @@ export default {
       // 检查是否存在未命名动画，避免重复添加
       if (this.$vpd.state.animation.some(val => val.name === '')) {
         this.$vpd.$emit('notify', {
-          info: '还有未命名动画，请先命名'
+          info: this.$t('messages.alerts.unnamedanimations')
         })
         return
       }
@@ -210,7 +210,7 @@ export default {
       var name = this.currentAnimation.name
       if (name === '') {
         this.$vpd.$emit('notify', {
-          info: '请先为动画命名'
+          info: this.$t('messages.alerts.animation_name_required')
         })
         return
       }
@@ -225,7 +225,7 @@ export default {
           this.currentAnimation.name = ''
         })
         this.$vpd.$emit('notify', {
-          info: '动画名称必须以英文开头'
+          info: this.$t('messages.alerts.animation_name_validate')
         })
       }
 
@@ -234,7 +234,7 @@ export default {
           this.currentAnimation.name = value.replace(/\W/g, '')
         })
         this.$vpd.$emit('notify', {
-          info: '请勿使用英文和数字以外的字符'
+          info: this.$t('messages.alerts.animation_name_validate')
         })
       }
     },
