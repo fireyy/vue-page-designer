@@ -9,18 +9,26 @@
           class="btn btn-link tooltip tooltip-bottom"
           data-tooltip="复制元件 Ctrl + C"
           @click="copyWidget">
-          <vpd-icon name="copy" /> 复制
+          <vpd-icon name="copy" /> {{ $t('data.actions.copy') }}
         </a>
         <a
           class="btn btn-link tooltip tooltip-bottom"
           data-tooltip="删除元件 Delete"
           @click="dele">
-          <vpd-icon name="trash-2" /> 删除
+          <vpd-icon name="trash-2" /> {{ $t('data.actions.delete') }}
         </a>
         <a
           class="btn btn-link tooltip tooltip-bottom"
           data-tooltip="保存 Ctrl + S"
-          @click="save"><vpd-icon name="save" /> 保存</a>
+          @click="save"><vpd-icon name="save" /> {{ $t('data.actions.save') }}</a>
+        <select
+          v-model="$i18n.locale"
+          class="lang-change">
+          <option
+            v-for="(lang, i) in langs"
+            :key="`Lang${i}`"
+            :value="lang">{{ lang }}</option>
+        </select>
       </section>
     </div>
   </header>
@@ -30,6 +38,11 @@
 import vpd from '../mixins/vpd'
 export default {
   mixins: [vpd],
+  data () {
+    return {
+      langs: ['cn', 'en']
+    }
+  },
   computed: {
     show () {
       return this.$vpd.state.type !== 'page'
@@ -119,6 +132,9 @@ export default {
       background-color: $light-color;
       border-radius: 50%;
     }
+  }
+  .lang-change {
+    width: 80px;
   }
 }
 </style>

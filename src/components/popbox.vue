@@ -16,10 +16,10 @@
       <div class="footer">
         <button
           class="btn"
-          @click="confirm">确定</button>
+          @click="confirm">{{ $t('data.actions.determine') }}</button>
         <button
           class="btn"
-          @click="close">取消</button>
+          @click="close">{{ $t('data.actions.cancel') }}</button>
       </div>
     </div>
   </div>

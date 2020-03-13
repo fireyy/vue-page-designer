@@ -39,9 +39,11 @@ import vpd from './mixins/vpd'
 import toast from './components/toast.vue'
 import uploader from './components/uploader.vue'
 import slider from './components/slider.vue'
+import i18n from './plugins/i18n'
 
 export default {
   name: 'VuePageDesigner',
+  i18n: i18n,
   components: {
     navbar, // 顶部导航栏
     toolbar, // 左侧菜单栏
@@ -66,7 +68,7 @@ export default {
   },
   beforeCreate () {
     // TODO: custom svg path by config
-    loadSprite('//unpkg.com/vue-page-designer/dist/icons.svg', 'svgspriteit')
+    loadSprite('//unpkg.com/vue-page-designer@0.7.1/dist/icons.svg', 'svgspriteit')
   },
   created () {
     // 注册 widgets
