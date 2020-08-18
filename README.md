@@ -57,6 +57,7 @@ You can add custom components, save callback.
 | Props | Type | Description |
 | -------- | -------- | -------- |
 | value | `Object` | Editor initial value, you can pass the value of the save callback and resume the draft |
+| locale | `String` | Editor default locale. Now support 'cn' and 'en', default 'cn'. |
 | widgets | `Object` | Vue Components. Custom components for editor. see [Example](https://github.com/fireyy/vue-page-designer-widgets/blob/master/src/index.js) |
 | save | `(data) => void` | When you click the Save button, feed back to you to save the data |
 | upload | `(files) => Promise` | Editor upload function, allowing you to implement your own upload-file's request |
@@ -100,6 +101,16 @@ export default {
   }
 }
 </script>
+```
+
+Set locale to EN
+
+```html
+<template>
+  <div id="app">
+    <vue-page-designer locale="en" />
+  </div>
+</template>
 ```
 
 ## Parameter: `save`

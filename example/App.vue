@@ -5,6 +5,7 @@
       :widgets="widgets"
       :upload="handleUpload"
       :upload-option="uploadOption"
+      locale="cn"
       @save="handleSave" />
   </div>
 </template>

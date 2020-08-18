@@ -56,6 +56,10 @@ export default {
   mixins: [vpd],
   props: {
     value: Object,
+    locale: {
+      type: String,
+      default: 'cn'
+    },
     widgets: Object,
     upload: Function,
     uploadOption: Object
@@ -71,6 +75,8 @@ export default {
     loadSprite('//unpkg.com/vue-page-designer@0.7.1/dist/icons.svg', 'svgspriteit')
   },
   created () {
+    // 默认语言切换
+    i18n.locale = this.locale
     // 注册 widgets
     Vue.use(widget, {
       widgets: this.widgets
