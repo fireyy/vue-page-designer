@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/fireyy/vue-page-designer/compare/v1.0.1...v1.1.0) (2020-09-09)
+
+
+### Bug Fixes
+
+* Github Security Alerts ([6dba672](https://github.com/fireyy/vue-page-designer/commit/6dba672))
+* use terser instead of uglify-es ([88b09a4](https://github.com/fireyy/vue-page-designer/commit/88b09a4))
+
+
+### Features
+
+* [#17](https://github.com/fireyy/vue-page-designer/issues/17) add i18n support ([e6cda99](https://github.com/fireyy/vue-page-designer/commit/e6cda99))
+* add parameter locale ([8000512](https://github.com/fireyy/vue-page-designer/commit/8000512))
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/fireyy/vue-page-designer/compare/v1.0.0...v1.0.1) (2019-01-22)
 
