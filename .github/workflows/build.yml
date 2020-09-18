@@ -28,16 +28,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - run: npm install -g yarn
       - name: 'Build'
         run: |
-          yarn
+          npm install
           npm run build
-      - name: 'Deploy to Github Page'
-        run: |
-          yarn
-          npm run deploy
-      - name: 'Release to npm.com'
-        run: |
-          yarn
-          npm run release
