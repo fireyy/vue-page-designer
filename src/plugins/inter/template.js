@@ -1,7 +1,7 @@
 export default (tpl, data) => {
   if (!data) return tpl
 
-  const re = /{(.*?)}/g
+  const re = new RegExp('{(.*?)}', 'g')
 
   return tpl.replace(re, (_, key) => {
     let ret = data
