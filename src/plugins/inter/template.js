@@ -1,14 +1,14 @@
 export default (tpl, data) => {
   if (!data) return tpl
 
-  const re = new RegExp('{(.*?)}', 'g')
+  const re = /{(.*?)}/g
 
   return tpl.replace(re, (_, key) => {
     let ret = data
 
-    for (const prop of key.split('.')) {
+    key.split('.').forEach((prop) => {
       ret = ret ? ret[prop] : ''
-    }
+    })
 
     return ret || ''
   })
