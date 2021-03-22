@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/fireyy/vue-page-designer/compare/v1.1.0...v1.1.1) (2021-03-22)
+
+
+### Bug Fixes
+
+* [#33](https://github.com/fireyy/vue-page-designer/issues/33) remove vue-i18n, use inter plugin ([8c1e9de](https://github.com/fireyy/vue-page-designer/commit/8c1e9de))
+* for of ([d19f41f](https://github.com/fireyy/vue-page-designer/commit/d19f41f))
+* regx ([3cf96fe](https://github.com/fireyy/vue-page-designer/commit/3cf96fe))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/fireyy/vue-page-designer/compare/v1.0.1...v1.1.0) (2020-09-09)
 
