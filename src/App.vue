@@ -39,11 +39,11 @@ import vpd from './mixins/vpd'
 import toast from './components/toast.vue'
 import uploader from './components/uploader.vue'
 import slider from './components/slider.vue'
-import i18n from './plugins/i18n'
+import inter from './plugins/i18n'
 
 export default {
   name: 'VuePageDesigner',
-  i18n: i18n,
+  inter,
   components: {
     navbar, // 顶部导航栏
     toolbar, // 左侧菜单栏
@@ -76,7 +76,7 @@ export default {
   },
   created () {
     // 默认语言切换
-    i18n.locale = this.locale
+    inter.setCurrentLocale(this.locale)
     // 注册 widgets
     Vue.use(widget, {
       widgets: this.widgets

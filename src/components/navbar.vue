@@ -22,10 +22,11 @@
           data-tooltip="保存 Ctrl + S"
           @click="save"><vpd-icon name="save" /> {{ $t('data.actions.save') }}</a>
         <select
-          v-model="$i18n.locale"
-          class="lang-change">
+          class="lang-change"
+          @change="changeLang">
           <option
             v-for="(lang, i) in langs"
+            :selected="lang === $inter.currentLocale ? 'selected' : ''"
             :key="`Lang${i}`"
             :value="lang">{{ lang }}</option>
         </select>
@@ -40,7 +41,7 @@ export default {
   mixins: [vpd],
   data () {
     return {
-      langs: ['cn', 'en']
+      langs: this.$inter.availableLocales
     }
   },
   computed: {
@@ -100,6 +101,11 @@ export default {
     // 删除元件
     dele () {
       this.$vpd.commit('delete')
+    },
+
+    // 切换语言
+    changeLang (e) {
+      this.$inter.setCurrentLocale(e.target.value)
     }
   }
 }

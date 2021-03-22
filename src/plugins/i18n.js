@@ -1,10 +1,10 @@
 import messages from './messages'
-import VueI18N from 'vue-i18n'
+import Inter from './inter'
 import Vue from 'vue'
 
-Vue.use(VueI18N)
+Vue.use(Inter)
 
-export default new VueI18N({
+export default new Inter({
   locale: 'cn', // setup locale
   messages: messages
 })
