@@ -64,7 +64,7 @@
     "html-webpack-plugin": "^4.0.0-alpha",
     "mini-css-extract-plugin": "^0.4.4",
     "mkdirp": "^0.5.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "progress-bar-webpack-plugin": "^1.10.0",
     "rollup": "^0.64.1",
     "rollup-plugin-buble": "^0.19.2",
