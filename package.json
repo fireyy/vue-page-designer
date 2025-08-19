@@ -30,7 +30,7 @@
   },
   "author": "fireyy <fireyy@gmail.com>",
   "dependencies": {
-    "nanoid": "^1.0.1",
+    "nanoid": "^3.1.31",
     "spectre.css": "^0.5.0",
     "vue": "^2.5.22",
     "vue-page-designer-widgets": "^0.1.4",
